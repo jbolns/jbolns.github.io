@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Personal Website, Jose A Bolanos.">
-  <meta name="keywords" content="Politics, Economics, Policy, Public Policy, Regulation, Food Regulation, Energy Policy, Organisations and Policy, Firms and Public Policy, Certifications, State Regulators, Regulatory Agencies.">
+  <meta name="description" content="Personal Website, Jose A Bolanos, Political Economist.">
+  <meta name="keywords" content="Politics, Economics, Policy, Public Policy, Regulation, Food Policy, Energy Policy, Policy Organisations, Organisations and Policy, Firms and Public Policy, Certifications, State Regulators, IRAs.">
   <meta name="author" content="Jose A Bolanos">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600;700&family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -14,30 +14,29 @@
   <title>Jose A Bolanos. Mildly extravagant political economist.</title>
 </head>
 
-<body onload="centrao()" onresize="centrao()">
+<body onload="loadReload()">
 
   <nav>
     <ul class="mainMenu">
-      <li class="wide"><a href="#home">Home</a></li>
+      <li class="open" onclick="openMenu()"><i class="fas fa-bars"></i></li>
+      <li class="close" onclick="closeMenu()"><i class="fas fa-window-close"></i></li>
+      <li class="wide"><a href="#home" onclick="linky(this.href)">Home</a></li>
+      <li class="wide"><a href="#research" onclick="linky(this.href)">Research portolio</a></li>
+      <li class="wide"><a href="#topics" onclick="linky(this.href)">Topic by topic</a></li>
     </ul>
     <ul class="socialMenu">
-      <li><a href="https://www.instagram.com/jbolns/" target="_blank"><i class="fab fa-instagram fa-2x"></i><span class="hidden">Instagram</span></a></li>
-      <li><a href="https://www.linkedin.com/in/jbolns" target="_blank"><i class="fab fa-linkedin fa-2x"></i><span class="hidden">LinkedIn</span></a></li>
+      <li><a href="#"><i class="fab fa-instagram fa-2x"></i><span class="hidden">Instagram</span></a></li>
+      <li><a href="#"><i class="fab fa-linkedin fa-2x"></i><span class="hidden">LinkedIn</span></a></li>
       <li><a href="https://github.com/jbolns" target="_blank"><i class="fab fa-github fa-2x"></i><span class="hidden">GitHub</span></a></li>
     </ul>
   </nav>
 
   <aside>
+    <img id="avatar" src="images/avatar.png" alt="Picture of Jose">
+    <button class="greenButton" onclick="iLikeYou()">Do not click this button!</button>
   </aside>
 
   <div id="wrapper">
-    <header>
-      <h1>Welcome!</h1>
-      <h2>I'll be back.</h2>
-    </header>
-    <main>
-      <p>Jose is currently closed for renovations. He was due an overhaul.</p>
-    </main>
   </div>
 
   <footer>
@@ -46,3 +45,4 @@
   </footer>
 
 </body>
+</html>

@@ -1,0 +1,47 @@
+<header>
+  <h1>Dr Jose A Bolanos.</h1>
+  <h2>Mildly <span class="purple">extravagant</span> political economist.</h2>
+</header>
+<main>
+  <section>
+    <p>I specialise in how organisations in the environment and food sectors (increasingly the same) tackle complex policy challenges. I can therefore help you understand and improve how public and private organisations in these sectors approach their respective policy challenges.</p>
+    <p>Additionally, I worked in workforce management before my graduate studies, which familiarised me with data and real-time analytics.</p>
+    <h2>Education</h2>
+    <details>
+      <summary>Degree</summary>
+      <ul>
+        <li>PhD Political Economy, King's College London.</li>
+        <li>MA Environment Politics & Globalisation (w. Distinction), King's College London.</li>
+        <li>BA International Relations (cum laude), TalTech.</li>
+      </ul>
+    </details>
+    <details>
+      <summary>Certified</summary>
+      <ul>
+        <li>Free Modules – Foundation Sciences (Calculus, Algebra, Statistics, Physics, Chemistry). Univ. of Costa Rica. 2004.</li>
+        <li>Diploma – Associateship of King’s College (AKC) (Ethics, Religion, & Philosophy). KCL. 2019.</li>
+        <li>Specialisation – Web Design (HTML, CSS, JS, Responsive Design). Univ. of Michigan on Coursera. 2021.</li>
+        <li>Specialisation – Excel/VBA. Univ. of Colorado Boulder on Coursera. 2021.</li>
+      </ul>
+    </details>
+    <h2>Positions</h2>
+    <details>
+      <summary>Present</summary>
+        <ul>
+          <li>Research Associate, Centre for Analysis of Risk & Regulation, LSE.</li>
+        </ul>
+    </details>
+    <details>
+      <summary>Past</summary>
+      <ul>
+        <li>Post-Doctoral Research Officer, LSE's Centre for Analysis of Risk & Regulation (CARR) & Food Standards Agency (FSA).</li>
+        <li>Assistant Lecturer, Chair of International Politics, TU Dresden.</li>
+        <li>KAS Research Fellow, EUCERS, KCL.</li>
+        <li>Teaching Assistant, Dept. of Political Economy, KCL.</li>
+        <li>Research Assistant, Dept. of Geography, KCL.</li>
+        <li>Resource Planning Specialist, Startek.</li>
+      </ul>
+    </details>
+    <br>
+  </section>
+</main>
