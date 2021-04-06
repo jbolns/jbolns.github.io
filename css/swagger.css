@@ -26,13 +26,8 @@ p {
 }
 
 a {
-  color: #e51470;
+  color: #29856c;
   text-decoration: none;
-}
-
-#wrapper {
-  margin: auto;
-  text-align: center;
 }
 
 /**/
@@ -60,10 +55,6 @@ nav li {
   margin: 0; padding: 0 7px;
   border-right: 1px dotted #333;
   font-size: 1.1rem;
-}
-
-nav a {
-  color: #29856c;
 }
 
 nav li:hover {
@@ -99,7 +90,24 @@ nav p, footer p  {
 
 /***************** PAGE CONTENT *****************/
 
+aside {
+  float: left;
+  text-align: right;
+  width: 30%;
+  margin-top: 14px;
+}
+
+aside img {
+  max-width: 90%;
+  border-bottom: 1px dotted #bf0808;
+}
+
 #wrapper {
+  width: 69%;
+  margin: auto;
+  margin-top: 14vw;
+  float: left;
+  width: 66%;
   padding: 14px 1% 14px 1%;
 }
 
@@ -123,7 +131,54 @@ header p {
 }
 
 main {
+  float: left;
   margin: 14px 1% 3rem 1%;
+}
+
+main figure {
+  display: inline-block;
+  float: left;
+  width: 23%;
+  margin: auto 1%;
+}
+
+main img, main figcaption {
+  max-width: 100%;
+}
+
+section {
+  background: rgb(255, 255, 255, 0.7);
+  padding: 7px 2%;
+  border-top: 1px dotted #bf0808;
+  border-right: 1px dotted #bf0808;
+}
+
+.blog {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.blog > section {
+  margin: 7px 1%;
+}
+
+.blog > section:hover {
+  background-color: #c9f9ed;
+}
+
+.blog img {
+  display: block;
+  margin: auto;
+  max-width: 90%;
+  border: 1px dotted #333;
+}
+
+.more {
+  display: none;
+}
+
+.active .more {
+  display: block;
 }
 
 /**/
@@ -133,20 +188,101 @@ main {
   color: #e51470;
 }
 
-.wine {
-  color: #bf0808;
+.greenButton {
+  float: right;
+  background-color: #c9f9ed;
+  border: 1px dotted #333;
+  font-variant: small-caps;
 }
 
 .fab {
   vertical-align: middle;
 }
 
+.open, .close {
+  display: none;
+}
+
+details summary, details ul, details ol, details p {
+  font-family: Dosis;
+}
+
+details ul, details p {
+  margin: 4px auto;
+}
+
+aside details ul li {
+  list-style: none;
+}
+
 .hidden {
   display: none;
 }
 
+.fsc {
+  float: right;
+  width: 40%;
+  text-align: center;
+  border: 1px dotted;
+  margin: 2%;
+}
+
+.fsc:hover {
+  width: 60%;
+  transition-duration: 2s;
+}
+
 /**/
 /***************** RESPONSIVE DESIGN *****************/
+
+@media all and (max-width: 768px) {
+  aside {
+    width: 100%;
+    float: none;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+@media all and (max-width: 768px) {
+  aside img {
+    max-width: 30%;
+  }
+}
+
+@media all and (max-width: 768px) {
+  aside p {
+    margin: 0;
+    font-size: 0.7em;
+  }
+}
+
+@media all and (max-width: 768px) {
+  aside button {
+    display: none;
+  }
+}
+
+@media all and (max-width: 768px) {
+  header, main {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media all and (max-width: 768px) {
+  header {
+    text-align: center;
+  }
+}
+
+@media all and (max-width: 768px) {
+  #wrapper {
+    width: 97%;
+    margin-top: 14px;
+    float: none;
+  }
+}
 
 @media all and (max-width: 768px) {
   header h1, header h2, header p {
@@ -166,5 +302,30 @@ main {
   nav ul li {
     background: #fff;
     border-bottom: 1px dotted #333;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  nav ul li.wide:nth-child(3) {
+    border-top: 1px dotted #333;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .open {
+    display: inline-block;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .wide, .close {
+    display: none;
+    width: 100vw;
+  }
+}
+
+@media all and (max-width: 768px) {
+.blog {
+  display: block;
   }
 }
