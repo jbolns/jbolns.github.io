@@ -1,7 +1,7 @@
 // Main JS File
 function loadReload(){
   var str = $(location).attr('hash');
-  str = str.substring(1)
+  str = str.substring(1);
   if ( str === "") {
     $('#wrapper').load('includes/home.html');
   } else {
