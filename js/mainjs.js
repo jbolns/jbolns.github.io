@@ -35,6 +35,6 @@ function closeMenu(){
 }
 
 function iLikeYou(){
-  alert ("You rebel! I like you!")
-  $('.redButton').css('display', 'none')
+  alert ("You rebel! I like you!");
+  $('.greenButton').css('display', 'none');
 }

@@ -189,6 +189,7 @@ section {
 }
 
 .greenButton {
+  display: inherit;
   float: right;
   background-color: #c9f9ed;
   border: 1px dotted #333;
