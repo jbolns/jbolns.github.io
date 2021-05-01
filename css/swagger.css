@@ -220,7 +220,7 @@ aside details ul li {
   display: none;
 }
 
-.fsc {
+.enlarge {
   float: right;
   width: 40%;
   text-align: center;
@@ -228,7 +228,7 @@ aside details ul li {
   margin: 2%;
 }
 
-.fsc:hover {
+.enlarge:hover {
   width: 60%;
   transition-duration: 2s;
 }
