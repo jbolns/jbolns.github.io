@@ -98,6 +98,8 @@ aside {
 }
 
 aside img {
+  height: auto;
+  width: 90%;
   max-width: 90%;
   border-bottom: 1px dotted #bf0808;
 }
