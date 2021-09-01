@@ -79,7 +79,6 @@ footer {
   text-align: right;
   border-top: 1px dotted #333;
   line-height: 3rem;
-  font-family: Dosis;
 }
 
 nav p, footer p  {
@@ -211,8 +210,8 @@ section h2, section h3 {
   display: none;
 }
 
-details summary, details ul, details ol, details p {
-  font-family: Dosis;
+details ul, details ol, details p {
+  font-size: 0.9em;
 }
 
 details ul, details p {
