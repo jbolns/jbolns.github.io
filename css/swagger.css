@@ -244,28 +244,6 @@ aside details ul li {
 
 @media all and (max-width: 768px) {
   aside {
-    width: 100%;
-    float: none;
-    text-align: center;
-    margin: 0;
-  }
-}
-
-@media all and (max-width: 768px) {
-  aside img {
-    max-width: 30%;
-  }
-}
-
-@media all and (max-width: 768px) {
-  aside p {
-    margin: 0;
-    font-size: 0.7em;
-  }
-}
-
-@media all and (max-width: 768px) {
-  aside button {
     display: none;
   }
 }
