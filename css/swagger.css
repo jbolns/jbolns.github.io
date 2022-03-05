@@ -90,36 +90,37 @@ nav p, footer p  {
 /***************** PAGE CONTENT *****************/
 
 aside {
-  float: left;
-  text-align: right;
-  width: 30%;
+  width: 100%;
   margin-top: 14px;
+  text-align: center;
 }
 
 aside img {
+  max-width: 200px;
   height: auto;
-  width: 90%;
-  max-width: 90%;
-  border-bottom: 1px dotted #bf0808;
+  margin: 70px auto 0px;
+  border: 1px solid #ddd;
+  opacity: 0.9;
+  transition: ease-in-out .5s;
+  animation: changeBorder 5s ease-in-out infinite;
+}
+
+@keyframes changeBorder {
+  0% { border-radius: 120px 30px; background: aliceblue;}
+  50% { border-radius: 30px 120px; filter: grayscale(70%); background: none;}
+  100% { border-radius: 120px 30px; background: aliceblue;}
+}
+
+aside img:hover {
+  filter: grayscale(100%);
 }
 
 #wrapper {
-  width: 69%;
-  margin: auto;
-  margin-top: 14vw;
-  float: left;
-  width: 66%;
-  padding: 14px 1% 14px 1%;
-}
-
-header h1, header h2 {
-  display: inline;
-  line-height: 1em;
+  text-align: center;
 }
 
 header h1 {
   font-size: 2.3rem;
-  margin-right: 0.1rem;
 }
 
 header h2 {
@@ -132,8 +133,9 @@ header p {
 }
 
 main {
-  float: left;
-  margin: 14px 1% 3rem 1%;
+  width: 60%;
+  margin: 14px auto 4rem;
+  text-align: left;
 }
 
 main figure {
@@ -150,13 +152,32 @@ main img, main figcaption {
 section {
   background: rgb(255, 255, 255, 0.7);
   padding: 7px 2%;
-  border-top: 1px dotted #bf0808;
-  border-right: 1px dotted #bf0808;
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #eee;
+  border-bottom: 1px dotted #aaa;
+  border-left: 1px dotted #bbb;
+  border-radius: 7px;
+  transition-duration: 2s;
+}
+
+.activao {
+  position: absolute;
+  top: 35px;
+  left: 8%;
+  background-color: #c9f9ed;
+  width: 80%;
+  padding-bottom: 42px !important;
 }
 
 section h2, section h3 {
   clear: both;
   width: 100%;
+}
+
+.education, .experience {
+  float: left;
+  width: 50%;
+  margin-bottom: 14px;
 }
 
 .blog {
@@ -166,6 +187,7 @@ section h2, section h3 {
 
 .blog > section {
   margin: 7px 1%;
+  transition: ease-in 0.5s;
 }
 
 .blog > section:hover {
@@ -187,6 +209,10 @@ section h2, section h3 {
   display: block;
 }
 
+.sectionClose {
+  position: absolute;
+  margin: -35px -42px;
+}
 /**/
 /***************** MINOR FORMATS *****************/
 
@@ -195,9 +221,10 @@ section h2, section h3 {
 }
 
 .greenButton {
-  display: inherit;
-  float: right;
-  background-color: #c9f9ed;
+  display: block;
+  margin: auto;
+  transform: translate3d(40%, 0px, 0px);
+  background-color: #ddd;
   border: 1px dotted #333;
   font-variant: small-caps;
 }
@@ -240,96 +267,6 @@ aside details ul li {
   transition-duration: 2s;
 }
 
-/**/
-/***************** RESPONSIVE DESIGN *****************/
-
-@media all and (max-width: 768px) {
-  aside {
-    display: none;
-  }
-}
-
-@media all and (max-width: 768px) {
-  header, main {
-    width: 100%;
-    margin-left: 0;
-  }
-}
-
-@media all and (max-width: 768px) {
-  header {
-    text-align: center;
-  }
-}
-
-@media all and (max-width: 768px) {
-  #wrapper {
-    width: 97%;
-    margin-top: 14px;
-    float: none;
-  }
-}
-
-@media all and (max-width: 768px) {
-  header h1, header h2, header p {
-    display: block;
-    margin: 3px auto;
-  }
-}
-
-@media all and (max-width: 1024px) {
-  nav {
-    background: none;
-    border-bottom: 0px;
-  }
-}
-
-@media all and (max-width: 1024px) {
-  nav ul li {
-    background: #fff;
-    border-bottom: 1px dotted #333;
-  }
-}
-
-@media all and (max-width: 1024px) {
-  nav ul li.wide:nth-child(3) {
-    border-top: 1px dotted #333;
-  }
-}
-
-@media all and (max-width: 1024px) {
-  .open {
-    display: inline-block;
-  }
-}
-
-@media all and (max-width: 1024px) {
-  .wide, .close {
-    display: none;
-    width: 100vw;
-  }
-}
-
-@media all and (max-width: 768px) {
-  .enlarge {
-    width: 40%;
-  }
-}
-
-@media all and (max-width: 768px) {
-  .enlarge:hover {
-    width: 75%;
-  }
-}
-
-@media all and (max-width: 768px) {
-.blog {
-  display: block;
-  }
-}
-
-@media all and (min-width: 1600px) {
-.enlarge {
-  width: 20%;
-  }
+.reseteao {
+  clear: both;
 }
