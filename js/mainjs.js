@@ -13,6 +13,9 @@ function linky(lnk){
   var pos = lnk.lastIndexOf("#") + 1;
   var str = lnk.substring(pos);
   $('#wrapper').load('includes/' + str + '.html');
+  if ( $(window).width() < 1024 ) {
+    closeMenu();
+  }
 }
 
 function cR(){

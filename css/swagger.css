@@ -19,6 +19,7 @@ h1, h2, h3, h4, h5 {
   font-family: Oxanium;
   letter-spacing: -0.04em;
   margin-bottom: 0;
+  line-height: 100%;
 }
 
 p {
@@ -36,8 +37,6 @@ a {
 nav {
   position: fixed; top: 0; left: 0; z-index: 1;
   width: 100%;
-  background: #fff;
-  border-bottom: 1px dotted #333;
   font-family: Dosis;
   font-size: 0;
   text-transform: uppercase;
@@ -45,6 +44,8 @@ nav {
 }
 
 nav ul {
+  background: #fff;
+  border-bottom: 1px dotted #333;
   display: inline-block;
   margin: 0; padding: 0;
 }
@@ -119,8 +120,8 @@ aside img:hover {
   text-align: center;
 }
 
-header h1 {
-  font-size: 2.3rem;
+header h1, .activao h1 {
+  font-size: 2.5rem;
 }
 
 header h2 {
@@ -162,10 +163,10 @@ section {
 
 .activao {
   position: absolute;
-  top: 35px;
-  left: 8%;
+  top: 42px;
+  left: 23%;
   background-color: #c9f9ed;
-  width: 80%;
+  width: 50%;
   padding-bottom: 42px !important;
 }
 
@@ -209,10 +210,6 @@ section h2, section h3 {
   display: block;
 }
 
-.sectionClose {
-  position: absolute;
-  margin: -35px -42px;
-}
 /**/
 /***************** MINOR FORMATS *****************/
 
@@ -269,4 +266,89 @@ aside details ul li {
 
 .reseteao {
   clear: both;
+}
+
+.sectionClose {
+  display: block;
+  float: right;
+  color: #000;
+  margin-top: 10px;
+}
+
+/** RESPONSIVE DESIGN **/
+
+@media all and (max-width: 768px) {
+  header, main {
+    width: 96%;
+  }
+}
+
+@media all and (max-width: 768px) {
+.blog {
+  display: block;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  nav ul {
+    /*background: none;*/
+    border-bottom: 0px;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  nav ul li {
+    border-bottom: 1px dotted #333;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  nav ul li.wide:nth-child(3) {
+    border-top: 1px dotted #333;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .open {
+    display: inline-block;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .wide, .close {
+    display: none;
+    width: 100vw;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .enlarge {
+    width: 40%;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .enlarge:hover {
+    width: 75%;
+  }
+}
+
+@media all and (min-width: 1600px) {
+.enlarge {
+  width: 20%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .activao {
+    left: 7%;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .activao {
+    left: 1%;
+    width: 93%;
+  }
 }
