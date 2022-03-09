@@ -38,9 +38,8 @@ nav {
   position: fixed; top: 0; left: 0; z-index: 1;
   width: 100%;
   font-family: Dosis;
-  font-size: 0;
   text-transform: uppercase;
-  line-height: 3rem;
+  line-height: 4rem;
 }
 
 nav ul {
@@ -55,7 +54,7 @@ nav li {
   vertical-align: middle;
   margin: 0; padding: 0 7px;
   border-right: 1px dotted #333;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
 }
 
 nav li:hover {
@@ -163,7 +162,7 @@ section {
 
 .activao {
   position: absolute;
-  top: 42px;
+  top: 5rem;
   left: 23%;
   background-color: #c9f9ed;
   width: 50%;
@@ -234,12 +233,9 @@ section h2, section h3 {
   display: none;
 }
 
-details ul, details ol, details p {
-  font-size: 0.9em;
-}
-
-details ul, details p {
+details ul {
   margin: 4px auto;
+  padding: 0px 17px;
 }
 
 aside details ul li {
@@ -277,13 +273,13 @@ aside details ul li {
 
 /** RESPONSIVE DESIGN **/
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 1024px) {
   header, main {
     width: 96%;
   }
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 1024px) {
 .blog {
   display: block;
   }
@@ -291,7 +287,6 @@ aside details ul li {
 
 @media all and (max-width: 1024px) {
   nav ul {
-    /*background: none;*/
     border-bottom: 0px;
   }
 }
@@ -341,14 +336,14 @@ aside details ul li {
 
 @media screen and (max-width: 1024px) {
   .activao {
-    left: 7%;
-    width: 80%;
+    left: 1%;
+    top: 6.5rem;
+    width: 93%;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .activao {
-    left: 1%;
-    width: 93%;
+@media screen and (max-width: 1024px) {
+  nav {
+    line-height: 6rem;
   }
 }
