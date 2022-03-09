@@ -22,9 +22,9 @@ h1, h2, h3, h4, h5 {
   line-height: 100%;
 }
 
-p {
+/*p {
   font-size: 1rem;
-}
+}*/
 
 a {
   color: #29856c;
@@ -39,7 +39,7 @@ nav {
   width: 100%;
   font-family: Dosis;
   text-transform: uppercase;
-  line-height: 4rem;
+  line-height: 3rem;
 }
 
 nav ul {
@@ -54,7 +54,7 @@ nav li {
   vertical-align: middle;
   margin: 0; padding: 0 7px;
   border-right: 1px dotted #333;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 nav li:hover {
@@ -83,7 +83,6 @@ footer {
 
 nav p, footer p  {
   margin: 0 14px;
-  font-size: 0.8rem;
   color: #333;
 }
 
@@ -235,7 +234,8 @@ section h2, section h3 {
 
 details ul {
   margin: 4px auto;
-  padding: 0px 17px;
+  padding: 0px 21px;
+  font-size: inherit;
 }
 
 aside details ul li {
@@ -345,5 +345,18 @@ aside details ul li {
 @media screen and (max-width: 1024px) {
   nav {
     line-height: 6rem;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .education, .experience {
+    width: 96%;
+    margin-left: 2%;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  details, details ul {
+    margin-left: 7px;
   }
 }
