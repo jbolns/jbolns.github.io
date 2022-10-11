@@ -41,3 +41,31 @@ function iLikeYou(){
   alert ("You rebel! I like you!");
   $('.greenButton').css('display', 'none');
 }
+
+function selectType(){
+  var type = $('#type').find(":selected").val();
+  var topic = $('#topic').find(":selected").val();
+  if (topic === "allTopics") {
+    $('.allTypes').show();
+    $('.allTypes:not(.' + type).hide()
+  }
+  if (topic !== "allTopics") {
+    $('.allTopics').show();
+    $('.allTopics:not(.' + topic).hide()
+    $('.' + topic + ':not(.' + type).hide();
+  }
+}
+
+function selectTopic(){
+  var type = $('#type').find(":selected").val();
+  var topic = $('#topic').find(":selected").val();
+  if (type === "allTypes") {
+    $('.allTopics').show();
+    $('.allTopics:not(.' + topic).hide()
+  }
+  if (type !== "allTypes") {
+    $('.allTypes').show();
+    $('.allTypes:not(.' + type).hide()
+    $('.' + type + ':not(.' + topic).hide();
+  }
+}
