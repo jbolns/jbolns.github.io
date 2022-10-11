@@ -1,5 +1,6 @@
 #BUILD FILES
-/images/PNGs
+/images/buildFiles
+/docs/buildFiles
 server.py
 /css/simple.css
 /js/mainjs(v2).js

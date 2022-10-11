@@ -1,30 +1,24 @@
 /*****************CSS *****************/
 
 /**/
-/***************** GENERAL ELEMENTS *****************/
+/***************** GENERAL HTML ELEMENTS *****************/
 
 html {
   background:
     repeating-linear-gradient(75deg, #fff, #efefef 3px, #000 3px);
-  font-size: 1rem;
   line-height: 1.4rem;
 }
 
 body {
   margin: 3rem auto; padding: 0;
-  font-family: Verdana, sans-serif;
+  font-family: 'Nunito Sans', Verdana, sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
-  font-family: Oxanium;
-  letter-spacing: -0.04em;
+h1 {
+  font-weight: 800;
   margin-bottom: 0;
-  line-height: 100%;
 }
 
-/*p {
-  font-size: 1rem;
-}*/
 
 a {
   color: #29856c;
@@ -32,29 +26,33 @@ a {
 }
 
 /**/
-/***************** NAV TOPBAR & FOOTER *****************/
-
+/***************** NAVGATION BAR / TOPBAR  *****************/
 nav {
   position: fixed; top: 0; left: 0; z-index: 1;
   width: 100%;
-  font-family: Dosis;
+  font-family: Dosis, sans-serif;
   text-transform: uppercase;
-  line-height: 3rem;
+  line-height: 4.5rem;
 }
 
 nav ul {
   background: #fff;
-  border-bottom: 1px dotted #333;
+  border-bottom: 0;
   display: inline-block;
   margin: 0; padding: 0;
 }
 
-nav li {
+nav ul li {
   display: inline-block;
   vertical-align: middle;
   margin: 0; padding: 0 7px;
   border-right: 1px dotted #333;
+  border-bottom: 1px dotted #333;
   font-size: 1.3rem;
+}
+
+nav ul li.wide:nth-child(3) {
+  border-top: 1px dotted #333;
 }
 
 nav li:hover {
@@ -72,24 +70,15 @@ nav li:hover {
   border-right: 0;
 }
 
-footer {
-  position: fixed; bottom: 0; left: 0; z-index: 1;
-  width: 100%;
-  background: #fff;
-  text-align: right;
-  border-top: 1px dotted #333;
-  line-height: 3rem;
+/**/
+/***************** PAGE TITLE HEADERS  *****************/
+header h1 {
+  font-size: 5em;
+  line-height: 40%;
 }
-
-nav p, footer p  {
-  margin: 0 14px;
-  color: #333;
-}
-
-/***************** PAGE CONTENT *****************/
 
 aside {
-  width: 100%;
+  width: 96%;
   margin-top: 14px;
   text-align: center;
 }
@@ -106,20 +95,12 @@ aside img {
 
 @keyframes changeBorder {
   0% { border-radius: 120px 30px; background: aliceblue;}
-  50% { border-radius: 30px 120px; filter: grayscale(70%); background: none;}
+  50% { border-radius: 30px 120px; filter: grayscale(70%); background: rgb(229, 120, 161, 0.7);}
   100% { border-radius: 120px 30px; background: aliceblue;}
 }
 
 aside img:hover {
   filter: grayscale(100%);
-}
-
-#wrapper {
-  text-align: center;
-}
-
-header h1, .activao h1 {
-  font-size: 2.5rem;
 }
 
 header h2 {
@@ -131,8 +112,30 @@ header p {
   margin-top: 1px;
 }
 
+.selectBar {
+  width: 100%
+  margin: 14px 21px;
+  padding: 14px;
+  background: rgb(255, 255, 255, 0.7);
+  border-top: 1px dotted #ccc;
+  border-bottom: 1px dotted #ccc;
+  text-align:  left;
+
+}
+
+.selectBar, .selectBar label, .selectBar option {
+  font-weight: 600;
+  font-variant: small-caps;
+}
+
+/**/
+/***************** PAGE BODY  *****************/
+#wrapper {
+  text-align: center;
+}
+
 main {
-  width: 60%;
+  width: 96%;
   margin: 14px auto 4rem;
   text-align: left;
 }
@@ -150,22 +153,45 @@ main img, main figcaption {
 
 section {
   background: rgb(255, 255, 255, 0.7);
+  margin-top: 14px;
   padding: 7px 2%;
-  border-top: 1px solid #ddd;
-  border-right: 1px solid #eee;
+  border-top: 1px dotted #ccc;
+  border-right: 1px dotted #bbb;
   border-bottom: 1px dotted #aaa;
-  border-left: 1px dotted #bbb;
-  border-radius: 7px;
+  border-left: 1px dotted #ddd;
   transition-duration: 2s;
+}
+
+.portfolio div {
+  padding: 7px 2% 0;
+  margin-bottom: 21px;
+  border-bottom: 1px dotted #333;
+  transition-duration: 3s;
+  animation: changePortfolio 30s ease-in-out infinite;
+}
+
+@keyframes changePortfolio {
+0% { border-bottom: 1px dotted #f2f3fb; border-left: 1px dotted #777; border-radius: 0 0 0 3px; background: rgb(201, 249, 237, 0.5);}
+50% { border-bottom: 1px dotted #333; border-left: 1px dotted #333; background: rgb(255, 255, 255, 0.7);}
+100% { border-bottom: 1px dotted #f2f3fb; border-left: 1px dotted #777; border-radius: 0 0 0 6px; background: rgb(201, 249, 237, 0.5);}
+}
+
+.portfolio h4 {
+  color: #e51470;
 }
 
 .activao {
   position: absolute;
   top: 5rem;
-  left: 23%;
+  left: 1%;
+  width: 93%;
   background-color: #c9f9ed;
-  width: 50%;
   padding-bottom: 42px !important;
+}
+
+.activao h1 {
+  font-size: 2.5rem;
+  line-height: 85%;
 }
 
 section h2, section h3 {
@@ -173,15 +199,8 @@ section h2, section h3 {
   width: 100%;
 }
 
-.education, .experience {
-  float: left;
-  width: 50%;
-  margin-bottom: 14px;
-}
-
 .blog {
-  display: grid;
-  grid-template-columns: auto auto;
+  display: block;
 }
 
 .blog > section {
@@ -189,7 +208,7 @@ section h2, section h3 {
   transition: ease-in 0.5s;
 }
 
-.blog > section:hover {
+.blog > section:hover, .portfolio div:hover {
   background-color: #c9f9ed;
 }
 
@@ -209,7 +228,31 @@ section h2, section h3 {
 }
 
 /**/
+/*****************FOOTER *****************/
+footer {
+  position: fixed; bottom: 0; left: 0; z-index: 1;
+  width: 100%;
+  background: #fff;
+  text-align: right;
+  border-top: 1px dotted #333;
+  line-height: 3rem;
+}
+
+nav p, footer p  {
+  margin: 0 14px;
+  color: #333;
+}
+
+/**/
 /***************** MINOR FORMATS *****************/
+.half, .third {
+  width: 96%;
+  margin-left: 2%;
+}
+
+.rigtheao {
+  text-align: right;
+}
 
 .purple {
   color: #e51470;
@@ -228,8 +271,17 @@ section h2, section h3 {
   vertical-align: middle;
 }
 
-.open, .close {
+.open {
+  display: inline-block;
+}
+
+.wide, .close {
   display: none;
+  width: 100vw;
+}
+
+details, details ul {
+  margin-left: 7px;
 }
 
 details ul {
@@ -248,15 +300,14 @@ aside details ul li {
 
 .enlarge {
   float: left;
-  width: 30%;
+  width: 60%;
   text-align: center;
   border: 1px dotted;
   margin: 2%;
-  font-size: 0.7em;
 }
 
 .enlarge:hover {
-  width: 60%;
+  width: 100%;
   transition-duration: 2s;
 }
 
@@ -264,67 +315,123 @@ aside details ul li {
   clear: both;
 }
 
+.centrao {
+  margin: auto;
+  text-align: center;
+}
+
+figcaption {
+  font-style: italic;
+  font-size: 0.7em;
+}
+
 .sectionClose {
   display: block;
   float: right;
   color: #000;
-  margin-top: 10px;
+  margin: 21px 0 21px 21px;
+}
+
+.magic {
+  visibility: hidden;
 }
 
 /** RESPONSIVE DESIGN **/
-
-@media all and (max-width: 1024px) {
-  header, main {
-    width: 96%;
+/*General adjustments for screens over 1024px*/
+@media all and (min-width: 1024px) {
+  main {
+    width: 90%;
   }
 }
 
-@media all and (max-width: 1024px) {
+@media all and (min-width: 1024px) {
 .blog {
-  display: block;
+  display: grid;
+  grid-template-columns: auto auto;
   }
 }
 
-@media all and (max-width: 1024px) {
-  nav ul {
-    border-bottom: 0px;
+/* Menu adjustments for screens over 768px */
+@media all and (min-width: 768px) {
+  nav ul, .open, .close {
+    border: 0;
   }
 }
 
-@media all and (max-width: 1024px) {
-  nav ul li {
+@media all and (min-width: 768px) {
+  .mainMenu {
+    border-right: 1px dotted #333;
     border-bottom: 1px dotted #333;
   }
 }
 
-@media all and (max-width: 1024px) {
-  nav ul li.wide:nth-child(3) {
+@media all and (min-width: 768px) {
+  nav ul li {
+    border: 0;
     border-top: 1px dotted #333;
   }
 }
 
-@media all and (max-width: 1024px) {
-  .open {
-    display: inline-block;
+/* Menu adjustments for screens over 1024px */
+@media all and (min-width: 1024px) {
+  .mainMenu {
+    border: 0;
   }
 }
 
-@media all and (max-width: 1024px) {
-  .wide, .close {
+@media all and (min-width: 1024px) {
+  .open, .close {
     display: none;
-    width: 100vw;
   }
 }
 
-@media all and (max-width: 768px) {
+@media all and (min-width: 1024px) {
+  nav ul li, .wide {
+    float: left;
+    display: inline-block;
+    width: inherit;
+    border-top: 0 !important;
+    border-right: 1px dotted #333;
+    border-bottom: 1px dotted #333;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  nav {
+    line-height: 3rem;
+  }
+}
+
+/*Post pages and page elements for screens over 1024px*/
+@media screen and (min-width: 1024px) {
+  .activao {
+    top: 5rem;
+    left: 23%;
+    width: 50%;
+  }
+}
+
+@media all and (min-width: 768px) {
   .enlarge {
-    width: 40%;
+    width: 50%;
   }
 }
 
-@media all and (max-width: 768px) {
+@media all and (min-width: 768px) {
   .enlarge:hover {
-    width: 75%;
+    width: 80%;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .enlarge {
+    width: 30%;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .enlarge:hover {
+    width: 60%;
   }
 }
 
@@ -334,29 +441,28 @@ aside details ul li {
   }
 }
 
-@media screen and (max-width: 1024px) {
-  .activao {
-    left: 1%;
-    top: 5rem;
-    width: 93%;
+
+/*In-page elements for screens over 1024px*/
+@media all and (min-width: 1024px) {
+  .half {
+    float: left;
+    width: 45%;
+    padding: 1%;
+    margin-bottom: 14px;
   }
 }
 
-@media screen and (max-width: 1024px) {
-  nav {
-    line-height: 4.5rem;
+@media all and (min-width: 1024px) {
+  .third {
+    float: left;
+    width: 29%;
+    padding-right: 2%;
+    margin-bottom: 14px;
   }
 }
 
-@media all and (max-width: 1024px) {
-  .education, .experience {
-    width: 96%;
-    margin-left: 2%;
-  }
-}
-
-@media all and (max-width: 1024px) {
+@media all and (min-width: 1024px) {
   details, details ul {
-    margin-left: 7px;
+      margin: 4px auto;
   }
 }
