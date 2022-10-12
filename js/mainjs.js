@@ -7,6 +7,7 @@ function loadReload(){
   } else {
     $('#wrapper').load('includes/' + str + '.html');
   };
+  getFecha()
 }
 
 function linky(lnk){
@@ -18,9 +19,9 @@ function linky(lnk){
   }
 }
 
-function cR(){
+function getFecha(){
   var d = new Date();
-  $('#copyR').html(d.getFullYear());
+  $("#fecha").text('2021-' + d.getFullYear())
 }
 
 function openMenu(){
