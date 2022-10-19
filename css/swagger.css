@@ -75,6 +75,10 @@ nav li:hover {
   border-right: 0;
 }
 
+.open .fas {
+  transform: scale(1.5, 1.5);
+}
+
 /**/
 /***************** PAGE TITLE HEADERS  *****************/
 header h1 {
@@ -240,12 +244,16 @@ footer {
   background: #fff;
   text-align: right;
   border-top: 1px dotted #333;
-  line-height: 3rem;
 }
 
 nav p, footer p  {
   margin: 0 14px;
   color: #333;
+  font-size: 0.7em;
+}
+
+.remove {
+  display: none;
 }
 
 /**/
@@ -278,6 +286,7 @@ nav p, footer p  {
 
 .open {
   display: inline-block;
+  padding: 0 15px;
 }
 
 .wide, .close {
@@ -357,6 +366,18 @@ figcaption {
 .blog {
   display: grid;
   grid-template-columns: auto auto;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  footer {
+    line-height: 2em;
+  }
+}
+
+@media all and (min-width: 360px) {
+  .remove {
+    display: inline-block;
   }
 }
 
