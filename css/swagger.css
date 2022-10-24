@@ -82,7 +82,6 @@ nav li:hover {
 /**/
 /***************** PAGE TITLE HEADERS  *****************/
 header h1 {
-  font-size: 5em;
   line-height: 40%;
 }
 
@@ -355,6 +354,13 @@ figcaption {
 }
 
 /** RESPONSIVE DESIGN **/
+/*General adjustments for screens over 768px*/
+@media all and (min-width: 768px) {
+  header h1 {
+    font-size: 5em;
+  }
+}
+
 /*General adjustments for screens over 1024px*/
 @media all and (min-width: 1024px) {
   main {
