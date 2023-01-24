@@ -1,17 +1,17 @@
 # jbolns.github.io
-This is my personal website and, also, my favourite "vanilla-code" portfolio project. In short, the site is a highly sustainable personal website with minimal server impact and impressive speed.
+My personal website and favourite "vanilla-code" portfolio entry. A highly sustainable personal website with minimal server impact and impressive speed.
 
 ## Technical description
-* Single page application (SPA) coded from scratch using no frameworks whatsoever.
-* Coded from scratch using only HTML, CSS.
-* Very light - the full thing stands at ~1MB.
+* Single page application (SPA) coded from scratch using no frameworks.
+* Static website (HTML, CSS, JS) with component-like behaviour (only content area repaints on path change, thanks to fake "includes" using jQuery loads).
+* Responsive design.
 * HTML5 sematics, validated via W3C with no errors.
-* Fully responsive.
 * Fully accessible, validated via Wave with no errors).
-* Despite being a static website, it has fake "includes" via via jQuery 'loads', so only the content area repaints upon clicking a link.
+* And very, very light. The full thing stands at ~1MB.
+
 
 ## Performance
-The site looks good and moves even better! 
+The site looks good and moves even better! It is also highly sustainable. 
 
 (As measured on 24/01/2023)
 * Google page insights: 99/100 (Desktop). 
