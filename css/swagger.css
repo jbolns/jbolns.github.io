@@ -238,8 +238,8 @@ footer {
   position: fixed; bottom: 0; left: 0; z-index: 1;
   width: 100%;
   background: #fff;
-  text-align: center;
   border-top: 1px dotted #333;
+  text-align: center;
 }
 
 nav p, footer p  {
@@ -257,10 +257,6 @@ nav p, footer p  {
 .half, .third {
   width: 96%;
   margin-left: 2%;
-}
-
-footer .half {
-  margin: 0;
 }
 
 .rigtheao {
@@ -384,6 +380,7 @@ footer div {
 @media all and (min-width: 1024px) {
   footer {
     line-height: 2em;
+    text-align: right;
   }
 }
 
@@ -490,16 +487,6 @@ footer div {
     width: 45%;
     padding: 1%;
     margin-bottom: 14px;
-  }
-
-  footer .half {
-    margin: 0;
-    padding: 0;
-    text-align: right;
-  }
-
-  footer .half:nth-child(1) {
-    text-align: left;
   }
 
   .third {
