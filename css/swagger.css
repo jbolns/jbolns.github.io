@@ -238,7 +238,7 @@ footer {
   position: fixed; bottom: 0; left: 0; z-index: 1;
   width: 100%;
   background: #fff;
-  text-align: right;
+  text-align: center;
   border-top: 1px dotted #333;
 }
 
@@ -491,27 +491,24 @@ footer div {
     padding: 1%;
     margin-bottom: 14px;
   }
-}
 
   footer .half {
     margin: 0;
     padding: 0;
+    text-align: right;
   }
 
   footer .half:nth-child(1) {
     text-align: left;
   }
 
-@media all and (min-width: 1024px) {
   .third {
     float: left;
     width: 29%;
     padding-right: 2%;
     margin-bottom: 14px;
   }
-}
 
-@media all and (min-width: 1024px) {
   details, details ul {
       margin: 4px auto;
   }
