@@ -1,33 +1,27 @@
 /*****************CSS *****************/
 
-/* geologica-300 - latin */
 @font-face {
   font-display: swap;
   font-family: 'Geologica';
   font-style: normal;
   font-weight: 300;
   src: url('geologica-v1-latin-300.woff2') format('woff2');
-  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
-/* geologica-600 - latin */
 @font-face {
   font-display: swap;
   font-family: 'Geologica';
   font-style: normal;
   font-weight: 600;
   src: url('geologica-v1-latin-600.woff2') format('woff2');
-  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
-/* geologica-900 - latin */
 @font-face {
   font-display: swap;
   font-family: 'Geologica';
   font-style: normal;
   font-weight: 900;
   src: url('geologica-v1-latin-900.woff2') format('woff2');
-  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /**/
@@ -114,7 +108,7 @@ nav li:hover {
 /**/
 /***************** PAGE TITLE HEADERS  *****************/
 header h1 {
-  line-height: 40%;
+  line-height: 50%;
 }
 
 aside {
@@ -160,10 +154,6 @@ header h2 {
   font-weight: 300;
 }
 
-header p {
-  margin-top: 1px;
-}
-
 .selectBar {
   margin: 14px 21px;
   padding: 14px;
@@ -177,7 +167,6 @@ header p {
 .selectBar,
 .selectBar label,
 .selectBar option {
-  font-weight: 600;
   font-variant: small-caps;
 }
 
@@ -259,7 +248,7 @@ section {
 }
 
 .activao h1 {
-  font-size: 2.5rem;
+  font-size: 1.4rem;
   line-height: 85%;
 }
 
@@ -436,7 +425,7 @@ footer div {
 }
 
 /** RESPONSIVE DESIGN **/
-/*Show or resize social media icons across screen sizes*/
+/*Ad-hoc adjustments for very small screens*/
 @media all and (min-width: 200px) {
   .socialMenu {
     display: block;
@@ -450,78 +439,76 @@ footer div {
   }
 }
 
-@media all and (min-width: 400px) {
-  .fa-2x {
-    font-size: 2em;
-  }
-}
-
-/*General adjustments for screens over 768px*/
-@media all and (min-width: 768px) {
-  header h1 {
-    font-size: 5em;
-  }
-}
-
-/*General adjustments for screens over 1024px*/
-@media all and (min-width: 1024px) {
-  main {
-    width: 90%;
-  }
-}
-
-@media all and (min-width: 1024px) {
-  .blog {
-    display: grid;
-    grid-template-columns: auto auto;
-  }
-}
-
-@media all and (min-width: 1024px) {
-  footer {
-    line-height: 2em;
-    text-align: right;
-  }
-}
-
 @media all and (min-width: 360px) {
   .remove {
     display: inline-block;
   }
 }
 
-/* Menu adjustments for screens over 768px */
+@media all and (min-width: 400px) {
+  .fa-2x {
+    font-size: 2em;
+  }
+
+  .activao h1 {
+    font-size: 2rem;
+  }
+}
+
+/*Adjustments for screens over 768px*/
 @media all and (min-width: 768px) {
+  header h1 {
+    font-size: 5em;
+  }
 
   .open,
   .close {
     border: 0;
   }
-}
 
-@media all and (min-width: 768px) {
   .mainMenu {
     border-right: 1px dotted #333;
     border-bottom: 1px dotted #333;
   }
-}
 
-/* Menu adjustments for screens over 1024px */
-@media all and (min-width: 1024px) {
-  .mainMenu {
-    border: 0;
+  .enlarge {
+    width: 50%;
+  }
+
+  .enlarge:hover {
+    width: 80%;
+  }
+
+  .activao h1 {
+    font-size: 2.5rem;
   }
 }
 
+/*Adjustments for screens over 1024px*/
 @media all and (min-width: 1024px) {
+  main {
+    width: 90%;
+  }
+
+  .blog {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+  footer {
+    line-height: 2em;
+    text-align: right;
+  }
+
+  .mainMenu {
+    border: 0;
+  }
 
   .open,
   .close {
     display: none;
   }
-}
 
-@media all and (min-width: 1024px) {
   .wide {
     display: inline-block;
     width: inherit;
@@ -529,56 +516,25 @@ footer div {
     border-right: 1px dotted #333;
     border-bottom: 1px dotted #333;
   }
-}
 
-@media screen and (min-width: 1024px) {
   nav {
     line-height: 3rem;
   }
-}
 
-/*Post pages and page elements for screens over 1024px*/
-@media screen and (min-width: 1024px) {
   .activao {
     top: 5rem;
     left: 23%;
     width: 50%;
   }
-}
 
-@media all and (min-width: 768px) {
-  .enlarge {
-    width: 50%;
-  }
-}
-
-@media all and (min-width: 768px) {
-  .enlarge:hover {
-    width: 80%;
-  }
-}
-
-@media all and (min-width: 1024px) {
   .enlarge {
     width: 30%;
   }
-}
 
-@media all and (min-width: 1024px) {
   .enlarge:hover {
     width: 60%;
   }
-}
 
-@media all and (min-width: 1600px) {
-  .enlarge {
-    width: 20%;
-  }
-}
-
-
-/*In-page elements for screens over 1024px*/
-@media all and (min-width: 1024px) {
   .half {
     float: left;
     width: 45%;
@@ -596,5 +552,12 @@ footer div {
   details,
   details ul {
     margin: 4px auto;
+  }
+}
+
+/*Adjustments for screens over 1600px*/
+@media all and (min-width: 1600px) {
+  .enlarge {
+    width: 20%;
   }
 }
