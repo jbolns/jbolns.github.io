@@ -170,7 +170,8 @@ async function blog() {
   const blogPath = window.location.pathname + 'blog';
   console.log('main blog function running.', 'blog directory is:', blogPath)
 
-  filenames = getFileNames(blogPath)
+  // filenames = getFileNames(blogPath)
+  filenames = ['digital-transformation.html', 'org-culture.html', 'platform-economy.html', 'private-governance.html']
   console.log('filenames in blog directory are:', filenames)
 
   for (const filename of filenames) {
