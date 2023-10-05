@@ -28,7 +28,7 @@ function linky(lnk) {
   var str = lnk.substring(pos)
 
   // Paint section
-  $('#wrapper').load('pages/' + str + '.html') 
+  $('#wrapper').load('pages/' + str + '.html')
 
   // Collapse menu if on mobile
   if ($(window).width() < 1024) { closeMenu() }
@@ -36,31 +36,34 @@ function linky(lnk) {
 
 // A lot of the styling is done via CSS, but this is needed to get the overlapping effect of <section> elements
 function fixPos() {
-  // Loop through all sections in page
-  var i = 1 // Index to keep count of section numbers
-  $('section').each(function () {
-    if (i % 3 === 0) {
-      // Get height of the previous section to avoid hiding section titles
-      h = $(this).prev('section').outerHeight() 
-      
-      // Position as needed
-      if (h < 200) {
-        $(this).css('marginTop', -h)
-      } else if (h < 400) {
-        $(this).css('marginTop', -h / 4)
-      } else {
-        $(this).css('marginTop', -200)
+
+  // If not on mobile, fix positions as needed
+  if ($(window).width() >= 768) {
+    // Loop through all sections in page
+    var i = 1 // Index to keep count of section numbers
+    $('section').each(function () {
+      if (i % 3 === 0) {
+        // Get height of the previous section to avoid hiding section titles
+        h = $(this).prev('section').outerHeight()
+
+        if (h < 200) {
+          $(this).css('marginTop', -h)
+        } else if (h < 400) {
+          $(this).css('marginTop', -h / 4)
+        } else {
+          $(this).css('marginTop', -200)
+        }
       }
-    }
-    i = i + 1
-  })
+      i = i + 1
+    })
+  }
 }
 
 // Add event handlers to <section> tags, and call for function to position them
 function populateSections() {
   // Palette to pick colours from
   const palette = ['white', 'white', 'white', 'white', 'aquamarine', 'mediumaquamarine', 'bisque', 'lightblue', 'lightcoral', 'lightgoldenrodyellow', 'lightpink', 'lightskyblue', 'moccasin', 'paleturquoise', 'palevioletred', 'peachpuff', 'pink', 'plum', 'powderblue', 'sandybrown', 'skyblue']
-  
+
   // Loop through all sections in page
   var zetaIndex = 0 // Index to give each section a z-index higher than previous, to avoid hidding section titles
   $('section').each(function () {
@@ -70,7 +73,7 @@ function populateSections() {
     // Adjust BG colour
     const randy = Math.floor(Math.random() * palette.length)
     $(this).css({ 'z-index': zetaIndex, 'background': palette[randy] })
-    
+
     zetaIndex = zetaIndex + 1
   })
   $('footer').css('z-index', zetaIndex + 2)
@@ -95,12 +98,12 @@ function getFileNames(path) {
     // Response as text
     const response = xhttp.responseText
     console.log('response from call to directory', response)
-    
+
     // Parse it into HTML
     const parser = new DOMParser()
     const html = parser.parseFromString(response, 'text/html').getElementsByTagName('a')
     console.log('response from element selection', html)
-    
+
     // Extract link elements
     const liArray = [...html]
 
