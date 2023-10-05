@@ -34,7 +34,7 @@ html {
 body {
   margin: auto;
   padding: 0;
-  font-family: 'Geologica', sans-serif, tahoma, verdana;
+  font-family: 'Geologica', system-ui, 'Helvetica Neue', sans-serif;
   text-align: left;
 }
 
@@ -97,6 +97,7 @@ footer {
   padding: 0;
   font-size: 0.8em;
   color: white;
+  font-family: monospace, Courier;
 }
 
 header .wrap {
@@ -176,6 +177,7 @@ footer h1 {
 
 nav {
   margin-top: 14px;
+  font-family: monospace, Courier;
 }
 
 header a,
@@ -204,13 +206,12 @@ header .socialMenu a:hover {
   padding-left: 7px;
 }
 
-.socialMenu img,
-nav img {
-  width: 1.5em;
+.socialMenu img {
+  width: 21px;
 }
 
 nav img {
-  width: 3em;
+  width: 50px;
 }
 
 .open .fas {
@@ -245,7 +246,7 @@ main {
 section {
   position: relative;
   width: 100%;
-  margin: 14px auto;
+  margin: 35px auto;
   background: rgb(255, 255, 255);
   border: 2px solid #404040;
   border-radius: 7px;
@@ -366,9 +367,9 @@ section:last-child {
   display: block;
   float: right;
   padding: 7px 0 7px 14px;
-  ;
-  background-color: #444;
+  background-color: black;
   color: white;
+  border: 2px solid #404040;
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
   cursor: pointer;
@@ -378,7 +379,6 @@ section:last-child {
   background: yellow;
   color: black;
   border: 1px dotted black;
-  border-bottom: 0;
   margin-top: -1px;
 }
 
@@ -416,7 +416,7 @@ section:last-child {
   font-variant: small-caps;
 }
 
-.portfolio .group p {
+.portfolio .group p, .publications .group p {
   clear: both;
 }
 
@@ -598,6 +598,15 @@ figcaption {
   .flexie li {
     font-variant: small-caps;
     font-weight: 600;
+  }
+
+  #blogwrap .internal details summary {
+    background-color: #404040;
+    border: 0;
+  }
+
+  #blogwrap .internal details summary:hover {
+    border-bottom: 0;
   }
 }
 
