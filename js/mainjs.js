@@ -144,6 +144,7 @@ function getFileNames(path) {
   xhttp.open('GET', path, false)
   xhttp.send()
 
+  console.log('host is', location.hostname)
 
   if (location.hostname === 'localhost') {
     const response = xhttp.responseText
