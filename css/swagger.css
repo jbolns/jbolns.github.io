@@ -204,8 +204,13 @@ header .socialMenu a:hover {
   padding-left: 7px;
 }
 
-.socialMenu img {
+.socialMenu img,
+nav img {
   width: 1.5em;
+}
+
+nav img {
+  width: 3em;
 }
 
 .open .fas {
@@ -240,7 +245,7 @@ main {
 section {
   position: relative;
   width: 100%;
-  margin: 60px auto;
+  margin: 14px auto;
   background: rgb(255, 255, 255);
   border: 2px solid #404040;
   border-radius: 7px;
@@ -403,6 +408,55 @@ section:last-child {
   content: '\2715';
   font-size: large;
   font-weight: 600;
+}
+
+.portfolio h3,
+.publications h3 {
+  border-bottom: 1px dotted #404040;
+  font-variant: small-caps;
+}
+
+.portfolio .group p {
+  clear: both;
+}
+
+.cartago {
+  display: block;
+  float: left;
+  margin: 0 0 7px 0;
+  padding: 7px 14px;
+  background: gainsboro;
+  border: 1px dotted #404040;
+  border-top: 0;
+  cursor: pointer;
+}
+
+.cartago:hover {
+  background: #404040;
+  color: white;
+}
+
+.cartago a {
+  color: inherit;
+}
+
+.cartago a:hover {
+  border: 0;
+  color: inherit;
+  background: #404040;
+}
+
+.stacks li {
+  display: inline;
+  background: yellow;
+  border: 1px dotted black;
+  padding: 1px 7px;
+  margin: 2px;
+  line-height: 1.7em;
+}
+
+.stacks li::before {
+  content: '';
 }
 
 /**/
@@ -568,5 +622,4 @@ figcaption {
     width: 45%;
     padding: 1%;
   }
-
 }
