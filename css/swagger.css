@@ -204,8 +204,12 @@ header .socialMenu a:hover {
   padding-left: 7px;
 }
 
-.socialMenu img {
+.socialMenu img, nav img {
   width: 1.5em;
+}
+
+nav img {
+  width: 3em;
 }
 
 .open .fas {
@@ -240,7 +244,7 @@ main {
 section {
   position: relative;
   width: 100%;
-  margin: 60px auto;
+  margin: 14px auto;
   background: rgb(255, 255, 255);
   border: 2px solid #404040;
   border-radius: 7px;

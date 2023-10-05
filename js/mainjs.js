@@ -144,7 +144,7 @@ function getFileNames(path) {
   xhttp.open('GET', path, false)
   xhttp.send()
 
-  if (location.hostname === 'azucar') {
+  if (location.hostname === 'localhost') {
     const response = xhttp.responseText
     console.log('response from call to directory', response)
     const parser = new DOMParser()
@@ -178,7 +178,7 @@ async function blog() {
 
   console.log('host is', location.hostname)
 
-  if (location.hostname === 'azucar') {
+  if (location.hostname === 'localhost') {
     var blogPath = window.location.pathname + 'blog'
     console.log('main blog function running.', 'blog directory is:', blogPath)
   } else {
