@@ -120,17 +120,17 @@ header .wrap {
   display: block;
 }
 
-header img {
+header img.profile {
   max-width: 80px;
   height: auto;
   border: 3px solid #ddd;
   background: rgb(182, 102, 228);
   filter: grayscale(30%);
   transition: ease-in-out;
-  animation: changeBorder 16s linear infinite;
+  animation: changeBG 16s linear infinite;
 }
 
-@keyframes changeBorder {
+@keyframes changeBG {
   0% {
     background: rgb(182, 102, 228);
   }
@@ -144,7 +144,7 @@ header img {
   }
 }
 
-header img:hover {
+header img.profile:hover {
   filter: grayscale(0%);
   background: rgb(201, 128, 243);
 }
@@ -200,8 +200,12 @@ header .socialMenu a {
 
 header .socialMenu a:hover {
   color: black;
-  background: yellow;
+  background: mediumaquamarine;
   padding-left: 7px;
+}
+
+.socialMenu img {
+  width: 1.5em;
 }
 
 .open .fas {
@@ -236,7 +240,7 @@ main {
 section {
   position: relative;
   width: 100%;
-  margin: -60px auto;
+  margin: 60px auto;
   background: rgb(255, 255, 255);
   border: 2px solid #404040;
   border-radius: 7px;
