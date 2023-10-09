@@ -8,30 +8,39 @@
 // When user visits via address bar 
 function loadReload() {
   // Get relative path
-  let str = $(location).attr('hash')
-  str = str.substring(1)
+  console.log(location)
+  let [folder, file] = $(location).attr('hash').split('/')
+  console.log('load/reload of:', folder, file)
 
   // If home, load home, else load the appropriate section
-  if (str === '') {
-    $('#wrapper').load('pages/home.html')
+  if (file) {
+    console.log('reload', 'folder:', folder, 'file:', file)
+    folder = folder.substring(1)
+    file = file.substring(1)
+    $('#wrapper').load(folder + '/' + file + '.html')
   } else {
-    $('#wrapper').load('pages/' + str + '.html')
+    console.log('load', 'folder:', folder, 'file:', file)
+    $('#wrapper').load('pages/home.html')
   }
 
   getFecha()
+  typewriter()
 }
 
 // When user clicks a nav link
 function linky(lnk) {
+  console.log('linky is running with href', lnk.href, 'and link class', lnk.className)
   // Get address
-  var pos = lnk.lastIndexOf('#') + 1
-  var str = lnk.substring(pos)
+  var pos = lnk.href.lastIndexOf('#') + 1
+  var str = lnk.href.substring(pos)
 
   // Paint section
-  $('#wrapper').load('pages/' + str + '.html')
+  $('#wrapper').html('<></>')
+  $('#wrapper').load(lnk.className + '/' + str + '.html')
 
   // Collapse menu if on mobile
   if ($(window).width() < 1024) { closeMenu() }
+
 }
 
 // A lot of the styling is done via CSS, but this is needed to get the overlapping effect of <section> elements
@@ -126,19 +135,48 @@ function getFileNames(path) {
 }
 
 // After getting filenames for existing blogs, append each blog as <section> on <main>/#blogwrapper
-async function loadBlogEntry(filename) {
+async function loadBlogEntry(filename, n) {
   // Define path to find the blog entry
   const target = window.location.pathname + 'blog/' + filename
   console.log('function to load a single blog entry runs for target', target)
 
   // Load and append blog entry
-  // Note that the appending takes a while. The function will finish before <sections> are painted to DOM
-  $('#blogwrap').append($('<section>').load(target))
-  console.log('blog has been called, but it needs to be painted to DOM')
+  const href = filename.slice(0, -5)
+  console.log('href is', href)
+  const outer =
+    `<section id='${href}'>
+  <span class='topper'>
+    <p class='lefteao'><span class='includer'></span></p>
+    <p class='righteao'><span class='includer'></span></p>
+  </span>
+  <div id='blog-${n}' class='internal'></div
+  section>`
+
+  $('#blogwrap').append(outer)
+
+  // The internal section takes a while to load. Function will finish before <sections> are painted to DOM
+  var xhttp = new XMLHttpRequest()
+  xhttp.open('GET', target, false)
+  xhttp.send()
+
+  const response = xhttp.responseText
+
+  const parser = new DOMParser()
+  const parsed = parser.parseFromString(response, 'text/html')
+
+  const heading = parsed.getElementsByTagName('h2')[0].outerHTML
+
+  const paras = Array.from(parsed.getElementsByClassName('intro'))
+  var intro = ''
+  paras.forEach(p => intro += p.outerHTML)
+
+  const more = `<span class='more'><a href='#blog/#${filename.slice(0, -5)}' class='blog' onclick='linky(this)'>Read more</a></span>`
+
+  selector = `#blog-${n}`
+  $(selector).html(heading + intro + more)
 }
 
 // Main function to load blogs
-
 async function blog() {
   console.log('host is', location.hostname) // I need this frequently because I get confused
 
@@ -159,8 +197,10 @@ async function blog() {
   const filenames = getFileNames(blogPath)
 
   // Get each file
+  n = 1
   for (const filename of filenames) {
-    await loadBlogEntry(filename)
+    await loadBlogEntry(filename, n)
+    n = n + 1
   }
 
   // Check if blogs have finished painting to DOM, if not recall function after a few milliseconds
@@ -201,10 +241,15 @@ function closeMenu() {
 
 // UX interactions
 // Make text shorter/longer as desired by user, possible in some sections
+
 function alternatives(len) {
-  $('.short, .medium, .long').hide()
+  $('#short, #medium, #long').removeClass('active')
+  $('.short, .medium, .long').hide(200)
+  $('#' + len).addClass('active')
   $('.' + len).show(300)
-  fixPos() // Fix position of all sections to account for height changes
+  
+
+
 }
 
 // Bring section to top
@@ -235,6 +280,33 @@ function iLikeYou() {
   alert('You rebel! I like you!')
   $('.greenButton').css('display', 'none')
 }
+
+
+
+// Typewrite effect for site main title
+function typewriter() {
+  var headline = 'dr.jose-a-bolanos'
+  var i = 0
+  $('#typewriter').text('')
+  function effect() {
+    if (i < headline.length + 1) {
+      const render = headline.slice(0, i)
+      $('#typewriter').text(render)
+      i++
+      setTimeout(effect, 200);
+    }
+  }
+  effect()
+}
+
+/*function erase(headline, i) {
+  if (i < headline.length + 1) {
+    const render = headline.slice(0, headline.length - i)
+    $('#typewriter').text(render)
+    i++
+    setTimeout(erase(headline, i), 50);
+  }
+}*/
 
 // ..........................................
 // MORE STUFF THAT I HAVEN'T QUITE FINISHED :

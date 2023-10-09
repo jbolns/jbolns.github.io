@@ -76,6 +76,16 @@ footer li,
   border: 0;
 }
 
+header .left a:hover {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+header .left img:hover {
+  border-color: white;
+}
+
 /**/
 /***************** HEADER  *****************/
 header,
@@ -117,7 +127,7 @@ header .wrap {
   height: 100%;
 }
 
-.emoticons {
+#emoticons {
   display: block;
 }
 
@@ -331,6 +341,26 @@ section:last-child {
   content: '';
 }
 
+.options {
+  font-size: smaller;
+  padding-left: 0;
+}
+
+.options li {
+  margin-right: 7px;
+  padding: 1px 7px;
+  cursor: default;
+  border-radius: 3px;
+  border: 1px black solid;
+}
+
+.active, .options li:hover {
+  color: black;
+  background: yellow;
+  border-radius: 3px;
+  border: 1px black dotted;
+}
+
 .short,
 .medium,
 .long {
@@ -341,45 +371,67 @@ section:last-child {
   display: block;
 }
 
-.options {
-  font-size: smaller;
-  padding-left: 0;
-}
 
-.options li {
-  margin-right: 7px;
-  padding: 0 3px;
-  cursor: default;
-  color: black;
-  background-color: yellow;
-  border-radius: 3px;
-  border: 1px black dotted;
-}
 
-.options li:hover {
-  color: black;
-  background-color: yellow;
-  border-radius: 3px;
-  border: 1px black dotted;
-}
-
-#blogwrap .internal details summary {
+#blogwrap .internal .more {
   display: block;
   float: right;
-  padding: 7px 0 7px 14px;
+  padding: 7px 14px;
   background-color: black;
-  color: white;
-  border: 2px solid #404040;
+  border: 1px solid #404040;
+  border-bottom: 0;
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
   cursor: pointer;
 }
 
-#blogwrap .internal details summary:hover {
+#blogwrap .internal .more a {
+  color: white;
+}
+
+#blogwrap .internal .more:hover {
   background: yellow;
   color: black;
   border: 1px dotted black;
-  margin-top: -1px;
+  border-bottom: 0;
+}
+
+#blogwrap .internal .more:hover > * {
+  color: black;
+}
+
+#blogwrap .internal .more a:hover {
+  color: inherit;
+  border: none;
+}
+
+.article .topper {
+  background: yellow;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  margin-top: 5px;
+  padding-bottom: 5px;
+}
+
+.article .topper:hover {
+  background: none;
+}
+
+.article .topper .righteao .includer::before {
+  content: '\2715';
+  font-size: x-large;
+  font-weight: 600;
+  margin-right: 7px;
+}
+
+.article .topper .righteao a {
+  color: black;
+}
+
+.article .topper .righteao a:hover {
+  border: none;
+  background: none;
+  color:#e51470;
 }
 
 #blogwrap .internal details[open] summary {
@@ -397,11 +449,6 @@ section:last-child {
 
 #blogwrap .internal details summary .includer {
   padding-right: 14px;
-}
-
-#blogwrap .internal details summary .includer::before {
-  content: 'Read more';
-  font-size: large;
 }
 
 #blogwrap .internal details[open] summary .includer::before {
