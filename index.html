@@ -13,7 +13,9 @@
   <link rel='icon' href='images/favicon.WebP' type='image/WebP' sizes='any'>
   <script src='utils/jquery-3.7.1.min.js' defer></script>
   <link rel='stylesheet' href='css/swagger.css'>
+  <link rel='stylesheet' href='css/animation.css'>
   <script src='js/mainjs.js'></script>
+  <script src='js/animation.js'></script>
   <title>Dr J</title>
 </head>
 
@@ -47,13 +49,14 @@
       <div class='left'>
         <a href='#pages/#home' class='pages' onclick='linky(this)' aria-label='home' class='imagelink'>
           <img id='avatar' class='profile' width='75' height='100' srcset='images/avatar.WebP 100w'
-          sizes='(max-width: 100px) 100px' src='images/avatar.WebP' alt='Picture of Jose' />
+            sizes='(max-width: 100px) 100px' src='images/avatar.WebP' alt='Picture of Jose' />
         </a>
       </div>
       <div class='right'>
         <h1>
           <span id='typewriter'>dr.jose-a-bolanos</span><span class='blink'>_</span>
-          <span id='emoticons'><span class='rotato'>&#128526;</span><span class='rotato'>&#128007;</span><span class='rotato'>&#128584;</span></span>
+          <span id='emoticons'><span class='rotato'>&#128526;</span><span class='rotato'>&#128007;</span><span
+              class='rotato'>&#128584;</span></span>
         </h1>
       </div>
       <nav>
@@ -80,11 +83,14 @@
       </nav>
 
   </header>
-
-  <main>
+  
+  <div class="bgDeep"></div> 
+  <main> 
+    
     <div id='wrapper'>
     </div>
   </main>
+
 
   <footer>
     <div class='half lefteao'>

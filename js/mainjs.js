@@ -14,17 +14,18 @@ function loadReload() {
 
   // If home, load home, else load the appropriate section
   if (file) {
-    console.log('reload', 'folder:', folder, 'file:', file)
     folder = folder.substring(1)
     file = file.substring(1)
     $('#wrapper').load(folder + '/' + file + '.html')
   } else {
-    console.log('load', 'folder:', folder, 'file:', file)
     $('#wrapper').load('pages/home.html')
   }
 
+  // Get date for copyright notice
   getFecha()
-  typewriter()
+
+  // Update main header
+  typewriter(file)
 }
 
 // When user clicks a nav link
@@ -41,29 +42,47 @@ function linky(lnk) {
   // Collapse menu if on mobile
   if ($(window).width() < 1024) { closeMenu() }
 
+  // Update main header
+  typewriter(str)
+
 }
 
 // A lot of the styling is done via CSS, but this is needed to get the overlapping effect of <section> elements
 function fixPos() {
 
+
+  var minimised = []
+  var maximised = []
+
+  $('section').each(function (i) {
+    if ($(this).hasClass('minimised')) {
+      minimised.push(i)
+    } else {
+      maximised.push(i)
+    }
+  })
+
   // If not on mobile, fix positions as needed
   if ($(window).width() >= 768) {
-    // Loop through all sections in page
-    var i = 1 // Index to keep count of section numbers
-    $('section').each(function () {
-      if (i % 3 === 0) {
-        // Get height of the previous section to avoid hiding section titles
-        h = $(this).prev('section').outerHeight()
-
+    $('section').each(function (i, val) {
+      // Get height of the previous section to avoid hiding section titles
+      h = $(this).prev('section').outerHeight()
+      if (i > 0) {
         if (h < 200) {
-          $(this).css('marginTop', -h)
+          $(this).css('marginTop', -h / 3)
         } else if (h < 400) {
-          $(this).css('marginTop', -h / 4)
+          $(this).css('marginTop', -h / 5)
         } else {
           $(this).css('marginTop', -200)
         }
       }
-      i = i + 1
+    })
+
+    $(`section:eq(${maximised[0]})`).css('margin', '0 auto')
+  } else {
+    $('section').each(function (i, val) {
+      // Get height of the previous section to avoid hiding section titles
+      $(this).css('marginLeft', 0)
     })
   }
 }
@@ -75,69 +94,68 @@ function populateSections() {
 
   // Loop through all sections in page
   var zetaIndex = 0 // Index to give each section a z-index higher than previous, to avoid hidding section titles
+
+
   $('section').each(function () {
     // Introduce event calls
     $(this).attr('onclick', 'emerge(this)')
 
-    // Adjust BG colour
+    // Adjust BG colour & z-indexes (to avoid sections concealing other sections)
     const randy = Math.floor(Math.random() * palette.length)
     $(this).css({ 'z-index': zetaIndex, 'background': palette[randy] })
-
-    zetaIndex = zetaIndex + 1
+    zetaIndex += 1
   })
-  $('footer').css('z-index', zetaIndex + 2)
+
+  // Adjust footer's z-index to ensure it falls on top
+  $('footer').css('z-index', zetaIndex + 1)
+
   fixPos()
 }
 
 // If on blog list, get filenames of all blogs in blog directory
-function getFileNames(path) {
+async function getFileNames(path) {
+  //path = 'https://api.github.com/repos/jbolns/jbolns.github.io/contents/blog?ref=main'
   // This function takes the path of a directory and returns an array with filenames in that directory
+  console.log('getting list of files from', path)
   var filenames = []
 
-  var xhttp = new XMLHttpRequest()
-  xhttp.open('GET', path, false)
-  xhttp.send()
-
-  // Yuck, this is ugly but forced
-  // On localhost, the ajax call renders HTML as text with a list of items in directory
-  // GitHub (this site is hosted there) API gives JSON
-
-  // If on localhost, parse HTML from text response
+  // Call local directory if on localhost (returns text/html)
   if (location.hostname === 'localhost') {
-    // Response as text
-    const response = xhttp.responseText
-    console.log('response from call to directory', response)
+    console.log('localhost detected --> extracting filenames from local directory')
 
-    // Parse it into HTML
-    const parser = new DOMParser()
-    const html = parser.parseFromString(response, 'text/html').getElementsByTagName('a')
-    console.log('response from element selection', html)
+    await $.ajax(path)
+      .done(function (response) {
 
-    // Extract link elements
-    const liArray = [...html]
+        // Parse li elements from response
+        const parser = new DOMParser()
+        const html = parser.parseFromString(response, 'text/html').getElementsByTagName('a')
+        const liArray = [...html]
 
-    // Figure out the names
-    liArray.forEach(li => filenames.push(li.innerHTML))
-    console.log('filenames extracted from directory', filenames)
-
+        // Extract names names
+        liArray.forEach(li => filenames.push(li.innerHTML))
+      })
+      .fail(function () { console.log('error with ajax call') })
+      .always(function () { console.log('ajax call complete') })
   } else {
-    // Response as JSON
-    const response = JSON.parse(xhttp.responseText)
-    console.log('response from call to directory', response)
+    console.log('online server detected --> extracting filenames from server')
 
-    // Figure out the names
-    response.forEach(item => filenames.push(item.name))
-    console.log('filenames extracted from directory', filenames)
+    await $.ajax(path)
+      .done(function (response) {
+        response.forEach(item => filenames.push(item.name))
+      })
+      .fail(function () { console.log('error with ajax call') })
+      .always(function () { console.log('ajax call complete') })
   }
 
-  // Return the filenames for use by other functions
+  // Return the filenames
+  console.log('filenames extracted:', filenames)
   return filenames
 }
 
 // After getting filenames for existing blogs, append each blog as <section> on <main>/#blogwrapper
 async function loadBlogEntry(filename, n) {
   // Define path to find the blog entry
-  const target = window.location.pathname + 'blog/' + filename
+  const target = window.location.pathname + 'intros/' + filename
   console.log('function to load a single blog entry runs for target', target)
 
   // Load and append blog entry
@@ -146,34 +164,42 @@ async function loadBlogEntry(filename, n) {
   const outer =
     `<section id='${href}'>
   <span class='topper'>
-    <p class='lefteao'><span class='includer'></span></p>
-    <p class='righteao'><span class='includer'></span></p>
+  <p class='lefteao' onclick='maximise(this)'><span class='includer'></span></p>
+  <p class='righteao'><span class='includer' onclick='minimise(this)'></span></p>
   </span>
   <div id='blog-${n}' class='internal'></div
   section>`
 
   $('#blogwrap').append(outer)
 
+  // Call local directory if on localhost (returns text/html)
+  $.ajax(target)
+    .done(function (response) {
+      const parser = new DOMParser()
+      const parsed = parser.parseFromString(response, 'text/html')
+
+      const heading = parsed.getElementsByTagName('h2')[0].outerHTML
+
+      const paras = Array.from(parsed.getElementsByTagName('p'))
+      var intro = ''
+      paras.forEach(p => intro += p.outerHTML)
+
+      const more = `<span class='more'><a href='#blog/#${filename.slice(0, -5)}' class='blog' onclick='linky(this)'>Read more</a></span>`
+
+      selector = `#blog-${n}`
+      $(selector).html(heading + intro + more)
+    })
+    .fail(function () { console.log('error with ajax call') })
+    .always(function () { console.log('ajax call complete') })
+
+
+
   // The internal section takes a while to load. Function will finish before <sections> are painted to DOM
-  var xhttp = new XMLHttpRequest()
+  /*var xhttp = new XMLHttpRequest()
   xhttp.open('GET', target, false)
   xhttp.send()
 
-  const response = xhttp.responseText
-
-  const parser = new DOMParser()
-  const parsed = parser.parseFromString(response, 'text/html')
-
-  const heading = parsed.getElementsByTagName('h2')[0].outerHTML
-
-  const paras = Array.from(parsed.getElementsByClassName('intro'))
-  var intro = ''
-  paras.forEach(p => intro += p.outerHTML)
-
-  const more = `<span class='more'><a href='#blog/#${filename.slice(0, -5)}' class='blog' onclick='linky(this)'>Read more</a></span>`
-
-  selector = `#blog-${n}`
-  $(selector).html(heading + intro + more)
+  const response = xhttp.responseText*/
 }
 
 // Main function to load blogs
@@ -183,18 +209,18 @@ async function blog() {
   // Another forced ugly thing
   // Same reasons.
   // On localhost, AJAX is possible to directory
-  // GitHub needs call to API (hopefully they won't block me for this, lmao)
+  // GitHub needs call to API (hopefully they won't block me, lmao)
 
   if (location.hostname === 'localhost') {
-    var blogPath = window.location.pathname + 'blog'
-    console.log('main blog function running.', 'blog directory is:', blogPath)
+    var path = window.location.pathname + 'intros'
+    //var blogPath = window.location.pathname + 'blog' // I might still revert to this, so gonna leave it here.
   } else {
-    var blogPath = 'https://api.github.com/repos/jbolns/jbolns.github.io/contents/blog?ref=main'
-    console.log('main blog function running.', 'blog directory is:', blogPath)
+    var path = 'https://api.github.com/repos/jbolns/jbolns.github.io/contents/intros?ref=main'
+    //var blogPath = 'https://api.github.com/repos/jbolns/jbolns.github.io/contents/blog?ref=main' // I might still revert to this, so gonna leave it here.
   }
 
   // Call function to get filenames (which also has a localhost/GH conditional)
-  const filenames = getFileNames(blogPath)
+  const filenames = await getFileNames(path)
 
   // Get each file
   n = 1
@@ -238,18 +264,13 @@ function closeMenu() {
   $('.socialMenu').css('display', 'inline-block')
 }
 
-
 // UX interactions
 // Make text shorter/longer as desired by user, possible in some sections
-
 function alternatives(len) {
   $('#short, #medium, #long').removeClass('active')
   $('.short, .medium, .long').hide(200)
   $('#' + len).addClass('active')
   $('.' + len).show(300)
-  
-
-
 }
 
 // Bring section to top
@@ -266,6 +287,70 @@ function emerge(section) {
 
   // Change <footer> z-index to max + 2 to avoid last section accidentally ending on top of footer
   $('footer').css('z-index', max + 2)
+
+  adjustio()
+}
+
+// Minimise sections to tabs after click
+function minimise(element) {
+  // Select current section
+  var s = $(element).parent().parent().parent()
+  $(s).addClass('minimised')
+
+  // Save section indexes to arrays for minimised and maximised sections
+  var minimised = []
+  var maximised = []
+  $('section').each(function (i) {
+    if ($(this).hasClass('minimised')) {
+      minimised.push(i)
+    } else {
+      maximised.push(i)
+    }
+  })
+
+  // Adjust margin of section currently on top
+  $(`section:eq(${maximised[0]})`).css('margin', '0 auto')
+
+  // Adjust width of tabs
+  const w = (80 / minimised.length)
+  $.each(minimised, function (i, val) {
+    $(`section:eq(${val})`).css({ 'margin-left': '1%', 'width': `${w}%` })
+    $(`section:eq(${val})`).css('left', `${i * 1 + 1}%`)
+  })
+
+}
+
+// Maximise tabs after click
+function maximise(element) {
+  var s = $(element).parent().parent()
+  $(s).removeClass('minimised')
+  $(s).css({ 'width': '100%', 'left': '0' })
+  fixPos()
+}
+
+// Adjust z-indexes of all divs after maximising any tab
+function adjustio() {
+  console.log('adjust is running')
+  // Save current z-indexes to array
+  arr = []
+  $('section').each(function () {
+    arr.push($(this).css('z-index'))
+  })
+
+  // Get max z-index
+  var z
+  const base = z = Math.max(...arr)
+
+  // Adjust z-index of minimised tabs
+  $('section').each(function () {
+    if ($(this).hasClass('minimised')) {
+      $(this).css('z-index', z + 1)
+      z += 1
+    }
+  })
+
+  // Adjust footer's z-index
+  $('footer').css('z-index', z + 1)
 }
 
 // MISCELLANOUS STUFF
@@ -281,11 +366,15 @@ function iLikeYou() {
   $('.greenButton').css('display', 'none')
 }
 
-
-
 // Typewrite effect for site main title
-function typewriter() {
-  var headline = 'dr.jose-a-bolanos'
+function typewriter(loc) {
+  // Get current website section
+  loc = loc === undefined ? 'home' : loc
+
+  // Construct headline including name and website section
+  var headline = 'dr.jose-a-bolanos > ' + loc
+
+  // Function to type and function call
   var i = 0
   $('#typewriter').text('')
   function effect() {
@@ -293,20 +382,11 @@ function typewriter() {
       const render = headline.slice(0, i)
       $('#typewriter').text(render)
       i++
-      setTimeout(effect, 200);
+      setTimeout(effect, 100)
     }
   }
   effect()
 }
-
-/*function erase(headline, i) {
-  if (i < headline.length + 1) {
-    const render = headline.slice(0, headline.length - i)
-    $('#typewriter').text(render)
-    i++
-    setTimeout(erase(headline, i), 50);
-  }
-}*/
 
 // ..........................................
 // MORE STUFF THAT I HAVEN'T QUITE FINISHED :

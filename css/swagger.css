@@ -1,4 +1,5 @@
-/*****************CSS *****************/
+/***************** FONT SHENANIGANS *****************/
+/**/
 
 @font-face {
   font-display: swap;
@@ -24,17 +25,33 @@
   src: url('../utils/geologica-v1-latin-900.woff2') format('woff2');
 }
 
+html {
+  font-family: monospace, sans-serif;
+}
+
+header,
+footer {
+  font-family: monospace, system-ui, Courier;
+}
+
+h1,
+h2,
+h3, 
+h4, 
+h5 {
+  font-family: 'Geologica';
+}
+
+main p, main ul, main li {
+  font-family: sans-serif, 'Geologica';
+}
+
 /**/
 /***************** GENERAL HTML ELEMENTS *****************/
-
-html {
-  background: mistyrose;
-}
 
 body {
   margin: auto;
   padding: 0;
-  font-family: 'Geologica', system-ui, 'Helvetica Neue', sans-serif;
   text-align: left;
 }
 
@@ -43,10 +60,14 @@ h1 {
   margin-bottom: 0;
 }
 
+
 a,
-.options li,
-#blogwrap .internal details summary {
+.options li {
   text-decoration: none;
+}
+
+a {
+  color: #e51470;
 }
 
 a:hover,
@@ -107,7 +128,6 @@ footer {
   padding: 0;
   font-size: 0.8em;
   color: white;
-  font-family: monospace, Courier;
 }
 
 header .wrap {
@@ -183,11 +203,6 @@ footer h1 {
   100% {
     color: black;
   }
-}
-
-nav {
-  margin-top: 14px;
-  font-family: monospace, Courier;
 }
 
 header a,
@@ -293,7 +308,7 @@ section:last-child {
 }
 
 .topper .righteao .includer::before {
-  content: '\2b24\20\2b24\20\2b24';
+  content: '\2b24\20\2b24';
   font-size: large;
 }
 
@@ -329,18 +344,6 @@ section:last-child {
   font-weight: 300;
 }
 
-.flexie ul ul li {
-  display: none;
-}
-
-.flexie li:before {
-  content: '=> ';
-}
-
-.flexie ul ul li:before {
-  content: '';
-}
-
 .options {
   font-size: smaller;
   padding-left: 0;
@@ -354,7 +357,8 @@ section:last-child {
   border: 1px black solid;
 }
 
-.active, .options li:hover {
+.active,
+.options li:hover {
   color: black;
   background: yellow;
   border-radius: 3px;
@@ -370,8 +374,6 @@ section:last-child {
 .short {
   display: block;
 }
-
-
 
 #blogwrap .internal .more {
   display: block;
@@ -396,7 +398,7 @@ section:last-child {
   border-bottom: 0;
 }
 
-#blogwrap .internal .more:hover > * {
+#blogwrap .internal .more:hover>* {
   color: black;
 }
 
@@ -431,7 +433,7 @@ section:last-child {
 .article .topper .righteao a:hover {
   border: none;
   background: none;
-  color:#e51470;
+  color: #e51470;
 }
 
 #blogwrap .internal details[open] summary {
@@ -463,7 +465,8 @@ section:last-child {
   font-variant: small-caps;
 }
 
-.portfolio .group p, .publications .group p {
+.portfolio .group p,
+.publications .group p {
   clear: both;
 }
 
@@ -504,6 +507,31 @@ section:last-child {
 
 .stacks li::before {
   content: '';
+}
+
+.minimised {
+  position: fixed;
+  bottom: 0;
+  color: transparent;
+  min-width: 0;
+  height: 7%;
+  overflow: hidden;
+  margin-bottom: 0 !important;
+  margin-left: 1%;
+  border: 2px solid black;
+}
+
+section:nth-child(3n).minimised {
+  margin-left: 1%;
+}
+
+section:nth-child(even).minimised {
+  float: left;
+}
+
+.minimised .lefteao {
+  width: 100%;
+  margin: 0;
 }
 
 /**/
@@ -633,18 +661,21 @@ figcaption {
     padding: 1%;
   }
 
-  .flexie ul ul li {
-    display: block;
-    padding-left: 24px;
-    font-variant: normal;
+  .flexie h4 {
     font-size: small;
-    font-weight: 300;
+    margin: 3px auto 0;
   }
 
   .flexie ul,
-  .flexie li {
+  .flexie ul li {
     font-variant: small-caps;
-    font-weight: 600;
+    margin: 0;
+  }
+
+  .flexie ul li {
+    font-variant: normal;
+    font-size: small;
+    font-weight: 300;
   }
 
   #blogwrap .internal details summary {
