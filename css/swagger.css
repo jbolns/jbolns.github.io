@@ -70,12 +70,22 @@ a {
   color: #e51470;
 }
 
+h2 a {
+  color: black;
+}
+
 a:hover,
 .options li:hover {
   color: black;
   background-color: yellow;
   border-radius: 3px;
   border: 1px black dotted;
+}
+
+h2 a:hover {
+  background-color: inherit;
+  border: 0;
+  color: #333;
 }
 
 header ul,
