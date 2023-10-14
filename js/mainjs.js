@@ -1,9 +1,17 @@
 // MAIN JS FILE
-// ..
+// .................
+// .................
 
-// LOAD & RELOAD
-// To avoid repainting the whole page every time a user clicks a link, this website does not have standard links
+
+
+// .................
+// LOAD & RELOAD   :
+// .................
+// .................
+// To avoid repainting everything every time a user clicks a link, this website does not have standard links
 // Instead, links call a function that loads/reloads the main section only
+// .......................................................................
+
 
 // When user visits via address bar 
 function loadReload() {
@@ -47,10 +55,16 @@ function linky(lnk) {
 
 }
 
-// A lot of the styling is done via CSS, but this is needed to get the overlapping effect of <section> elements
+// .................
+// STYLING         :
+// .................
+// .................
+// A lot of the styling is done via CSS
+// Bits below give the last push
+//.........................................
+
+// Overlapping effect of <section> elements
 function fixPos() {
-
-
   var minimised = []
   var maximised = []
 
@@ -112,57 +126,50 @@ function populateSections() {
   fixPos()
 }
 
-// If on blog list, get filenames of all blogs in blog directory
+// .................
+// BLOG MANAGEMENT
+// .................
+// .................
+// Biggest drawback of vanilla JS is the blog index
+// Pain in the neck to populate
+// Currently using a JSON file for index
+// JSON file IS (yes) re-generated automatically
+// However, the re-generation is external to this site
+// The bits below use the generated file.
+// They do not generate it.
+// ..................................................
+
+// If on blog list, get filenames, headings, and intro for all blog entries
 async function getFileNames(path) {
-  //path = 'https://api.github.com/repos/jbolns/jbolns.github.io/contents/blog?ref=main'
-  // This function takes the path of a directory and returns an array with filenames in that directory
+  path = path + '/blogindex.json'
   console.log('getting list of files from', path)
-  var filenames = []
 
-  // Call local directory if on localhost (returns text/html)
-  if (location.hostname === 'localhost') {
-    console.log('localhost detected --> extracting filenames from local directory')
-
-    await $.ajax(path)
-      .done(function (response) {
-
-        // Parse li elements from response
-        const parser = new DOMParser()
-        const html = parser.parseFromString(response, 'text/html').getElementsByTagName('a')
-        const liArray = [...html]
-
-        // Extract names names
-        liArray.forEach(li => filenames.push(li.innerHTML))
-      })
-      .fail(function () { console.log('error with ajax call') })
-      .always(function () { console.log('ajax call complete') })
-  } else {
-    console.log('online server detected --> extracting filenames from server')
-
-    await $.ajax(path)
-      .done(function (response) {
-        response.forEach(item => filenames.push(item.name))
-      })
-      .fail(function () { console.log('error with ajax call') })
-      .always(function () { console.log('ajax call complete') })
-  }
-
-  // Return the filenames
-  console.log('filenames extracted:', filenames)
-  return filenames
+  // Call JSON file to get info
+  const entries = await $.ajax(path)
+    .done(function (response) {
+      console.log('Call to blogindex.json successfull, response:', response)
+      /*response.forEach(item => {
+        filenames.push(item.filename)
+        headlines.push(item.headline)
+        intros.push(item.intro)
+      })*/
+    })
+    .fail(function () { console.log('error with ajax call') })
+    .always(function () { console.log('ajax call complete') })
+  return entries
 }
 
 // After getting filenames for existing blogs, append each blog as <section> on <main>/#blogwrapper
-async function loadBlogEntry(filename, n) {
-  // Define path to find the blog entry
-  const target = window.location.pathname + 'intros/' + filename
-  console.log('function to load a single blog entry runs for target', target)
+async function loadBlogEntry(blog, n) {
+  // Adjust blog info for final render
+  const filename = blog.filename
+  const title = `<h2><a href='#blog/#${filename}' class='blog' onclick='linky(this)'> ${blog.headline} </a></h2>`
+  const intro = '<p>' + blog.intro + '</p>'
+  const more = `<span class='more'><a href='#blog/#${filename}' class='blog' onclick='linky(this)'>Read more</a></span>`
 
-  // Load and append blog entry
-  const href = filename.slice(0, -5)
-  console.log('href is', href)
+  // Prefix for handling events and stuff
   const outer =
-    `<section id='${href}'>
+    `<section id='${filename}'>
   <span class='topper'>
   <p class='lefteao' onclick='maximise(this)'><span class='includer'></span></p>
   <p class='righteao'><span class='includer' onclick='minimise(this)'></span></p>
@@ -172,34 +179,10 @@ async function loadBlogEntry(filename, n) {
 
   $('#blogwrap').append(outer)
 
-  // Call local directory if on localhost (returns text/html)
-  $.ajax(target)
-    .done(function (response) {
-      const parser = new DOMParser()
-      const parsed = parser.parseFromString(response, 'text/html')
-
-      const heading = parsed.getElementsByTagName('h2')[0].outerHTML
-
-      const paras = Array.from(parsed.getElementsByTagName('p'))
-      var intro = ''
-      paras.forEach(p => intro += p.outerHTML)
-
-      const more = `<span class='more'><a href='#blog/#${filename.slice(0, -5)}' class='blog' onclick='linky(this)'>Read more</a></span>`
-
-      selector = `#blog-${n}`
-      $(selector).html(heading + intro + more)
-    })
-    .fail(function () { console.log('error with ajax call') })
-    .always(function () { console.log('ajax call complete') })
-
-
-
-  // The internal section takes a while to load. Function will finish before <sections> are painted to DOM
-  /*var xhttp = new XMLHttpRequest()
-  xhttp.open('GET', target, false)
-  xhttp.send()
-
-  const response = xhttp.responseText*/
+  // Render index entry
+  // Note! Takes a bit to load. Function will finish before <sections> are painted to DOM
+  selector = `#blog-${n}`
+  $(selector).html(title +  intro + more)
 }
 
 // Main function to load blogs
@@ -220,32 +203,38 @@ async function blog() {
   }
 
   // Call function to get filenames (which also has a localhost/GH conditional)
-  const filenames = await getFileNames(path)
+  const entries = await getFileNames(path)
 
-  // Get each file
+  // Load each entry
   n = 1
-  for (const filename of filenames) {
-    await loadBlogEntry(filename, n)
+  for (const blog of entries) {
+    console.log('rendering...', blog)
+    await loadBlogEntry(blog, n)
     n = n + 1
   }
 
-  // Check if blogs have finished painting to DOM, if not recall function after a few milliseconds
-  function check(max) {
-    if ($('section').length === filenames.length) {
-      console.log('all blogs have loaded --> adjusting visuals')
-      populateSections()
-    } else {
-      if (max >= 0) {
-        console.log('blogs still being painted to DOM. waiting a few milliseconds to adjust visuals')
-        setTimeout(function () {
-          check(max)
-        }, 10)
-      }
+// Check if blogs have finished painting to DOM, if not recall function after a few milliseconds
+function check(max) {
+  if ($('section').length === entries.length) {
+    console.log('all blogs have loaded --> adjusting visuals')
+    populateSections()
+  } else {
+    if (max >= 0) {
+      console.log('blogs still being painted to DOM. waiting a few milliseconds to adjust visuals')
+      setTimeout(function () {
+        check(max)
+      }, 10)
     }
   }
-  var max = 100 // Max number of times to run check. If they haven't loaded by then, there's a different problem
-  check(max) // Call function to check if sections have painted
 }
+var max = 100 // Max number of times to run check. If they haven't loaded by then, there's a different problem
+check(max) // Call function to check if sections have painted
+}
+
+// .................
+// UX interactions :
+// .................
+// .................
 
 // NAVBAR 
 // Open menu
@@ -264,7 +253,6 @@ function closeMenu() {
   $('.socialMenu').css('display', 'inline-block')
 }
 
-// UX interactions
 // Make text shorter/longer as desired by user, possible in some sections
 function alternatives(len) {
   $('#short, #medium, #long').removeClass('active')
@@ -387,6 +375,94 @@ function typewriter(loc) {
   }
   effect()
 }
+
+// ...................................................
+// OLD APPROACH TO GETTING BLOG (PERSPECTIVES) INDEX :
+// ...................................................
+// It's a tad too slow for what I need
+// However, I think there's something there.
+// Leaving it here.
+// For future reference.
+// Idea was to avoid need for a JSON file by populating index directly from blog entries
+// ...................................................
+
+// async function getFileNames(path) {
+//   //path = 'https://api.github.com/repos/jbolns/jbolns.github.io/contents/blog?ref=main'
+//   // This function takes the path of a directory and returns an array with filenames in that directory
+//   console.log('getting list of files from', path)
+//   var filenames = []
+//
+//   // Call local directory if on localhost (returns text/html)
+//   if (location.hostname === 'localhost') {
+//     console.log('localhost detected --> extracting filenames from local directory')
+//
+//     await $.ajax(path)
+//       .done(function (response) {
+//
+//         // Parse li elements from response
+//         const parser = new DOMParser()
+//         const html = parser.parseFromString(response, 'text/html').getElementsByTagName('a')
+//         const liArray = [...html]
+//
+//         // Extract names names
+//         liArray.forEach(li => filenames.push(li.innerHTML))
+//       })
+//       .fail(function () { console.log('error with ajax call') })
+//       .always(function () { console.log('ajax call complete') })
+//   } else {
+//     console.log('online server detected --> extracting filenames from server')
+//
+//     await $.ajax(path)
+//       .done(function (response) {
+//         response.forEach(item => filenames.push(item.name))
+//       })
+//       .fail(function () { console.log('error with ajax call') })
+//       .always(function () { console.log('ajax call complete') })
+//   }
+//
+//   // Return the filenames
+//   console.log('filenames extracted:', filenames)
+//   return filenames
+// }
+
+// async function loadBlogEntry(filename, n) {
+//   // Define path to find the blog entry
+//   const target = window.location.pathname + 'intros/' + filename
+//   console.log('function to load a single blog entry runs for target', target)
+//
+//   // Load and append blog entry
+//   const href = filename.slice(0, -5)
+//   console.log('href is', href)
+//   const outer =
+//     `<section id='${href}'>
+//   <span class='topper'>
+//   <p class='lefteao' onclick='maximise(this)'><span class='includer'></span></p>
+//   <p class='righteao'><span class='includer' onclick='minimise(this)'></span></p>
+//   </span>
+//   <div id='blog-${n}' class='internal'></div
+//   section>`
+//
+//   $('#blogwrap').append(outer)
+//
+//   // Call local directory if on localhost (returns text/html)
+//   $.ajax(target)
+//     .done(function (response) {
+//       const parser = new DOMParser()
+//       const parsed = parser.parseFromString(response, 'text/html')
+//
+//       const heading = parsed.getElementsByTagName('h2')[0].outerHTML
+//
+//       const paras = Array.from(parsed.getElementsByTagName('p'))
+//       var intro = ''
+//       paras.forEach(p => intro += p.outerHTML)
+//
+//       const more = `<span class='more'><a href='#blog/#${filename.slice(0, -5)}' class='blog' onclick='linky(this)'>Read more</a></span>`
+//
+//       selector = `#blog-${n}`
+//       $(selector).html(heading + intro + more)
+//     })
+//     .fail(function () { console.log('error with ajax call') })
+//     .always(function () { console.log('ajax call complete') })
 
 // ..........................................
 // MORE STUFF THAT I HAVEN'T QUITE FINISHED :
