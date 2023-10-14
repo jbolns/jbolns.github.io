@@ -140,7 +140,7 @@ function populateSections() {
 // ..................................................
 
 // If on blog list, get filenames, headings, and intro for all blog entries
-async function getFileNames(path) {
+async function getEntries(path) {
   path = path + '/blogindex.json'
   console.log('getting list of files from', path)
 
@@ -148,11 +148,6 @@ async function getFileNames(path) {
   const entries = await $.ajax(path)
     .done(function (response) {
       console.log('Call to blogindex.json successfull, response:', response)
-      /*response.forEach(item => {
-        filenames.push(item.filename)
-        headlines.push(item.headline)
-        intros.push(item.intro)
-      })*/
     })
     .fail(function () { console.log('error with ajax call') })
     .always(function () { console.log('ajax call complete') })
@@ -182,28 +177,18 @@ async function loadBlogEntry(blog, n) {
   // Render index entry
   // Note! Takes a bit to load. Function will finish before <sections> are painted to DOM
   selector = `#blog-${n}`
-  $(selector).html(title +  intro + more)
+  $(selector).html(title + intro + more)
 }
 
 // Main function to load blogs
 async function blog() {
   console.log('host is', location.hostname) // I need this frequently because I get confused
+  var path = window.location.pathname + 'intros'
 
-  // Another forced ugly thing
-  // Same reasons.
-  // On localhost, AJAX is possible to directory
-  // GitHub needs call to API (hopefully they won't block me, lmao)
 
-  if (location.hostname === 'localhost') {
-    var path = window.location.pathname + 'intros'
-    //var blogPath = window.location.pathname + 'blog' // I might still revert to this, so gonna leave it here.
-  } else {
-    var path = 'https://api.github.com/repos/jbolns/jbolns.github.io/contents/intros?ref=main'
-    //var blogPath = 'https://api.github.com/repos/jbolns/jbolns.github.io/contents/blog?ref=main' // I might still revert to this, so gonna leave it here.
-  }
-
+  console.log('zzzzzzzzzzzzzzz', path)
   // Call function to get filenames (which also has a localhost/GH conditional)
-  const entries = await getFileNames(path)
+  const entries = await getEntries(path)
 
   // Load each entry
   n = 1
@@ -213,22 +198,22 @@ async function blog() {
     n = n + 1
   }
 
-// Check if blogs have finished painting to DOM, if not recall function after a few milliseconds
-function check(max) {
-  if ($('section').length === entries.length) {
-    console.log('all blogs have loaded --> adjusting visuals')
-    populateSections()
-  } else {
-    if (max >= 0) {
-      console.log('blogs still being painted to DOM. waiting a few milliseconds to adjust visuals')
-      setTimeout(function () {
-        check(max)
-      }, 10)
+  // Check if blogs have finished painting to DOM, if not recall function after a few milliseconds
+  function check(max) {
+    if ($('section').length === entries.length) {
+      console.log('all blogs have loaded --> adjusting visuals')
+      populateSections()
+    } else {
+      if (max >= 0) {
+        console.log('blogs still being painted to DOM. waiting a few milliseconds to adjust visuals')
+        setTimeout(function () {
+          check(max)
+        }, 10)
+      }
     }
   }
-}
-var max = 100 // Max number of times to run check. If they haven't loaded by then, there's a different problem
-check(max) // Call function to check if sections have painted
+  var max = 100 // Max number of times to run check. If they haven't loaded by then, there's a different problem
+  check(max) // Call function to check if sections have painted
 }
 
 // .................
@@ -463,6 +448,15 @@ function typewriter(loc) {
 //     })
 //     .fail(function () { console.log('error with ajax call') })
 //     .always(function () { console.log('ajax call complete') })
+
+// & THE BIT OF CODE THAT WILL ADJUST CALLS ON MAIN FUNCTION IS
+// if (location.hostname === 'localhost') {
+//   var path = window.location.pathname + 'intros'
+//   //var blogPath = window.location.pathname + 'blog' // I might still revert to this, so gonna leave it here.
+// } else {
+//   var path = 'https://api.github.com/repos/jbolns/jbolns.github.io/contents/intros?ref=main'
+//   //var blogPath = 'https://api.github.com/repos/jbolns/jbolns.github.io/contents/blog?ref=main' // I might still revert to this, so gonna leave it here.
+// }
 
 // ..........................................
 // MORE STUFF THAT I HAVEN'T QUITE FINISHED :
