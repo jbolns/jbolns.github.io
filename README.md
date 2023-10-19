@@ -1,9 +1,9 @@
 # Sustainable (vanilla-code) personal website
 
 ## Summary
-My personal website. As measured by the Website Carbon Calculator, the site is greener than 98% of websites tested: [WCC report](https://www.websitecarbon.com/website/josebolanos-xyz/).
+My personal website. Greener than 98% of websites tested by the [Website Carbon Calculator](https://www.websitecarbon.com/website/josebolanos-xyz/).
 
-It is also quite fast. Very fast, in fact. Load speeds are measured in fractions of a second, at least as reported by [PageSpeed Insights](https://pagespeed.web.dev/analysis/https-www-josebolanos-xyz/wjdc79raih?form_factor=desktop) and [GTMetrix](https://gtmetrix.com/reports/www.josebolanos.xyz/K3Pk1msj/).
+It is also quite fast. Very fast. Load speeds are measured in fractions of a second, at least as reported by [PageSpeed Insights](https://pagespeed.web.dev/analysis/https-www-josebolanos-xyz/wjdc79raih?form_factor=desktop) and [GTMetrix](https://gtmetrix.com/reports/www.josebolanos.xyz/K3Pk1msj/).
 
 (Ps. GitHub Pages' cache settings do hurt PageSpeed Insights scores a little, but nothing I can do about that.)
 
