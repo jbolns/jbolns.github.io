@@ -48,4 +48,4 @@ The final goal is to publish an open-source version of this site not including p
 
 That said, I still want to polish some details such as, for instance, the way in which the blog index is generated.
 
-Meanwhile, the repository is still restricted. Please do not use without explicit permission.
+Meanwhile, please do not use without explicit permission.
