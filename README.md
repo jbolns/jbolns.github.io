@@ -1,8 +1,7 @@
 # Sustainable (vanilla-code) personal website
-My personal website and favourite "vanilla-code" portfolio entry.
 
 ## Summary
-As measured by the Website Carbon Calculator, the site is greener than 98% of websites tested: [WCC report](https://www.websitecarbon.com/website/josebolanos-xyz/).
+My personal website. As measured by the Website Carbon Calculator, the site is greener than 98% of websites tested: [WCC report](https://www.websitecarbon.com/website/josebolanos-xyz/).
 
 It is also quite fast. Very fast, in fact. Load speeds are measured in fractions of a second, at least as reported by [PageSpeed Insights](https://pagespeed.web.dev/analysis/https-www-josebolanos-xyz/wjdc79raih?form_factor=desktop) and [GTMetrix](https://gtmetrix.com/reports/www.josebolanos.xyz/K3Pk1msj/).
 
@@ -38,13 +37,13 @@ Also, the site maximises JS/CSS interactions, reducing code complexity and the n
 
 And more...
 
-### Will it break?
+## Will it break?
 Absolutely! I am pushing it to the limits to experiment with ideas I can then implement more safely in commercial projects.
 
 It will break. I will fix it. It will break again. I will fix it again.
 
-### License
-The final goal is to publish an open-source version of this site not including personal details. 
+## License
+The final goal is to publish a version of this site not including personal details as open-source foundation for anyone interested in having a sustainable website.
 
 That said, I still want to polish some details such as, for instance, the way in which the blog index is generated.
 
