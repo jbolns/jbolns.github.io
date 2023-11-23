@@ -1,6 +1,11 @@
 #BUILD FILES
+server.py
+build.py
+__pycache__
+
+/sections
+/blog_md
 /images/buildFiles
 /docs/buildFiles
-server.py
-/css/simple.css
-/js/mainjs(v2).js
+/js/ideas.js
+/utils/python
