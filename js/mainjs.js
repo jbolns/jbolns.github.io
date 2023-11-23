@@ -20,11 +20,13 @@ function loadReload() {
   let [folder, file] = $(location).attr('hash').split('/')
   console.log('load/reload of:', folder, file)
 
+  toplinks()
+
   // If home, load home, else load the appropriate section
   if (file) {
     folder = folder.substring(1)
     file = file.substring(1)
-    $('#wrapper').load(folder + '/' + file + '.html')
+    $('#wrapper').load(folder + '/' + file)
   } else {
     $('#wrapper').load('pages/home.html')
   }
@@ -41,18 +43,58 @@ function linky(lnk) {
   console.log('linky is running with href', lnk.href, 'and link class', lnk.className)
   // Get address
   var pos = lnk.href.lastIndexOf('#') + 1
+  console.log('pos is', lnk, pos)
   var str = lnk.href.substring(pos)
-
+  console.log(str)
   // Paint section
   $('#wrapper').html('<></>')
-  $('#wrapper').load(lnk.className + '/' + str + '.html')
+  $('#wrapper').load(lnk.className + '/' + str)
 
   // Collapse menu if on mobile
   if ($(window).width() < 1024) { closeMenu() }
 
   // Update main header
   typewriter(str)
+}
 
+// Main function to load links
+async function getTopLinks(path) {
+  path = path + '/nav1.json'
+
+  // Call JSON file to get info
+  const entries = await $.ajax(path)
+    .done(function (response) {
+      console.log('Call to nav1.json successfull, response:', response)
+    })
+    .fail(function () { console.log('error with ajax call') })
+    .always(function () { console.log('ajax call complete') })
+  return entries
+}
+
+
+async function toplinks() {
+  var path = window.location.pathname + 'json'
+  console.log('path to links json is', location.hostname) // I need this frequently because I get confused
+
+  // Call function to get filenames (which also has a localhost/GH conditional)
+  const entries = await getTopLinks(path)
+
+  // Load each entry
+  n = 1
+  for (const link of entries) {
+    console.log('rendering link...', link)
+    await loadTopLinks(link, n)
+    n = n + 1
+  }
+}
+
+async function loadTopLinks(link) {
+  // Adjust link info for final render
+  const href = `<li class='wide'><a href='#pages/#${link.url}' class='pages' onclick='linky(this)'>${link.name}</a></li>`
+
+  // Render links
+  selector = `.topLinks`
+  $(selector).append(href)
 }
 
 // .................
@@ -141,16 +183,23 @@ function populateSections() {
 
 // If on blog list, get filenames, headings, and intro for all blog entries
 async function getEntries(path) {
-  path = path + '/blogindex.json'
+  path = path + '/blog1.json'
   console.log('getting list of files from', path)
 
   // Call JSON file to get info
   const entries = await $.ajax(path)
     .done(function (response) {
-      console.log('Call to blogindex.json successfull, response:', response)
+      console.log('Call to blogs1.json successfull, response:', response)
     })
     .fail(function () { console.log('error with ajax call') })
     .always(function () { console.log('ajax call complete') })
+
+  console.log('unsorted entries:', entries)
+  
+  const sorted = entries.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+
+  console.log('sorted entries:', sorted)
+
   return entries
 }
 
@@ -158,9 +207,9 @@ async function getEntries(path) {
 async function loadBlogEntry(blog, n) {
   // Adjust blog info for final render
   const filename = blog.filename
-  const title = `<h2><a href='#blog/#${filename}' class='blog' onclick='linky(this)'> ${blog.headline} </a></h2>`
+  const title = `<h2><a href='#blog/#${filename}.html' class='blog' onclick='linky(this)'> ${blog.headline} </a></h2>`
   const intro = '<p>' + blog.intro + '</p>'
-  const more = `<span class='more'><a href='#blog/#${filename}' class='blog' onclick='linky(this)'>Read more</a></span>`
+  const more = `<span class='more'><a href='#blog/#${filename}.html' class='blog' onclick='linky(this)'>Read more</a></span>`
 
   // Prefix for handling events and stuff
   const outer =
@@ -183,7 +232,7 @@ async function loadBlogEntry(blog, n) {
 // Main function to load blogs
 async function blog() {
   console.log('host is', location.hostname) // I need this frequently because I get confused
-  var path = window.location.pathname + 'intros'
+  var path = window.location.pathname + 'json'
 
   // Call function to get filenames (which also has a localhost/GH conditional)
   const entries = await getEntries(path)
@@ -340,7 +389,7 @@ function iLikeYou() {
 // Typewrite effect for site main title
 function typewriter(loc) {
   // Get current website section
-  loc = loc === undefined ? 'home' : loc
+  loc = loc === undefined ? 'home' : loc.replace('.html', '')
 
   // Construct headline including name and website section
   var headline = 'dr.jose-a-bolanos > ' + loc
