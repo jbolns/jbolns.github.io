@@ -1,18 +1,18 @@
 [
   {
     "name": "home",
-    "url": "home.html"
+    "url": "home"
   },
   {
     "name": "perspectives",
-    "url": "perspectives.html"
+    "url": "perspectives"
   },
   {
     "name": "portfolio",
-    "url": "portfolio.html"
+    "url": "portfolio"
   },
   {
     "name": "publications",
-    "url": "publications.html"
+    "url": "publications"
   }
 ]

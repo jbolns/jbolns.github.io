@@ -16,7 +16,6 @@
 // When user visits via address bar 
 function loadReload() {
   // Get relative path
-  console.log(location)
   let [folder, file] = $(location).attr('hash').split('/')
   console.log('load/reload of:', folder, file)
 
@@ -26,7 +25,7 @@ function loadReload() {
   if (file) {
     folder = folder.substring(1)
     file = file.substring(1)
-    $('#wrapper').load(folder + '/' + file)
+    $('#wrapper').load(folder + '/' + file + '.html')
   } else {
     $('#wrapper').load('pages/home.html')
   }
@@ -40,15 +39,13 @@ function loadReload() {
 
 // When user clicks a nav link
 function linky(lnk) {
-  console.log('linky is running with href', lnk.href, 'and link class', lnk.className)
+  console.log(lnk)
   // Get address
   var pos = lnk.href.lastIndexOf('#') + 1
-  console.log('pos is', lnk, pos)
   var str = lnk.href.substring(pos)
-  console.log(str)
   // Paint section
   $('#wrapper').html('<></>')
-  $('#wrapper').load(lnk.className + '/' + str)
+  $('#wrapper').load(lnk.className + '/' + str + '.html')
 
   // Collapse menu if on mobile
   if ($(window).width() < 1024) { closeMenu() }
@@ -67,14 +64,13 @@ async function getTopLinks(path) {
       console.log('Call to nav1.json successfull, response:', response)
     })
     .fail(function () { console.log('error with ajax call') })
-    .always(function () { console.log('ajax call complete') })
+
   return entries
 }
 
 
 async function toplinks() {
   var path = window.location.pathname + 'json'
-  console.log('path to links json is', location.hostname) // I need this frequently because I get confused
 
   // Call function to get filenames (which also has a localhost/GH conditional)
   const entries = await getTopLinks(path)
@@ -82,7 +78,6 @@ async function toplinks() {
   // Load each entry
   n = 1
   for (const link of entries) {
-    console.log('rendering link...', link)
     await loadTopLinks(link, n)
     n = n + 1
   }
@@ -120,7 +115,7 @@ function fixPos() {
 
   // If not on mobile, fix positions as needed
   if ($(window).width() >= 768) {
-    $('section').each(function (i, val) {
+    $('section:not(invisible)').each(function (i, val) {
       // Get height of the previous section to avoid hiding section titles
       h = $(this).prev('section').outerHeight()
       if (i > 0) {
@@ -172,19 +167,14 @@ function populateSections() {
 // BLOG MANAGEMENT
 // .................
 // .................
-// Biggest drawback of vanilla JS is the blog index
-// Pain in the neck to populate
 // Currently using a JSON file for index
-// JSON file IS (yes) re-generated automatically
-// However, the re-generation is external to this site
-// The bits below use the generated file.
-// They do not generate it.
+// This JSON file IS generated automatically
+// That said, the bits below make use of the generated file. They do not generate it.
 // ..................................................
 
 // If on blog list, get filenames, headings, and intro for all blog entries
 async function getEntries(path) {
   path = path + '/blog1.json'
-  console.log('getting list of files from', path)
 
   // Call JSON file to get info
   const entries = await $.ajax(path)
@@ -192,28 +182,24 @@ async function getEntries(path) {
       console.log('Call to blogs1.json successfull, response:', response)
     })
     .fail(function () { console.log('error with ajax call') })
-    .always(function () { console.log('ajax call complete') })
 
-  console.log('unsorted entries:', entries)
-  
   const sorted = entries.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
 
-  console.log('sorted entries:', sorted)
-
-  return entries
+  return sorted
 }
 
 // After getting filenames for existing blogs, append each blog as <section> on <main>/#blogwrapper
 async function loadBlogEntry(blog, n) {
   // Adjust blog info for final render
   const filename = blog.filename
-  const title = `<h2><a href='#blog/#${filename}.html' class='blog' onclick='linky(this)'> ${blog.headline} </a></h2>`
+  const cats = blog.categories
+  const title = `<h2><a href='#blog/#${filename}' class='blog' onclick='linky(this)'> ${blog.headline} </a></h2>`
   const intro = '<p>' + blog.intro + '</p>'
-  const more = `<span class='more'><a href='#blog/#${filename}.html' class='blog' onclick='linky(this)'>Read more</a></span>`
+  const more = `<span class='more'><a href='#blog/#${filename}' class='blog' onclick='linky(this)'>Read more</a></span>`
 
   // Prefix for handling events and stuff
   const outer =
-    `<section id='${filename}'>
+    `<section id='${filename}' class='invisible all ${cats}'>
   <span class='topper'>
   <p class='lefteao' onclick='maximise(this)'><span class='includer'></span></p>
   <p class='righteao'><span class='includer' onclick='minimise(this)'></span></p>
@@ -231,24 +217,37 @@ async function loadBlogEntry(blog, n) {
 
 // Main function to load blogs
 async function blog() {
-  console.log('host is', location.hostname) // I need this frequently because I get confused
   var path = window.location.pathname + 'json'
 
   // Call function to get filenames (which also has a localhost/GH conditional)
   const entries = await getEntries(path)
 
-  // Load each entry
+  // Load each entry & save categories to array
   n = 1
+  let cats = 'all'
   for (const blog of entries) {
-    console.log('rendering...', blog)
     await loadBlogEntry(blog, n)
+    cats = cats + ' ' + blog.categories
     n = n + 1
   }
+  const unique = [...new Set(cats.split(' '))]
+
+  // Paint categories to category bar
+  unique.forEach(cat => {
+    cat = cat.trim()
+    console.log(cat)
+    const btn = `<button type="button" onclick="selectCat('${cat}')">${cat}</button>`
+    
+    $('#catbar').append(btn)
+  })
+ 
+  // xyz
 
   // Check if blogs have finished painting to DOM, if not recall function after a few milliseconds
   function check(max) {
     if ($('section').length === entries.length) {
       console.log('all blogs have loaded --> adjusting visuals')
+      $('section.invisible').slice(0, 4).removeClass('invisible')
       populateSections()
     } else {
       if (max >= 0) {
@@ -350,7 +349,6 @@ function maximise(element) {
 
 // Adjust z-indexes of all divs after maximising any tab
 function adjustio() {
-  console.log('adjust is running')
   // Save current z-indexes to array
   arr = []
   $('section').each(function () {
@@ -371,6 +369,36 @@ function adjustio() {
 
   // Adjust footer's z-index
   $('footer').css('z-index', z + 1)
+}
+
+// BLOG
+// Load more blogs
+async function loadMoreBlogs() {
+  let n = $('section.invisible').length
+  if (n !== 0) {
+    await $('section.invisible').slice(0, 4).removeClass('invisible')
+  }
+
+  n = $('section.invisible').length
+  if (n === 0) {
+    $('#loadBlogs').addClass('invisible')
+  }
+}
+
+// Blog's category selection
+function selectCat(cat) {
+  $('section').css('marginBottom', -60)
+  if (cat === 'all') {
+    $('.all').show()
+    $('.all:not(.' + cat).show()
+  } else {
+    $('.all').show()
+    $('.all:not(.' + cat).hide()
+  }
+  let selector = 'section.' + cat
+  $(selector).first().css('marginTop', 0)
+  $(selector).last().css('marginBottom', 75)
+  $('#loadBlogs').addClass('invisible')
 }
 
 // MISCELLANOUS STUFF

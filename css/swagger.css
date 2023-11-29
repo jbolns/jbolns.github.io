@@ -36,13 +36,15 @@ footer {
 
 h1,
 h2,
-h3, 
-h4, 
+h3,
+h4,
 h5 {
   font-family: 'Geologica';
 }
 
-main p, main ul, main li {
+main p,
+main ul,
+main li {
   font-family: sans-serif, 'Geologica';
 }
 
@@ -548,6 +550,49 @@ section:nth-child(even).minimised {
   margin: 0;
 }
 
+#catbar {
+  margin-bottom: 14px;
+}
+
+#catbar button {
+  background: white;
+  padding: 3px 7px;
+  margin: 3px;
+  font-size: large;
+  font-variant: small-caps;
+  border: 1px dotted #f2f3fb;
+  box-shadow: 2px 2px 2px black;
+  transform: skewX(-5deg);
+}
+
+#catbar button:hover {
+  background: yellow;
+  border: 1px dotted black;
+  box-shadow: 1px 1px 0 black;
+}
+
+#loadBlogs {
+  clear: both;
+  text-align: center;
+}
+
+#loadBlogs button {
+  min-width: 40%;
+  margin-top: 75px;
+  background: #e51470;
+  font-variant: small-caps;
+  font-size: xx-large;
+  border: 1px dotted #f2f3fb;
+  box-shadow: 7px 7px 7px black;
+  transform: skewX(-5deg);
+}
+
+#loadBlogs button:hover {
+  background: yellow;
+  border: 1px dotted black;
+  box-shadow: 7px 3px 0 black;
+}
+
 /**/
 /***************** MINOR FORMATS *****************/
 .half,
@@ -604,7 +649,8 @@ section:nth-child(even).minimised {
   color: white
 }
 
-.hidden {
+.hidden,
+.invisible {
   display: none;
 }
 
