@@ -240,8 +240,6 @@ async function blog() {
     
     $('#catbar').append(btn)
   })
- 
-  // xyz
 
   // Check if blogs have finished painting to DOM, if not recall function after a few milliseconds
   function check(max) {
