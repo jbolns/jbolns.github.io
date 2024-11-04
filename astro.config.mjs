@@ -22,17 +22,5 @@ export default defineConfig({
             es: "en",
             fi: "en"
         }
-    },
-
-    vite: {
-
-        resolve: {
-            alias: {
-                "~/": "src/assets/",
-            },
-        },
-
-
     }
-
 });

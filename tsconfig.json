@@ -37,7 +37,7 @@
     "src/styles/global.js"
   ],
   "exclude": [
-    "dist",
+    "docs",
     "node_modules"
   ]
 }
