@@ -3,7 +3,7 @@ import Animation from "@components/Animation"
 import { wrapperStrings } from "@i18n/ui"
 import { defaultLang } from "@i18n/ui"
 
-const AnimationWrapper = ({ locale, ...props }: any) => {
+const AnimationWrapper = ({ locale }: any) => {
   const [animate, setAnimate] = useState(false)
   const [qual, setQual] = useState("low")
   const [render, setRender] = useState(false)
