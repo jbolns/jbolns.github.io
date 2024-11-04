@@ -1,0 +1,31 @@
+---
+// IMPORTS
+import SocialMedia from "./SocialMedia.astro";
+import { site } from "@i18n/sections";
+
+// ACTIONS
+// Get locale
+const { locale } = Astro.props;
+
+// Get current date
+const today = new Date();
+---
+
+<footer
+	class="bottom-0 w-full mt-12 bg-white dark:bg-black dark:text-slate-200 z-20"
+>
+	<div class="h-[1px] bg-gradient-to-r from-black via-yellow-300 to-teal-500">
+	</div>
+	<span class="flex justify-between mx-5 py-5 grow-0">
+		<SocialMedia />
+		<span class="text-2sm text-right">
+			<p class="m-0">
+				&copy; {today.getFullYear()}
+				{site.author[locale]}.&nbsp;{site.copyright[locale]}.
+			</p>
+			<p class="m-0">
+				<a href="/en/terms" class="underline">{site.terms[locale]}</a>.
+			</p>
+		</span>
+	</span>
+</footer>

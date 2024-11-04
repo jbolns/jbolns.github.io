@@ -1,0 +1,111 @@
+---
+// IMPORTS
+import type { Multi } from "@types";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import LogoRender from "@components/LogoRender.astro";
+import Latest from "@components/Latest.astro";
+import Contact from "@components/Contact.astro";
+import { site } from "@i18n/sections";
+import { defaultLang } from "@i18n/ui";
+
+// ACTIONS
+// Get locale from folder structure
+const locale: keyof Multi = Astro.currentLocale || defaultLang;
+
+// Other
+const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
+---
+
+<BaseLayout
+  siteTitle={site.title[locale]}
+  description={site.description[locale]}
+  pageTitle="Bienvenido a mi sitio👋"
+  locale={locale}
+>
+  <section class="homepage">
+    <div class="md:flex items-baseline gap-2 my-7 intersect">
+      <span class="flex-none text-3xl">
+        <p>
+          Mi nombre es <strong
+            ><span class="highlight c1">José A Bolanos</span></strong
+          >.
+        </p>
+      </span>
+
+      <span class="flex-initial">
+        <p>
+          <span class="italic">Programador</span>.
+          <strong>Economista Político</strong>.
+        </p>
+      </span>
+    </div>
+
+    <div class="md:flex gap-8 items-center my-5 intersect">
+      <span class="flex-initial w-[100%] grow text-3xl">
+        <p class="mb-0 leading-tight">
+          <strong
+            ><span class="highlight c3">Me apasiona la programación.</span
+            ></strong
+          >
+        </p>
+        <p class="hidden leading-tight md:block">Me da paz.</p>
+      </span>
+      <span class="">
+        <p class="text-1xl before:content-['->']">
+          Me va muy bien con <strong>Python</strong>, <strong
+            >VBA</strong
+          >, y <strong>JS</strong> (incluyendo React, GatsbyJS, y Astro). También
+          me gusta mucho el <strong>SQL</strong>, en particular, las
+          funciones analíticas.
+        </p>
+        <p class="text-1xl before:content-['->']">
+          Creo que estar al tanto de lo (... requerimientos) de <strong
+            >energía</strong
+          >, <strong>CO2</strong>, y <strong>data</strong> de los sistemas
+          digitales es clave para el éxito en un mundo digital, pues reduce costos
+          relativo a los competidores y minimiza impactos (... riesgos de negocio).
+        </p>
+      </span>
+    </div>
+
+    <span class="md:flex gap-8 items-center md:flex-row-reverse my-5 intersect">
+      <span class="flex-initial w-[100%] grow text-3xl">
+        <p class="mb-0">
+          <strong
+            ><span class="highlight c2 leading-tight">Me gusta pensar.</span
+            ></strong
+          >
+        </p>
+        <p class="hidden leading-tight md:block">¡Es súper divertido!</p>
+      </span>
+
+      <span class="">
+        <p class="text-1xl before:content-['->'] md:text-right">
+          <strong>Estuve en el mundo académico</strong> (KCL, TU Dresden, LSE) por un tiempo, y me mantengo interesado en los debates académicos.
+        </p>
+        <p class="text-1xl before:content-['->'] md:text-right">
+          Dado que programo bien, también estoy excepcionalmente bien calificado para relacionar las <strong
+            >abstracciones</strong
+          > que caracterizan estos debates con las realidades <strong>prácticas</strong> y <strong
+            >técnicas</strong
+          >.
+        </p>
+      </span>
+    </span>
+    <br />
+    <span>
+      <p class="intersect"><strong>Sitio hecho con:</strong></p>
+      <span class="flex flex-wrap"
+        >{stack.map((item: string) => <LogoRender label={item} locale={locale} />)}</span
+      >
+    </span>
+  </section>
+
+  <section>
+    <Latest sectionTitle="Latest" numberOfEntries={6} locale={locale} />
+  </section>
+
+  <section class="contact intersect">
+    <Contact locale={locale} />
+  </section>
+</BaseLayout>

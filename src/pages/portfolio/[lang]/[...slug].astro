@@ -1,0 +1,36 @@
+---
+// IMPORTS
+import { type CollectionEntry, getCollection } from "astro:content";
+import BlogPost from "@layouts/BlogPost.astro";
+
+// ACTIONS
+// Additional types
+type Project = CollectionEntry<"portfolio">
+
+// Dynamic routing
+export async function getStaticPaths() {
+	
+	// Get projects
+  const projects: Project[] = (await getCollection("portfolio"));
+	
+	// Return appropriate project
+	const paths = projects.map((project: Project) => {
+		return {
+			params: { lang: project.slug.split("/")[0], slug: project.slug.split("/")[1] },
+			props: project,
+		};
+	});
+
+	return paths;
+}
+
+// Assemble info to send to rendering layout
+const project: Project = Astro.props;
+const { Content } = await project.render();
+
+
+---
+
+<BlogPost {...project.data}>
+	<Content />
+</BlogPost>

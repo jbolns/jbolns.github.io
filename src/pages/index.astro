@@ -1,0 +1,57 @@
+---
+// IMPORTS
+import type { Multi } from "@types";
+import { ViewTransitions } from "astro:transitions";
+import BaseHead from "@components/BaseHead.astro";
+import { languages } from "@i18n/ui";
+import { sanitizeRoutes } from "@i18n/utils";
+import { site } from "@i18n/sections";
+import { defaultLang } from "@i18n/ui";
+
+// FUNCTIONS & ACTIONS
+const locale: keyof Multi = defaultLang;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <BaseHead
+      siteTitle={site.title[locale]}
+      description={site.description[locale]}
+      pageTitle="Welcome"
+      locale={locale}
+    />
+    <ViewTransitions />
+  </head>
+  <body>
+    <main>
+      <div class="absolute top-1/2 -translate-y-1/2 w-full text-center text-white">
+        <h1 class="enter m-0 p-0 hidden typewriter">Welcome</h1>
+        <p id="glitch" class="enter m-0 p-0 hidden typewriter">{site.description[locale]}</p>
+
+        <ul class="flex items-center justify-center list-none m-0 p-0">
+          {
+            Object.entries(languages).map(([lang, label]) => (
+              <a href={sanitizeRoutes(`/${lang}/`)}>
+                <li class="flex text-center m-1 enter">
+                  <img
+                    src={`/icons/${lang}.svg`}
+                    alt={`${label}.`}
+                    class="w-8 h-8"
+                  />
+                </li>
+              </a>
+            ))
+          }
+        </ul>
+      </div>
+      <div
+        id="simple"
+        class="absolute top-0 flex justify-center -z-20 w-[100%] overflow-hidden mx-auto h-[100vh] bg-black"
+      >
+        <span class="quad w-full h-[150vh] rounded-full animate-appear"></span>
+      </div>
+    </main>
+  </body>
+</html>
+<script src="styles/global.js"></script>

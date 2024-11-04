@@ -1,0 +1,24 @@
+---
+// IMPORTS
+import type { Multi } from "@types";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import CurriculumWrapper from "@components/CurriculumWrapper.astro";
+import { site } from "@i18n/sections";
+import { defaultLang } from "@i18n/ui";
+
+// ACTIONS
+// Get locale from folder structure
+const locale: keyof Multi = Astro.currentLocale || defaultLang;
+---
+
+<BaseLayout
+  siteTitle={site.title[locale]}
+  description="CV."
+  pageTitle="CV"
+  locale={locale}
+>
+  <section class="cv">
+    <CurriculumWrapper locale={locale} />
+  </section>
+
+</BaseLayout>

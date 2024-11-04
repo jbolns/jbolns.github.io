@@ -1,0 +1,27 @@
+---
+// IMPORTS
+import HeaderLink from "./HeaderLink.astro";
+import { navLinks } from "@i18n/ui";
+import { sanitizeRoutes } from "@i18n/utils";
+
+// ACTIONS
+// Get locale
+const {locale} = Astro.props
+
+// Filter links for header, using locale
+const links = navLinks.filter((link) => link.languages.includes(locale));
+---
+
+<!-- MAIN SITE NAVIGATION -->
+<ul class="text-center md:flex">
+	{
+		links.map((link) => (
+			<HeaderLink
+				href={sanitizeRoutes(`${link.href}/${locale}/`)}
+				class="items-center py-1 px-3 duration-400 ease-in-out hover:underline hover:animate-pulse"
+			>
+				{link.text}
+			</HeaderLink>
+		))
+	}
+</ul>

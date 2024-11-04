@@ -1,0 +1,46 @@
+---
+// IMPORTS
+import type { CVEntry } from "@types";
+
+// ACTIONS
+// Get all props
+const { entries, locale, title } = Astro.props;
+const isPublications = title.toLowerCase() === "publications";
+---
+
+{!isPublications && <h3>{title}</h3>}
+{
+  entries.map((entry: CVEntry) => {
+    const applicableDate = entry.startdate
+      ? `${entry.startdate} - ${entry.enddate}`
+      : entry.enddate;
+
+    return (
+      <details
+        class={"intersect " + 
+          entry.tags.join(" ") + (entry.tags.includes("coding") ? "" : " hidden")
+        }
+      >
+        <summary>
+          {" "}
+          <span class={"font-bold"}>{entry.name[locale]}.</span>
+          <span class={isPublications ? " publication" : ""}>&nbsp;{entry.place[locale]}.
+          </span>{applicableDate}.
+        </summary>
+        <ul class="text-sm">
+          {entry.contents[locale].split(";").map((item) => (
+            <li>
+              {isPublications ? (
+                <a href={item} target="_blank">
+                  {item}
+                </a>
+              ) : (
+                item
+              )}
+            </li>
+          ))}
+        </ul>
+      </details>
+    );
+  })
+}

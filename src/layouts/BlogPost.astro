@@ -1,0 +1,28 @@
+---
+// IMPORTS
+import BaseLayout from "@layouts/BaseLayout.astro";
+import FormattedDate from "@components/FormattedDate.astro";
+import { site } from "@i18n/sections";
+
+// ACTIONS
+// Get props, incl. locale
+const { title, description, locale, pubDate, updatedDate, heroImage } = Astro.props;
+
+---
+
+<BaseLayout
+	siteTitle={site.title[locale]}
+	description={description}
+	pageTitle={title}
+	locale={locale}
+	heroImage={heroImage}
+>
+	<article class="post text-justify">
+		<div class="-mt-10 mb-10">
+			<FormattedDate date={updatedDate ? updatedDate : pubDate} />
+			{updatedDate ? <span class="text-sm">({locale === "en" ? "update" : ""})</span> : ""}
+		</div>
+		<slot />
+		
+	</article>
+</BaseLayout>

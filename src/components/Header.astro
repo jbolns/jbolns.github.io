@@ -1,0 +1,58 @@
+---
+// IMPORTS
+import MainNavLangs from "./MainNavLangs.astro";
+import MainNavLinks from "./MainNavLinks.astro";
+import MainNavMisc from "./MainNavMisc.astro";
+import { site } from "@i18n/sections";
+
+// ACTIONS
+// Get locale
+const {locale} = Astro.props
+---
+
+<header class="fixed top-0 w-full z-10" >
+	<nav
+		class="relative w-full flex items-center justify-between mb-[-1px] p-2 bg-white dark:bg-black dark:text-slate-200"
+	>
+		<div
+			class="md:hidden z-10 text-2xl font-semibold border bg-white rounded-lg px-1 dark:bg-gray-300 dark:text-black"
+		>
+			<button id="open-btn">⚟</button>
+			<button id="close-btn" class="hidden">⚞</button>
+		</div>
+
+		<div>
+			<span>
+				<a href={`/${locale}/`} class="flex items-center">
+					<img
+						src="/site-logo.svg"
+						alt="Site logo"
+						class="size-10 ml-2 duration-600 ease-in-out hover:size-12 hover:m-0"
+					/>
+					<span class="invisible w-0 h-0">{site.title[locale]}</span>
+				</a>
+			</span>
+		</div>
+
+		<div class="flex justify-end grow md:justify-between">
+			<div
+				id="menu"
+				class="hidden fixed inset-0 justify-center items-center align-middle md:relative md:flex md:top-0 bg-white dark:bg-black"
+			>
+				<MainNavLinks locale={locale} />
+			</div>
+
+			<div
+				id="misc"
+				class="hidden fixed bottom-5 md:relative md:flex md:justify-end md:bottom-0 z-30"
+			>
+				<MainNavLangs locale={locale} />
+				<span class="text-2xl">&nbsp;|&nbsp;</span>
+				<MainNavMisc />
+			</div>
+		</div>
+	</nav>
+
+	<div class="h-[2px] bg-gradient-to-r from-black via-yellow-300 to-teal-500">
+	</div>
+</header>

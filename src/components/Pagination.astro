@@ -1,0 +1,18 @@
+---
+// IMPORTS
+// None
+
+// ACTIONS
+const { prevUrl, nextUrl } = Astro.props;
+---
+
+<div aria-label="pagination" class="text-2xl mt-16">
+  {
+    (prevUrl || nextUrl) && (
+      <span class="flex justify-center">
+        {prevUrl && <span><a href={prevUrl} class="border border-dotted border-black dark:border-white mr-2 py-2 px-4 hover:bg-yellow-200">&larr; Prev</a></span>}
+        {nextUrl && <span><a href={nextUrl} class="border border-dotted border-black dark:border-white py-2 px-4 hover:bg-yellow-200">Next &rarr;</a></span>}
+      </span>
+    )
+  }
+</div>

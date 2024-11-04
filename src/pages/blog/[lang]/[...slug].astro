@@ -1,0 +1,35 @@
+---
+// IMPORTS
+import { type CollectionEntry, getCollection } from "astro:content";
+import BlogPost from "@layouts/BlogPost.astro";
+
+// ACTIONS
+// Additional types
+type Post = CollectionEntry<"blog">
+
+// Dynamic routing
+export async function getStaticPaths() {
+
+	// Get posts
+  const posts: Post[] = (await getCollection("blog"));
+  
+	// Return appropriate post
+	const paths = posts.map((post: Post) => {
+		return {
+			params: { lang: post.slug.split("/")[0], slug: post.slug.split("/")[1] },
+			props: post,
+		};
+	});
+
+	return paths;
+}
+
+// Assemble info to send to rendering layout
+const post: Post = Astro.props;
+const { Content } = await post.render();
+
+---
+
+<BlogPost { ...post.data }>
+	<Content />
+</BlogPost>

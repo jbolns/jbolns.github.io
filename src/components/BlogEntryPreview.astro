@@ -1,0 +1,37 @@
+---
+// IMPORTS
+import { Image } from "astro:assets";
+import LogoRender from "./LogoRender.astro";
+
+// ACTIONS
+// Get post info as props
+const { post, locale } = Astro.props;
+---
+
+<li class="group intersect special">
+	<a href={`/${post.collection}/${post.slug}/`}>
+		<Image
+			src={post.data.heroImage}
+			alt="Entry thumbnail"
+			width={720}
+			height={360}
+			class="m-0 p-0 border border-black dark:border-white group-hover:duration-[1s] group-hover:shadow-lg group-hover:rounded-t-3xl group-hover:animate-pulse"
+		/>
+		<span class="hidden tiny:grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
+			{
+				post.collection === "blog"
+					? post.data.tags
+							.slice(0, 3)
+							.map((tag: string) => <LogoRender label={tag} locale={locale} />)
+					: post.data.stack
+							.slice(0, 3)
+							.map((item: string) => (
+								<LogoRender label={item} locale={locale} />
+							))
+			}
+		</span>
+		<h3 class="group-hover:underline group-hover:animate-wiggle">
+			{post.data.title}
+		</h3>
+	</a>
+</li>

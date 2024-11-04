@@ -1,0 +1,27 @@
+---
+// IMPORTS
+import { labelStrings } from "@i18n/ui";
+
+// ACTIONS
+// Get props, incl. locale
+let { label, locale } = Astro.props;
+label = label.toLowerCase().replace("digital ", "");
+
+// Translation flags for special categories
+const flags = ["coding", "policy", "academia"];
+---
+
+<span
+  class="stack dark:border-white dark:bg-gray-200 dark:text-black hover:bg-yellow-200 group-hover:duration-[1s] group-hover:last-of-type:rounded-br-3xl"
+>
+  <img src={`/icons/${label}.svg`} alt={`${label}.`} class="mr-1 w-6 h-6" />
+  <span class="sm:block md:text-2sm lg:block lg:text-sm pr-1"
+    >{
+      locale === "en"
+        ? label.slice(0, 8).toUpperCase()
+        : flags.includes(label)
+          ? labelStrings[label][locale].toUpperCase()
+          : label.slice(0, 8).toUpperCase()
+    }</span
+  >
+</span>

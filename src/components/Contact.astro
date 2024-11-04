@@ -1,0 +1,75 @@
+---
+// IMPORTS
+import { site } from "@i18n/sections";
+
+// ACTIONS
+// Get props
+const { locale } = Astro.props;
+---
+
+{
+  locale === "en" && (
+    <div>
+      <h2>Contact</h2>
+      <p>
+        <strong>
+          <span class="highlight c3">Thanks</span>
+        </strong>{" "}
+        for taking the time to learn about me!
+      </p>
+      <p>
+        Do take the time to{" "}
+        <strong>
+          <span class="highlight c1">
+            <a href={"mailto:" + site.contact[locale]}>email me</a>
+          </span>
+        </strong>{" "}
+        so I can learn about you, too!
+      </p>
+    </div>
+  )
+}
+
+{
+  locale === "es" && (
+    <div>
+      <h2>Contacto</h2>
+      <p>
+        <strong>
+          <span class="highlight c3">Gracias</span>
+        </strong>{" "}
+        por tomarte el tiempo de leer sobre mi.
+      </p>
+      <p>
+        Mandame un{" "}
+        <strong>
+          <span class="highlight c1">
+            <a href={"mailto:" + site.contact[locale]}>emilio</a>
+          </span>
+        </strong>{" "}
+        para aprender de vos también!
+      </p>
+    </div>
+  )
+}
+
+{
+  locale === "fi" && (
+    <div>
+      <h2>Ota yhteyttä</h2>
+      <p>
+        <strong>
+          <span class="highlight c3">Kiitos</span>
+        </strong>, että käytit aikaa lukeaksesi minusta.
+      </p>
+      <p>
+        Haluan tutustua myös sinuun. Lähetä minulle 
+        <strong>
+          <span class="highlight c1">
+            <a href={"mailto:" + site.contact[locale]}>sähköpostia</a>
+          </span>
+        </strong>.
+      </p>
+    </div>
+  )
+}

@@ -1,0 +1,60 @@
+---
+// Imports
+// All global imports should happen here so they're included on all pages
+import '@styles/global.css';
+import { ogStrings } from "@i18n/ui"
+
+// Actions
+// Type for props
+interface Props {
+	siteTitle: string;
+	description: string;
+	pageTitle?: string;
+	image?: string;
+	locale?: string;
+}
+
+// Props
+const { siteTitle, description, pageTitle = "", image = '/fallback-hero.jpg', locale = "en_US" } = Astro.props;
+
+const title = `${siteTitle}${pageTitle !== "" ? " > " : ""}${pageTitle}`
+
+// Other
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Font preloads -->
+<!-- None -->
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={`${siteTitle}${pageTitle !== "" ? " > " : ""}${pageTitle}`} />
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:locale" content={ogStrings[locale] || "en_US"} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- Sitemap -->
+<link rel="sitemap" href="./en/sitemap-index.xml" />

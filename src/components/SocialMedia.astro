@@ -1,0 +1,20 @@
+---
+// IMPORTS
+// Config & content
+import { socials } from "@consts";
+---
+
+<ul class="flex items-end">
+  {
+    socials.map((social) => (
+      <li>
+        <a href={social.href}>
+          <svg id="darkie" class="w-10 h-10 ml-1 hover:animate-roll">
+            <use href={`/icons/${social.icon}.svg#${social.icon}`} aria-label={`Social media icon for ${social.name}`}/>
+          </svg>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+

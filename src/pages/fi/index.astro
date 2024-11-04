@@ -1,0 +1,112 @@
+---
+// IMPORTS
+import type { Multi } from "@types";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import LogoRender from "@components/LogoRender.astro";
+import Latest from "@components/Latest.astro";
+import Contact from "@components/Contact.astro";
+import { site } from "@i18n/sections";
+import { defaultLang } from "@i18n/ui";
+
+// ACTIONS
+// Get locale from folder structure
+const locale: keyof Multi = Astro.currentLocale || defaultLang;
+
+// Other
+const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
+---
+
+<BaseLayout
+  siteTitle={site.title[locale]}
+  description={site.description[locale]}
+  pageTitle="Tervetuloa sivuilleni 👋"
+  locale={locale}
+>
+  <section class="homepage">
+    <div class="md:flex items-baseline gap-2 my-7 intersect">
+      <span class="flex-none text-3xl">
+        <p>
+          Minä olen <strong><span class="highlight c1">José</span></strong>.
+        </p>
+      </span>
+
+      <span class="flex-initial">
+        <p>
+          <span class="italic">Koodaaja</span>.
+          <strong>Poliittinen taloustieteilijä</strong>.
+        </p>
+      </span>
+    </div>
+
+    <div class="md:flex gap-8 items-center my-5 intersect">
+      <span class="flex-initial w-[100%] grow text-3xl">
+        <p class="mb-0 leading-tight">
+          <strong><span class="highlight c3">Rakastan koodausta.</span></strong>
+        </p>
+        <p class="hidden leading-tight md:block">Se on hauskaa.</p>
+      </span>
+      <span class="">
+        <p class="text-1xl before:content-['->']">
+          Olen parhaimmillani koodatessa <strong>Pythonilla</strong>, <strong
+            >VBA:lla</strong
+          > ja <strong>JS:llä</strong> (mukaan lukien React, GatsbyJS ja Astro).
+          Pidän myös todella paljon <strong>SQL:stä</strong>, analyyttisiin
+          toimintoihin asti.
+        </p>
+
+        <p class="text-1xl before:content-['->']">
+          Uskon, että digitaalisten järjestelmien <strong>energia-</strong>, <strong
+            >hiilidioksidi-</strong
+          > ja
+          <strong>datatarpeiden</strong> (...vaatimusten) hallinta on avain menestykseen
+          digitaalisessa maailmassa. Se voi alentaa kustannuksia verrattuna kilpailijoihin
+          ja vähentää liiketoiminnan riskejä.
+        </p>
+      </span>
+    </div>
+
+    <span class="md:flex gap-8 items-center md:flex-row-reverse my-5 intersect">
+      <span class="flex-initial w-[100%] grow text-3xl">
+        <p class="mb-0">
+          <strong
+            ><span class="highlight c2 leading-tight">Nautin ajattelusta.</span
+            ></strong
+          >
+        </p>
+        <p class="hidden leading-tight md:block">Se on myös hauskaa!</p>
+      </span>
+
+      <span class="">
+        <p class="text-1xl before:content-['->'] md:text-right">
+          Olin <strong>aiemmin yliopistossa</strong> (KCL, TU Dresden, LSE) ja olen
+          edelleen kiinnostunut akateemisista keskusteluista.
+        </p>
+        <p class="text-1xl before:content-['->'] md:text-right">
+          Koska koodaan hyvin, olen myös <strong>pätevä yhdistämään</strong> näiden
+          keskustelujen <strong
+            >abstraktit ideat käytäntöön ja tekniseen toteutukseen</strong
+          >.
+        </p>
+      </span>
+    </span>
+    <br />
+    <span>
+      <p class="intersect"><strong>Sivut tehty käyttäen:</strong></p>
+      <span class="flex flex-wrap"
+        >{
+          stack.map((item: string) => (
+            <LogoRender label={item} locale={locale} />
+          ))
+        }</span
+      >
+    </span>
+  </section>
+
+  <section>
+    <Latest sectionTitle="Uusin" numberOfEntries={6} locale={locale} />
+  </section>
+
+  <section class="contact intersect">
+    <Contact locale={locale} />
+  </section>
+</BaseLayout>

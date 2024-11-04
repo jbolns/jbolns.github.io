@@ -1,0 +1,74 @@
+---
+// IMPORTS
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { site } from "@i18n/sections";
+import { defaultLang } from "@i18n/ui";
+
+// ACTIONS
+// Get locale from folder structure
+const locale = defaultLang;
+
+const tcSections = await Astro.glob("../../content/site/*.mdx");
+---
+
+<BaseLayout
+  siteTitle={site.title[locale]}
+  description="Terms & conditions"
+  pageTitle="Terms & conditions"
+  locale={locale}
+>
+  <section>
+    <p class="text-sm">
+      (For clarity, this page is only available in English.)
+    </p>
+    <h2>Summary</h2>
+    <p>
+      Your use of this website constitutes agreement to all terms, conditions,
+      and policies below.
+    </p>
+    <p>The terms are fairly standard. Live and let live. Key highlights are:</p>
+    <ul>
+      <li>
+        The site is offered "as is" and with no guarantees, which you accept by
+        using it
+      </li>
+      <li>
+        While retaining the right to do so in the future, the website does not
+        currently collect visitors' data
+      </li>
+      <li>
+        Where laws contradict anything in the policies, the law obviously takes
+        precedence.
+      </li>
+    </ul>
+
+    <p>
+      Please note this summary is not the terms and conditions. If the specifics
+      of any terms below contradict anything in this summary, the terms below
+      take precedence.
+    </p>
+
+    <h2>Detailed policies</h2>
+    <p>
+      By using this Website and/or buying or otherwise using any Products in it, you
+      agree to the all terms, conditions, and policies below.
+    </p>
+
+    {
+      tcSections.map((item) => (
+        <details class="text-sm">
+          <summary>
+            <h3 class="inline">{item.frontmatter.description}</h3>
+          </summary>
+          <item.Content />
+        </details>
+      ))
+    }
+
+    <h2>Contact</h2>
+    <p>
+      If you have questions about any Terms and Conditions, feel free to write
+      an <a href={"mailto:" + site.contact[locale]} class="underline">email</a>.
+    </p>
+  </section>
+</BaseLayout>

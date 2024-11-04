@@ -1,0 +1,63 @@
+---
+// IMPORTS
+import { type CollectionEntry, getCollection } from "astro:content";
+import { type GetStaticPathsOptions } from "astro";
+
+import BlogRollLayout from "@layouts/BlogRoll.astro";
+import BlogEntryPreview from "@components/BlogEntryPreview.astro";
+import Pagination from "@components/Pagination.astro";
+import { languages } from "@i18n/ui";
+
+// ACTIONS
+// Additional types
+type Post = CollectionEntry<"blog">;
+
+// Dynamic routing with pagination
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+	
+	// Get all posts and sort them
+	const posts: CollectionEntry<"blog">[] = (await getCollection("blog")).sort(
+		(a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+			b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	);
+
+	let splitTags: string[][] = [];
+	Object.keys(languages).map((locale) => {
+		const tags = [
+			...new Set(
+				posts
+					.filter((post) => post.slug.startsWith(locale))
+					.map((post) => post.data.tags)
+					.flat(),
+			),
+		];
+		splitTags.push(tags);
+	});
+
+	// Return posts by locale, paginated
+	return Object.keys(languages).flatMap((lang) => {
+		const filteredPosts = posts.filter(
+			(a: { slug: string }) => a.slug.split("/")[0] === lang,
+		);
+
+		return paginate(filteredPosts, {
+			params: { lang },
+			props: { splitTags },
+			pageSize: 6,
+		});
+	});
+}
+
+const { splitTags, page } = Astro.props;
+const locale = Astro.params.lang
+
+---
+
+<BlogRollLayout page={page} tags={splitTags} locale={locale} section="blog">
+	<section>
+		<ul class="grid grid-cols-1 md:grid-cols-3 gap-4 list-none ml-0">
+			{page.data.map((post: Post) => <BlogEntryPreview post={post} locale={locale}/>)}
+		</ul>
+		<Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+	</section>
+</BlogRollLayout>

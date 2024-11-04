@@ -1,0 +1,242 @@
+/*
+  The styles contained in this file support a tailwind implementation loosely inspired on several open-source themes
+	- Bear Blog's: 
+  - - https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
+  - - https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+
+	- Astro Sphere
+ */
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	section {
+		margin: 5em auto 10em;
+	}
+
+	h1 {
+    font-size: 2.8rem;
+		margin: 1rem 0 2.3rem 0;
+  }
+  h2 {
+    font-size: 2.2rem;
+		margin-top: 2.5rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: bold;
+		line-height: 1.3;
+	}
+
+	p {
+		margin: 1em auto;
+		line-height: 2;
+	}
+
+	main ul, ol {
+		margin-left: 2.5em;
+	}
+
+	main ul {
+		list-style-type: circle;
+	}
+	
+	main ol {
+		list-style-type: decimal;
+	}
+
+	#contentwrap {
+		border: 1px solid black;
+		border-radius: 100vh;
+	}
+
+	main .active, main .active > * {
+		font-weight: bolder;
+		text-decoration: underline;
+		background: rgb(254 240 138);
+		color: black;
+	}
+	
+	#content {
+		width: 100%;
+		padding: 1rem;
+	}
+
+	.homepage .grow {
+		flex-grow: 0;
+	}
+
+	/* ANIMATION STUFF THAT'S JUST HARDER TO DO IN TAILWIND */
+	/* Effects for main animation's wrapper*/
+	#simple span {
+		position: absolute;
+		border-radius: 47%;
+		opacity: 0.8;
+	}
+
+	#simple span.quad {
+		height: 60vh;
+		bottom: 0;
+		background-size: 40px 40px;
+		background-image: linear-gradient(to right, yellow 5px, transparent 1px);
+		
+		transform: perspective(10em) rotateX(45deg);
+		width: 100vw;
+		z-index: 0;
+	}
+
+	/* View & scroll transitions */
+	.triggerMain {
+		animation: main 0.7s ease-in-out;
+	}
+
+	.triggerSpecial {
+		animation: special 0.7s ease-in-out;
+	}
+
+	.enter {
+		animation: enter 0.5s ease-in-out;
+	}
+
+	@keyframes main {
+		0% {
+			transform: translatey(100px);
+			opacity: 0;
+		}
+		100% { 
+			transform: translatey(0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes special {
+		0%, 100% {
+			transform: scaleX(1);
+			opacity: 1;
+		}
+		50% {
+			transform: scaleX(0);
+			opacity: 0.3;
+		}
+		
+	}
+
+	@keyframes enter {
+		0% {
+			transform: rotateY(-90deg);
+			opacity: 0;
+		}
+
+		100% { 
+			transform: rotateY(0);
+		}
+	}
+
+	p.detail {
+		font-style: italic;
+	}
+
+	span.highlight {
+		padding: 0 5px;
+	}
+
+	.dark span.highlight {
+		color: black;
+	}
+	
+	span.c1 {
+		background-image: linear-gradient(lightgray, lightgray);
+	}
+
+	span.c2 {
+		background-image: linear-gradient(moccasin, moccasin);
+	}
+
+	span.c3 {
+		background-image: linear-gradient(aquamarine, aquamarine);
+	}
+
+	section.footnotes {
+		margin-top: 0 !important;
+	}
+
+	section.footnotes h2 {
+		display: none;
+	}
+
+	section.footnotes ol {
+		margin-left: 1.6em;
+		font-size: smaller;
+	}
+
+
+	@media (min-width: 768px) {
+		#content {
+			width: 768px;
+			padding: 0;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		#content {
+			width: 976px;
+			padding: 0;
+		}
+	}
+
+	/* This should in theory turn all animations and visual effects off for users with reduced motion set in their accessibility settings*/
+	@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: 0 !important;
+        transform: translate(0) !important;
+        opacity: 1 !important;
+    }
+	}
+}
+
+
+@layer components {
+  .stack {
+		display: flex;
+		align-items: center;
+		padding: 0.25rem;
+		border: 1px solid black;
+		border-top: 0;
+	}
+	.cv .stack,
+	.homepage .stack {
+		margin: auto 1px;
+		border: 1px dotted black;
+  }
+	
+	.cv details ul li:last-child::after {
+		content: ".";
+	}
+
+	.cv details.role ul li::after {
+		content: "";
+	}
+
+	article.post img {
+		max-width: 60%;
+		transition: 1s ease-in-out;
+	}
+
+	article.post img:hover {
+		max-width: 100%;
+	}
+
+	article.post a {
+		text-decoration: underline;
+	}
+
+
+}

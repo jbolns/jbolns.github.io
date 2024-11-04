@@ -1,0 +1,87 @@
+---
+// IMPORTS
+import { type CollectionEntry, getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+// OTHER ACTIONS
+// Types
+type Post = CollectionEntry<"blog">;
+type Project = CollectionEntry<"portfolio">;
+
+type Combo = {
+  title: string;
+  slug: string;
+  collection: string;
+  heroImage: ImageMetadata;
+  pubDate: Date;
+};
+
+// Extract props
+const { sectionTitle = "Latest", numberOfEntries = 3, locale } = Astro.props;
+
+// Get entries from all collections
+const blogs: Post[] = (await getCollection("blog")).filter((item: Post) =>
+  item.slug.startsWith(locale),
+);
+const updates: Project[] = (await getCollection("portfolio")).filter(
+  (item: Project) => item.slug.startsWith(locale),
+);
+
+// Join entries
+let items: Combo[] = blogs.map((item) => {
+  return {
+    title: item.data.title,
+    slug: item.slug,
+    collection: item.collection,
+    heroImage: item.data.heroImage,
+    pubDate: item.data.pubDate,
+  };
+});
+
+items = items.concat(
+  updates.map((item) => {
+    return {
+      title: item.data.title,
+      slug: item.slug,
+      collection: item.collection,
+      heroImage: item.data.heroImage,
+      pubDate: item.data.pubDate,
+    };
+  }),
+);
+
+items = items
+  .sort((a: Combo, b: Combo) => b.pubDate.valueOf() - a.pubDate.valueOf())
+  .slice(0, numberOfEntries);
+---
+
+<h2 class="intersect">{sectionTitle}</h2>
+
+<ul class="grid grid-cols-1 md:grid-cols-3 gap-4 list-none ml-0 mt-5">
+  {
+    items.map((item: Combo) => (
+      <li class="group intersect">
+        <a href={`/${item.collection}/${item.slug}/`}>
+          <Image
+            src={item.heroImage}
+            alt="Entry thumbnail"
+            width={720}
+            height={360}
+            class="m-0 p-0 border border-black dark:border-white group-hover:duration-[1s] group-hover:shadow-lg group-hover:rounded-t-3xl group-hover:animate-pulse"
+          />
+          <h4 class="px-2 text-2xl md:text-base group-hover:underline group-hover:animate-wiggle">
+            <span
+              class={
+                item.collection === "blog" ? "text-pink-600" : "text-green-600"
+              }
+            >
+              {item.collection.toUpperCase() +
+                (item.collection === "blog" && locale === "fi" ? "I" : "")}
+            </span>{" "}
+            &#62; {item.title}
+          </h4>
+        </a>
+      </li>
+    ))
+  }
+</ul>

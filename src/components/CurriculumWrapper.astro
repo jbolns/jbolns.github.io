@@ -1,0 +1,140 @@
+---
+// IMPORTS
+import { type CollectionEntry, getCollection } from "astro:content";
+import CurriculumSection from "./CurriculumSection.astro";
+import LogoRender from "./LogoRender.astro";
+import { degrees, certifications, publications } from "@i18n/sections";
+import { cvStrings } from "@i18n/ui";
+
+// ACTIONS
+// Additional types
+type Entry = CollectionEntry<"cv">;
+
+// Get locale as props
+const { locale } = Astro.props;
+
+// Get all work experiences from collection and prepare them for rendering
+const experience: Entry[] = (await getCollection("cv"))
+  .filter((entry: Entry) => entry.slug.startsWith(locale))
+  .sort((a: Entry, b: Entry) => b.data.endDate - a.data.endDate);
+
+// Extract all possible view modes & define initial view mode
+const viewModes = [...new Set(experience.flatMap((role) => role.data.tags))];
+const defaultMode = "coding";
+
+const renderRoles = await Promise.all(
+  experience.map(async (role) => {
+    const { Content } = await role.render();
+    return { ...role, Content };
+  }),
+);
+---
+
+<div class="cv mb-10 intersect" data-message={defaultMode}>
+  <h2>{cvStrings.mode[locale]}</h2>
+  <p>
+    {cvStrings.m1[locale]}
+  </p>
+  <span class="flex flex-wrap">
+    {
+      viewModes.map((mode) => (
+        <span class="selector flex" id={mode}>
+          {<LogoRender label={mode} locale={locale} />}
+        </span>
+      ))
+    }
+  </span>
+</div>
+
+<div>
+  <h2 class="intersect">{cvStrings.experience[locale]}</h2>
+  {
+    renderRoles.map(async (role) => {
+      return (
+        <details
+          class={
+            role.data.tags.join(" ") +
+            " intersect role" +
+            (role.data.tags.includes(defaultMode) ? "" : " hidden")
+          }
+        >
+          <summary>
+            <strong>{role.data.title}.</strong> {role.data.company}.{" "}
+            {role.data.startDate} - {role.data.endDate}.
+          </summary>
+          <span class="text-sm">
+            <role.Content />
+          </span>
+        </details>
+      );
+    })
+  }
+</div>
+
+<div>
+  <h2 class="intersect">{cvStrings.education[locale]}</h2>
+  <CurriculumSection
+    entries={degrees}
+    locale={locale}
+    title={cvStrings.degrees[locale]}
+  />
+  <CurriculumSection
+    entries={certifications}
+    locale={locale}
+    title={cvStrings.certifications[locale]}
+  />
+</div>
+
+<div>
+  <h2 class="intersect">{cvStrings.publications[locale]}</h2>
+  <CurriculumSection entries={publications} locale={locale} title="" />
+</div>
+
+<script is:inline define:vars={{ defaultMode }}>
+  // Note for self. NO TS here. Script will be inlined as-is (required for define:vars).
+
+  const runCV = () => {
+    // Set button with default mode to active
+    document.getElementById(defaultMode)?.classList.add("active");
+
+    // Find all buttons with the `selector` class on the page.
+    const buttons = document.querySelectorAll(".selector");
+
+    // Get list of all possible entry classes
+    let allModes = [];
+    buttons.forEach((button) => {
+      button.id
+        ? allModes.push(CSS.escape(button.id))
+        : console.log("button is empty");
+    });
+
+    // Handle clicks on each button.
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const mode = button.id?.toLowerCase();
+
+        // Hide everything
+        let targets = document.querySelectorAll("." + allModes.join(", ."));
+        for (let i = 0; i < targets.length; i++) {
+          targets[i].classList.add("hidden");
+        }
+
+        // Show elements with requested class
+        targets = document.querySelectorAll("." + mode);
+        for (let i = 0; i < targets.length; i++) {
+          targets[i].classList.remove("hidden");
+        }
+
+        // Flag new active button
+        buttons.forEach((button) => {
+          button.id === mode
+            ? button.classList.add("active")
+            : button.classList.remove("active");
+        });
+      });
+    });
+  };
+
+  runCV()
+  document.addEventListener('astro:after-swap', runCV)
+</script>
