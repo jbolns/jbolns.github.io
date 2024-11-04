@@ -19,9 +19,9 @@ export default defineConfig({
             prefixDefaultLocale: false
         },
         fallback: {
-      es: "en",
-      fi: "en"
-    }
+            es: "en",
+            fi: "en"
+        }
     }
 
 });
