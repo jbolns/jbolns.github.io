@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<!-- Based on the original logo by TTK Bootstrap, itself under a MIT license. More details here: https://github.com/israel-dryer/ttkbootstrap-->
+<svg width="72" height="72" version="1.1" viewBox="0 0 19.05 19.05" xmlns="http://www.w3.org/2000/svg">
+ <g fill-rule="evenodd" stroke-width="3.7042">
+  <circle cx="3.3566" cy="3.4833" r="2.85" fill="#2780e3" fill-opacity=".8902" stop-color="#000000" style="paint-order:markers stroke fill"/>
+  <g>
+   <circle cx="9.6265" cy="3.4833" r="2.85" fill="#373a3c" stop-color="#000000" style="paint-order:markers stroke fill"/>
+   <circle cx="9.6265" cy="9.4999" r="2.85" fill="#9954bb" stop-color="#000000" style="paint-order:markers stroke fill"/>
+   <circle cx="9.6265" cy="15.58" r="2.85" fill="#ff7518" stop-color="#000000" style="paint-order:markers stroke fill"/>
+   <circle cx="15.833" cy="15.58" r="2.85" fill="#ff0039" stop-color="#000000" style="paint-order:markers stroke fill"/>
+   <circle cx="15.833" cy="3.4833" r="2.85" fill="#3fb618" stop-color="#000000" style="paint-order:markers stroke fill"/>
+  </g>
+ </g>
+</svg>
