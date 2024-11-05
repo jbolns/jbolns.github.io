@@ -102,31 +102,34 @@ const glitch = () => {
     let str = t.textContent
 
     // Garble string a little
+    let chars = { "letters": "eiou", "symbols": "3!0/" }
     if (out !== true) {
-      str.includes('e')
-        ? str = str.replace('e', '3')
-        : str.includes('i')
-          ? str = str.replace('i', '!')
-          : str.includes('o')
-            ? str = str.replace('o', '&')
-            : out = true
+
+      // Replace random character
+      let r = Math.floor(Math.random() * chars["letters"].length)
+      str = str.replace(chars["letters"][r], chars["symbols"][r])
       t.textContent = str
+
+      // Check if there are more letters to replace, change branch if not
+      var interection = (str.match(new RegExp('[' + chars["letters"] + ']', 'g')) || []).join('');
+      if (interection.length == 0) out = !out
+
     } else if (out === true) {
-      str.includes('!')
-        ? str = str.replace('!', 'i')
-        : str.includes('3')
-          ? str = str.replace('3', 'e')
-          : str.includes('&')
-            ? str = str.replace('&', 'o')
-            : str.includes("*")
-              ? str = str.replace('*', '')
-              : out = false
+
+      // Replace random character
+      let r = Math.floor(Math.random() * chars["letters"].length)
+      str = str.replace(chars["symbols"][r], chars["letters"][r])
       t.textContent = str
+
+      // Check if there are more letters to replace, change branch if not
+      var interection = (str.match(new RegExp('[' + chars["symbols"] + ']', 'g')) || []).join('');
+      if (interection.length == 0) out = !out
     }
   }
 
   const caller = () => {
-    if (c < original.length * 6) {
+    let lim = original.length * (original.toLowerCase() == "welcome" ? 20 : 6)
+    if (c < lim) {
       setTimeout(() => {
         write()
       }, Math.floor(Math.random() * 5000));
@@ -137,44 +140,60 @@ const glitch = () => {
   setInterval(caller, 100)
 }
 
+
 // TYPEWRITER EFFECT
 const typewriter = () => {
 
   const tt = document.querySelectorAll(".typewriter");
 
-  const type = () => {
-    for (let j = 0; j < tt.length; j++) {
-      let t = tt[j]
-      setTimeout(() => {
-        let str = t.textContent
-        t.textContent = "_"
-        t.classList.remove("hidden");
-  
-        setTimeout(() => {
-          let i = 0
-          const effect = () => {
-  
-            if (i < str.length + 1) {
-              const render = str.slice(0, i)
-              t.textContent = render + "_"
-              i++
-              setTimeout(effect, 150)
-            } else {
-              t.textContent = str
-              i++
-            }
-  
-          }
-          effect()
-        }, "1000");
-  
-      }, 1000 * j);
+  if (tt.length != 0) {
+    const write = (t, str) => {
+      let j = 0
+      const effect = () => {
+        if (j < str.length + 1) {
+          const render = str.slice(0, j)
+          t.textContent = render + "_"
+          j++
+          setTimeout(effect, 150)
+        } else {
+          t.textContent = str
+          j++
+        }
+      }
+      effect()
     }
+
+    const normal = () => {
+      let strs = []
+      tt.forEach((t) => {
+        strs.push(t.textContent)
+        t.textContent = "."
+        t.classList.remove("hidden");
+        for (let i = 0; i < tt.length; i++) {
+          setTimeout(() => {
+            write(tt[i], strs[i])
+          }, 1000 * i);
+        }
+      })
+    }
+
+    const homepage = () => {
+      setTimeout(() => {
+        let hello = ["Bienvenido", "Tervetuloa", "Welcome"]
+        for (let i = 0; i < hello.length; i++) {
+          setTimeout(() => {
+            write(tt[0], hello[i])
+          }, 7000 * i);
+        }
+      }, 2000);
+    }
+
+    normal()
+    homepage()
   }
 
-  type()
-
 }
+
 
 // Function triggers
 nav()

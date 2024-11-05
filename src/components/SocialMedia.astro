@@ -8,7 +8,7 @@ import { socials } from "@consts";
   {
     socials.map((social) => (
       <li>
-        <a href={social.href}>
+        <a href={social.href} target="_blank">
           <svg id="darkie" class="w-10 h-10 ml-1 hover:animate-roll">
             <use href={`/icons/${social.icon}.svg#${social.icon}`} aria-label={`Social media icon for ${social.name}`}/>
           </svg>

@@ -225,17 +225,20 @@
 		content: "";
 	}
 
-	article.post img {
-		max-width: 60%;
-		transition: 1s ease-in-out;
-	}
-
-	article.post img:hover {
-		max-width: 100%;
-	}
-
 	article.post a {
 		text-decoration: underline;
+	}
+
+	@media (min-width: 1024px) {
+		article.post img {
+			max-width: 60%;
+			transition: 1s ease-in-out;
+		}
+
+		article.post img:hover {
+			max-width: 100%;
+		}
+
 	}
 
 
