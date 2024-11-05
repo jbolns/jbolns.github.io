@@ -26,8 +26,8 @@ const locale: keyof Multi = defaultLang;
   <body>
     <main>
       <div class="absolute top-1/2 -translate-y-1/2 w-full text-center text-white">
-        <h1 class="enter m-0 p-0 hidden typewriter">Welcome</h1>
-        <p id="glitch" class="enter m-0 p-0 hidden typewriter">{site.description[locale]}</p>
+        <h1 id="glitch" class="enter m-0 p-0 typewriter hidden">Welcome</h1>
+        <p class="enter m-0 p-0 typewriter hidden">{site.description[locale]}</p>
 
         <ul class="flex items-center justify-center list-none m-0 p-0">
           {
@@ -37,7 +37,7 @@ const locale: keyof Multi = defaultLang;
                   <img
                     src={`/icons/${lang}.svg`}
                     alt={`${label}.`}
-                    class="w-8 h-8"
+                    class="w-8 h-8 hover:animate-roll"
                   />
                 </li>
               </a>
