@@ -57,10 +57,10 @@ items = items
 
 <h2 class="intersect">{sectionTitle}</h2>
 
-<ul class="grid grid-cols-1 md:grid-cols-3 gap-4 list-none ml-0 mt-5">
+<ul class="grid grid-cols-1 md:grid-cols-3 gap-4 list-none ml-0 mt-5 md:mx-5">
   {
     items.map((item: Combo) => (
-      <li class="group intersect">
+      <li class="group intersect mt-8 first:mt-4 md:mt-4 mx-[5%] odd:mr-[25%] even:ml-[25%] md:mx-0 md:odd:mr-0 md:even:ml-0">
         <a href={`/${item.collection}/${item.slug}/`}>
           <Image
             src={item.heroImage}
@@ -69,7 +69,7 @@ items = items
             height={360}
             class="m-0 p-0 border border-black dark:border-white group-hover:duration-[1s] group-hover:shadow-lg group-hover:rounded-t-3xl group-hover:animate-pulse"
           />
-          <h4 class="px-2 text-2xl md:text-base group-hover:underline group-hover:animate-wiggle">
+          <h3 class="px-2 md:text-base group-hover:underline group-hover:animate-wiggle">
             <span
               class={
                 item.collection === "blog" ? "text-pink-600" : "text-green-600"
@@ -79,7 +79,7 @@ items = items
                 (item.collection === "blog" && locale === "fi" ? "I" : "")}
             </span>{" "}
             &#62; {item.title}
-          </h4>
+          </h3>
         </a>
       </li>
     ))

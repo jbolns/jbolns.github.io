@@ -26,8 +26,8 @@ const AnimationWrapper = ({ locale }: any) => {
 
         <div className="flex w-[100%] overflow-hidden mx-auto justify-center items-center bg-transparent dark:border-b dark:border-gray-300 h-[60vh] rounded-bl-[30vh] rounded-br-[100%]">
           <div className="w-full text-center bg-transparent text-white">
-            <p className=""><button onClick={() => setAnimate(true)} className="border border-white border-dotted px-2">{wrapperStrings.w1[locale]}</button></p>
-            <p className="text-2sm">{wrapperStrings.w2[locale]}</p>
+            <p><button onClick={() => setAnimate(true)} className="border border-white border-dotted px-2 bg-black">{wrapperStrings.w1[locale]}</button></p>
+            <p className="md:text-2sm">{wrapperStrings.w2[locale]}</p>
           </div>
         </div>
 

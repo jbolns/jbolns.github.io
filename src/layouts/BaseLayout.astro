@@ -35,12 +35,12 @@ const { siteTitle, description, pageTitle, locale, heroImage } = Astro.props;
 
 	<body
 		
-		class="leading-loose text-normal text-pretty break-words text-base font-mono dark:bg-black dark:text-gray-300"
+		class="leading-loose text-normal text-pretty break-words text-medium md:text-base font-mono dark:bg-black dark:text-gray-300"
 	>
 		<Header locale={locale} />
 		<main class="min-h-[100lvh]">
 			<AnimationWrapper locale={locale} client:load />
-			<div id="content" class="mt-[10rem] mx-auto" >
+			<div id="content" class="mt-2 md:mt-32 mx-auto" >
 				<h1 id="glitch" class="enter">{pageTitle}</h1>
 				<slot />
 			</div>

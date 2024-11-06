@@ -23,24 +23,24 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
   locale={locale}
 >
   <section class="homepage">
-    <div class="md:flex items-baseline gap-2 my-7 intersect">
-      <span class="flex-none text-3xl">
-        <p>
+    <div class="lg:flex items-baseline gap-2 md:my-7 intersect">
+      <span class="text-3xl">
+        <p class="my-0">
           My name is <strong
-            ><span class="highlight c1">José A Bolanos</span></strong
+            ><span class="highlight underline md:no-underline md:c1">José A Bolanos</span></strong
           >.
         </p>
       </span>
 
-      <span class="flex-initial">
-        <p>
+      <span class="hidden md:flex">
+        <p class="my-0">
           <span class="italic">Developer</span>.
           <strong>Political Economist</strong>.
         </p>
       </span>
     </div>
 
-    <div class="md:flex gap-8 items-center my-5 intersect">
+    <div class="md:flex gap-8 items-center intersect">
       <span class="flex-initial w-[100%] grow text-3xl">
         <p class="mb-0 leading-tight">
           <strong><span class="highlight c3">I love coding.</span></strong>
@@ -64,7 +64,7 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
       </span>
     </div>
 
-    <span class="md:flex gap-8 items-center md:flex-row-reverse my-5 intersect">
+    <span class="md:flex gap-8 items-center md:flex-row-reverse intersect">
       <span class="flex-initial w-[100%] grow text-3xl">
         <p class="mb-0">
           <strong
@@ -75,7 +75,7 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
         <p class="hidden leading-tight md:block">It's fun!</p>
       </span>
 
-      <span class="">
+      <span>
         <p class="text-1xl before:content-['->'] md:text-right">
           I was <strong>previously in academia</strong> (KCL, TU Dresden, LSE) and
           remain interested in academic debates.
@@ -107,7 +107,7 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
     <Latest sectionTitle="Latest" numberOfEntries={6} locale={locale} />
   </section>
 
-  <section class="contact intersect">
+  <section class="intersect">
     <Contact locale={locale} />
   </section>
 </BaseLayout>
