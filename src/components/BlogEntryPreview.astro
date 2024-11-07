@@ -8,7 +8,7 @@ import LogoRender from "./LogoRender.astro";
 const { post, locale } = Astro.props;
 ---
 
-<li class="group intersect special">
+<li class="group intersect special mt-5 mx-[5%] odd:mr-[25%] even:ml-[25%] md:mx-0 md:odd:mr-0 md:even:ml-0">
 	<a href={`/${post.collection}/${post.slug}/`}>
 		<Image
 			src={post.data.heroImage}
@@ -30,8 +30,8 @@ const { post, locale } = Astro.props;
 							))
 			}
 		</span>
-		<h3 class="group-hover:underline group-hover:animate-wiggle">
+		<h2 class="group-hover:underline group-hover:animate-wiggle text-2xl mt-0">
 			{post.data.title}
-		</h3>
+		</h2>
 	</a>
 </li>

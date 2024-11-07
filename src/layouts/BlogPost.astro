@@ -17,7 +17,7 @@ const { title, description, locale, pubDate, updatedDate, heroImage } = Astro.pr
 	locale={locale}
 	heroImage={heroImage}
 >
-	<article class="post text-justify">
+	<article class="post">
 		<div class="-mt-10 mb-10">
 			<FormattedDate date={updatedDate ? updatedDate : pubDate} />
 			{updatedDate ? <span class="text-sm">({locale === "en" ? "update" : ""})</span> : ""}

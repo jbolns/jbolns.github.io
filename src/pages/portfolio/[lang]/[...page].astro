@@ -47,13 +47,22 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 }
 
 const { splitTags, page } = Astro.props;
-const locale = Astro.params.lang
+const locale = Astro.params.lang;
 ---
 
-<BlogRollLayout page={page} tags={splitTags} locale={locale} section="portfolio">
+<BlogRollLayout
+	page={page}
+	tags={splitTags}
+	locale={locale}
+	section="portfolio"
+>
 	<section>
 		<ul class="grid grid-cols-1 md:grid-cols-3 gap-4 list-none ml-0">
-			{page.data.map((project: Project) => <BlogEntryPreview post={project} locale={locale} />)}
+			{
+				page.data.map((project: Project) => (
+					<BlogEntryPreview post={project} locale={locale} />
+				))
+			}
 		</ul>
 		<Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
 	</section>

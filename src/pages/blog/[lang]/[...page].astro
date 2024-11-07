@@ -4,6 +4,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import { type GetStaticPathsOptions } from "astro";
 
 import BlogRollLayout from "@layouts/BlogRoll.astro";
+import CategoriesPreview from "@components/CategoriesPreview.astro";
 import BlogEntryPreview from "@components/BlogEntryPreview.astro";
 import Pagination from "@components/Pagination.astro";
 import { languages } from "@i18n/ui";
@@ -14,7 +15,6 @@ type Post = CollectionEntry<"blog">;
 
 // Dynamic routing with pagination
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-	
 	// Get all posts and sort them
 	const posts: CollectionEntry<"blog">[] = (await getCollection("blog")).sort(
 		(a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
@@ -49,14 +49,18 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 }
 
 const { splitTags, page } = Astro.props;
-const locale = Astro.params.lang
-
+const locale = Astro.params.lang;
+const current = "none";
 ---
 
 <BlogRollLayout page={page} tags={splitTags} locale={locale} section="blog">
 	<section>
 		<ul class="grid grid-cols-1 md:grid-cols-3 gap-4 list-none ml-0">
-			{page.data.map((post: Post) => <BlogEntryPreview post={post} locale={locale}/>)}
+			{
+				page.data.map((post: Post) => (
+					<BlogEntryPreview post={post} locale={locale} />
+				))
+			}
 		</ul>
 		<Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
 	</section>

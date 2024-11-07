@@ -76,7 +76,7 @@ export const wrapperStrings: Misc = {
     fi: "Klikkaa tästä animaatioon"
   },
   w2: {
-    en: "(Not recommended for mobile devices or slow connections.)",
+    en: "(Not recommended in mobile/slow devices.)",
     es: "(No recomendado en móbiles o conexiones lentas.)",
     fi: "(Ei suositella mobiililaitteille tai hitaille yhteyksille.)"
   },

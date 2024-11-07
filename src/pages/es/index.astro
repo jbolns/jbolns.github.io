@@ -23,32 +23,32 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
   locale={locale}
 >
   <section class="homepage">
-    <div class="md:flex items-baseline gap-2 my-7 intersect">
-      <span class="flex-none text-3xl">
-        <p>
+    <div class="lg:flex items-baseline gap-2 md:my-7 intersect">
+      <span class="text-3xl">
+        <p class="my-0">
           Mi nombre es <strong
-            ><span class="highlight c1">José A Bolanos</span></strong
+            ><span class="highlight underline md:no-underline md:c1">José A Bolanos</span></strong
           >.
         </p>
       </span>
 
-      <span class="flex-initial">
-        <p>
+      <span class="hidden md:flex">
+        <p class="my-0">
           <span class="italic">Programador</span>.
           <strong>Economista Político</strong>.
         </p>
       </span>
     </div>
 
-    <div class="md:flex gap-8 items-center my-5 intersect">
+    <div class="md:flex gap-8 items-center intersect">
       <span class="flex-initial w-[100%] grow text-3xl">
-        <p class="mb-0 leading-tight">
+        <h2 class="mb-0 leading-tight">
           <strong
-            ><span class="highlight c3">Me apasiona la programación.</span
+            ><span class="highlight c3">Me apasiona programar.</span
             ></strong
           >
-        </p>
-        <p class="hidden leading-tight md:block">Me da paz.</p>
+        </h2>
+        <h3 class="hidden leading-tight md:block">Me da paz.</h3>
       </span>
       <span class="">
         <p class="text-1xl before:content-['->']">
@@ -68,18 +68,18 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
       </span>
     </div>
 
-    <span class="md:flex gap-8 items-center md:flex-row-reverse my-5 intersect">
+    <span class="md:flex gap-8 items-center md:flex-row-reverse intersect">
       <span class="flex-initial w-[100%] grow text-3xl">
-        <p class="mb-0">
+        <h2 class="mb-0">
           <strong
             ><span class="highlight c2 leading-tight">Me gusta pensar.</span
             ></strong
           >
-        </p>
-        <p class="hidden leading-tight md:block">¡Es súper divertido!</p>
+        </h2>
+        <h3 class="hidden leading-tight md:block">¡Es súper divertido!</h3>
       </span>
 
-      <span class="">
+      <span>
         <p class="text-1xl before:content-['->'] md:text-right">
           <strong>Estuve en el mundo académico</strong> (KCL, TU Dresden, LSE) por un tiempo, y me mantengo interesado en los debates académicos.
         </p>
@@ -105,7 +105,7 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
     <Latest sectionTitle="Latest" numberOfEntries={6} locale={locale} />
   </section>
 
-  <section class="contact intersect">
+  <section class="intersect">
     <Contact locale={locale} />
   </section>
 </BaseLayout>

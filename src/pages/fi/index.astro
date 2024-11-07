@@ -23,27 +23,27 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
   locale={locale}
 >
   <section class="homepage">
-    <div class="md:flex items-baseline gap-2 my-7 intersect">
-      <span class="flex-none text-3xl">
-        <p>
-          Minä olen <strong><span class="highlight c1">José</span></strong>.
+    <div class="lg:flex items-baseline gap-2 md:my-7 intersect">
+      <span class="text-3xl">
+        <p class="my-0">
+          Minä olen <strong><span class="highlight underline md:no-underline md:c1">José</span></strong>.
         </p>
       </span>
 
-      <span class="flex-initial">
-        <p>
+      <span class="hidden md:flex">
+        <p class="my-0">
           <span class="italic">Koodaaja</span>.
           <strong>Poliittinen taloustieteilijä</strong>.
         </p>
       </span>
     </div>
 
-    <div class="md:flex gap-8 items-center my-5 intersect">
+    <div class="md:flex gap-8 items-center intersect">
       <span class="flex-initial w-[100%] grow text-3xl">
-        <p class="mb-0 leading-tight">
+        <h2 class="mb-0 leading-tight">
           <strong><span class="highlight c3">Rakastan koodausta.</span></strong>
-        </p>
-        <p class="hidden leading-tight md:block">Se on hauskaa.</p>
+        </h2>
+        <h3 class="hidden leading-tight md:block">Se on hauskaa.</h3>
       </span>
       <span class="">
         <p class="text-1xl before:content-['->']">
@@ -65,18 +65,18 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
       </span>
     </div>
 
-    <span class="md:flex gap-8 items-center md:flex-row-reverse my-5 intersect">
+    <span class="md:flex gap-8 items-center md:flex-row-reverse intersect">
       <span class="flex-initial w-[100%] grow text-3xl">
-        <p class="mb-0">
+        <h2 class="mb-0">
           <strong
             ><span class="highlight c2 leading-tight">Nautin ajattelusta.</span
             ></strong
           >
-        </p>
-        <p class="hidden leading-tight md:block">Se on myös hauskaa!</p>
+        </h2>
+        <h3 class="hidden leading-tight md:block">Se on myös hauskaa!</h3>
       </span>
 
-      <span class="">
+      <span>
         <p class="text-1xl before:content-['->'] md:text-right">
           Olin <strong>aiemmin yliopistossa</strong> (KCL, TU Dresden, LSE) ja olen
           edelleen kiinnostunut akateemisista keskusteluista.
@@ -106,7 +106,7 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
     <Latest sectionTitle="Uusin" numberOfEntries={6} locale={locale} />
   </section>
 
-  <section class="contact intersect">
+  <section class="intersect">
     <Contact locale={locale} />
   </section>
 </BaseLayout>

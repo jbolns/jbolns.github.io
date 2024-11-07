@@ -14,9 +14,6 @@ let slug: string | undefined = parts.pop() || parts.pop();
 
 // Define routes for versions of page in other languages, using locale
 const routes: Multi | string = getRoutes(slug);
-
-
-
 ---
 
 <span class="flex items-center justify-center">
@@ -27,14 +24,18 @@ const routes: Multi | string = getRoutes(slug);
 					typeof routes === "object"
 						? currentPath
 								.replace(`/${locale}/`, `/${l}/`)
-								.replace(`/${slug}/`, `/${routes[l]}/`).replace(`/${slug}`, `/${routes[l]}/`)
-						: currentPath.replace(`/${locale}/`, `/${l}/`).replace(`/${locale}`, `/${l}/`),
+								.replace(`/${slug}/`, `/${routes[l]}/`)
+								.replace(`/${slug}`, `/${routes[l]}/`)
+						: currentPath
+								.replace(`/${locale}/`, `/${l}/`)
+								.replace(`/${locale}`, `/${l}/`),
 				)}
+				aria-label={`Change language to ${l}`}
 			>
 				<img
 					src={`/icons/${l}.svg`}
 					alt={`Icon flag for ${l} language.`}
-					class="ml-1 hover:animate-pulse"
+					class="ml-1 w-8 h-8 hover:animate-pulse"
 				/>
 			</a>
 		))
