@@ -63,14 +63,11 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 const { splitTags, page } = Astro.props;
 const locale = Astro.params.lang;
 const current = page.url.current.split("/").slice(-1)[0];
-
 ---
 
 <BlogRollLayout page={page} tags={splitTags} locale={locale} section="tags">
-	<p>
-		<CategoriesPreview tags={splitTags} locale={locale} current={current} />
-	</p>
 	<section class="blogroll">
+		<CategoriesPreview tags={splitTags} locale={locale} current={current} />
 		<ul class="list-none ml-0 md:grid md:grid-cols-3 md:gap-4">
 			{
 				page.data.map((post: Post) => (

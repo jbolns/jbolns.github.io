@@ -64,7 +64,7 @@ items = items
         <a href={`/${item.collection}/${item.slug}/`}>
           <Image
             src={item.heroImage}
-            alt="Entry thumbnail"
+            alt={`Thumbnail for post ${item.slug}`}
             width={720}
             height={360}
             class="m-0 p-0 border border-black dark:border-white group-hover:duration-[1s] group-hover:shadow-lg group-hover:rounded-t-3xl group-hover:animate-pulse"
@@ -72,7 +72,7 @@ items = items
           <h3 class="px-2 md:text-base group-hover:underline group-hover:animate-wiggle">
             <span
               class={
-                item.collection === "blog" ? "text-pink-600" : "text-green-600"
+                item.collection === "blog" ? "text-pink-600" : "text-green-800"
               }
             >
               {item.collection.toUpperCase() +
