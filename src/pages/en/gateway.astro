@@ -1,0 +1,94 @@
+---
+// IMPORTS
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { site } from "@i18n/sections";
+import { defaultLang } from "@i18n/ui";
+
+// ACTIONS
+// Get locale from folder structure
+const locale = defaultLang;
+---
+
+<BaseLayout
+  siteTitle={site.title[locale]}
+  description="Online payments gateway"
+  pageTitle="Online payments gateway"
+  locale={locale}
+>
+  <section>
+    <p class="text-sm">
+      (For clarity, this page is only available in English.)
+    </p>
+
+    <h3>Services</h3>
+    <p>Click the button below to pay for services rendered.<sup>1, 2</sup></p>
+    <p>Do NOT use this gateway to book services.<sup>3</sup></p>
+
+    <div class="text-right">
+      <a
+        href="https://buy.stripe.com/eVa16F6XJ6XB8PS4gk"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <button
+          class="w-3/4 p-1 border border-black bg-yellow-200 rounded-lg shadow-lg hover:bg-yellow-300 dark:text-black dark:border-white "
+        >
+          Pay (services)<sup>4</sup>
+        </button>
+      </a>
+      <p class="m-0 text-sm text-blue-700 underline">
+        <a href="/en/terms">Terms & Conditions</a><sup>4</sup>
+      </p>
+    </div>
+
+    <h3>Products</h3>
+    <p>
+      All products I offer can be used in "ugly mode" without
+      activation. To make a voluntary payment to get make the user interface prettier, click the button below.<sup>1, 2, 5</sup>
+    </p>
+
+    <div class="text-right">
+      <a
+        href="https://buy.stripe.com/28o16Fci381F7LOeUX"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <button
+          class="w-3/4 p-1 border border-black bg-yellow-200 rounded-lg shadow-lg hover:bg-yellow-300 dark:text-black dark:border-white "
+        >
+          Pay (open source products)<sup>4</sup>
+        </button>
+      </a>
+      <p class="m-0 text-sm text-blue-700 underline">
+        <a href="/en/terms">Terms & Conditions</a><sup>4</sup>
+      </p>
+    </div>
+
+    <span class="text-sm">
+      <strong>Notes</strong>
+      <ol>
+        <li>
+          Payments are final and confirm satisfaction with products/services.
+        </li>
+        <li>Payments are handled via Stripe.</li>
+        <li>
+          Payments for services that have not been pre-arranged, agreed, and
+          contracted with me will be treated as voluntary payments relating to
+          an open-source or open-access resource of my choice.
+        </li>
+        <li>
+          By clicking the button you accept the applicable sections of the <a
+            href="/en/terms" class="text-blue-700 underline">Terms & Conditions</a
+          >.
+        </li>
+        
+        <li>
+          After payment, Stripe will send an invoice to the email you entered in
+          the payment information. The invoice number is the activation code
+          needed to disable "ugly mode".
+        </li>
+        
+      </ol>
+    </span>
+  </section>
+</BaseLayout>

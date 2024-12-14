@@ -3,12 +3,11 @@
 import type { Multi } from "@types";
 import { ViewTransitions } from "astro:transitions";
 import BaseHead from "@components/BaseHead.astro";
-import { languages } from "@i18n/ui";
+import { languages, defaultLang } from "@i18n/ui";
 import { sanitizeRoutes } from "@i18n/utils";
 import { site } from "@i18n/sections";
-import { defaultLang } from "@i18n/ui";
 
-// FUNCTIONS & ACTIONS
+// ACTIONS
 const locale: keyof Multi = defaultLang;
 ---
 

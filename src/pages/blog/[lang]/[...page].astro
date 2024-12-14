@@ -50,7 +50,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
 const { splitTags, page } = Astro.props;
 const locale = Astro.params.lang;
-const current = "none";
+
 ---
 
 <BlogRollLayout page={page} tags={splitTags} locale={locale} section="blog">

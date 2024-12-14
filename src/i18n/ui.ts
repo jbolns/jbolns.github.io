@@ -6,15 +6,17 @@ import type { Multi, Links, Misc } from "@types"
 
 // ALL LANGUAGES
 export const languages: Multi = {
-  en: 'English',
-  es: 'Español',
-  fi: 'Suomi',
+  en: "English",
+  es: "Español",
+  fi: "Suomi",
 };
 
 
 // DEFAULT LANGUAGE
-export const defaultLang = 'en';
+export const defaultLang = "en";
 
+// COLLECTION NAMES
+export const listOfCollections = ["blog"]
 
 // TOP-LEVEL NAVIGATION
 //
@@ -68,7 +70,8 @@ export type Sections = {
   [key: string]: Multi
 }
 
-// VARIOUS STRINGS USED ACROSS WEBSITE
+// MISC STRINGS
+// Strings for animation wrapper
 export const wrapperStrings: Misc = {
   w1: {
     en: "Click here to load animation",
@@ -97,6 +100,7 @@ export const wrapperStrings: Misc = {
   }
 }
 
+// Strings used in CV
 export const cvStrings: Misc = {
   mode: {
     en: "View mode",
@@ -135,6 +139,7 @@ export const cvStrings: Misc = {
   }
 }
 
+// Strings for tag and icon labels requiring small adjustments
 export const labelStrings: Misc = {
   coding: {
     en: "coding",
@@ -153,9 +158,9 @@ export const labelStrings: Misc = {
   },
 }
 
+// OG strings used in header
 export const ogStrings: Multi = {
   en: "en_GB",
   es: "es_ES",
   fi: "fi_FI"
-
 }

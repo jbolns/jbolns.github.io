@@ -28,7 +28,7 @@ export function getRoutes(slug = ""): Multi | string {
   let match = -1
 
   const allRoutes = Object.values(routes)
-  allRoutes.forEach((group,i) => Object.values(group).map((val) => val === slug ? match = i : ""))
+  allRoutes.forEach((group,i) => Object.values(group).map((val) => val === decodeURI(slug) ? match = i : ""))
   
   let group
   match >= 0 ? group = allRoutes[match] : ""  
