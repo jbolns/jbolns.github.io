@@ -1,12 +1,9 @@
 ---
 // IMPORTS
-// Config & content
+type MultiArray = { [key: string]: string[] };
 import { languages } from "@i18n/ui";
 
-// TYPES
-type MultiArray = { [key: string]: string[] };
-
-// FUNCTIONS & ACTIONS
+// ACTIONS
 const { tags, locale, current } = Astro.props;
 
 let dict: MultiArray = {};

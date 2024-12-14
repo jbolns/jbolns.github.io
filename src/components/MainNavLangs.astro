@@ -7,6 +7,7 @@ import { getRoutes, sanitizeRoutes } from "@i18n/utils";
 // ACTIONS
 // Get locale
 const { locale } = Astro.props;
+
 // Determine current slug from pathname
 const currentPath = Astro.url.pathname;
 const parts = currentPath.split("/");
