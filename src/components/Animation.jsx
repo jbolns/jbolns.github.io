@@ -1,6 +1,5 @@
 import { Component } from "react"
 import * as THREE from 'three';
-//import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 // GLOBALS
@@ -11,8 +10,8 @@ class Animation extends Component {
 
     componentDidMount() {
 
-        // Key modes 
-        let size = 4  // Diameter of main (land) layer (used for sizing other objects)
+        // Key modes
+        let size = this.mount.offsetWidth > 1024 ? 4 : this.mount.offsetWidth > 640 ? 3 : 2  // Diameter of main (land) layer (used for sizing other objects)
         const qual = this.props.qual  // Quality of images uploaded'
         const mode = this.props.mode  // Visualisation for the main (land) layer
         const allVisuals = [
@@ -82,10 +81,9 @@ class Animation extends Component {
         controls.target = new THREE.Vector3(0, 0, 0);
         controls.update();
 
-        // ADD LIGHTING
-        const white = "0xffffff"
-        const ambient = new THREE.AmbientLight("0xffffff", 0.1);
-        const hemi = new THREE.HemisphereLight(white, 1);
+        // ADD LIGHTING        
+        const ambient = new THREE.AmbientLight(0xffffff, 0.1);
+        const hemi = new THREE.HemisphereLight(0xffffff, 1);
         hemi.position.set(10, 10, 0);
         scene.add(ambient, hemi)
 
@@ -143,15 +141,16 @@ class Animation extends Component {
 
 
         // FUNCTION TO DO STUFF ON HOVER
-        this.hoverSituation = () => {
-            raycaster.setFromCamera(pointer, cam)
-            const intersects = raycaster.intersectObjects(scene.children)
-            if (intersects.length >= 1) {
-                for (let i = 0; i < intersects.length; i++) {
-                    console.log("function goes here")
-                }
-            }
-        }
+        // Comments are ugly, but I might use this later, so deal with it
+        //this.hoverSituation = () => {
+        //    raycaster.setFromCamera(pointer, cam)
+        //    const intersects = raycaster.intersectObjects(scene.children)
+        //    if (intersects.length >= 1) {
+        //        for (let i = 0; i < intersects.length; i++) {
+        //            null  // Just a placeholder
+        //        }
+        //    }
+        //}
 
         // FUNCTION TO DO STUFF ON CLICK
         this.clickSituation = () => {
@@ -184,7 +183,7 @@ class Animation extends Component {
 
     // FUNCTION TO GET POINTER COORDINATES AS IT MOVES (FOR HOVER)
     onPointerMove(event) {
-        this.hoverSituation()
+        //this.hoverSituation() // Comments are ugly, but I might use this later, so deal with it
         if (this.mount) {
             pointer.x = (event.clientX / this.mount.offsetWidth) * 2 - 1
             pointer.y = - (event.clientY / this.mount.offsetHeight) * 2 + 1

@@ -45,7 +45,7 @@ items = items.concat(
       slug: item.slug,
       collection: item.collection,
       heroImage: item.data.heroImage,
-      pubDate: item.data.pubDate,
+      pubDate: item.data.updateDate,  // Force latest update to top w/o having to add update time to blog schema
     };
   }),
 );

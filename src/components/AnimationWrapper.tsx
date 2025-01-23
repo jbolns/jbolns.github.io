@@ -55,7 +55,7 @@ const AnimationWrapper = ({ locale }: any) => {
         </div>
 
         <p className="absolute mr-2 top-[6em] right-2 text-2sm text-white">
-          {[wrapperStrings.low, wrapperStrings.mid, wrapperStrings.high].map(q => { return (<button onClick={() => { resetQual(q[defaultLang]) }} className={"border border-dotted px-2 hover:bg-yellow-200 " + ((q[defaultLang] === qual) ? "active" : "")}>{q[locale].toUpperCase()} DEF</button>) })}
+          {[wrapperStrings.low, wrapperStrings.mid, wrapperStrings.high].map(q => { return (<button key={q[locale]} onClick={() => { resetQual(q[defaultLang]) }} className={"border border-dotted px-2 hover:bg-yellow-200 " + ((q[defaultLang] === qual) ? "active" : "")}>{q[locale].toUpperCase()} DEF</button>) })}
         </p>
       </>
     )
