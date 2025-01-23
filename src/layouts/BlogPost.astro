@@ -6,7 +6,8 @@ import { site } from "@i18n/sections";
 
 // ACTIONS
 // Get props, incl. locale
-const { title, description, locale, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, locale, pubDate, updateDate, heroImage } = Astro.props;
+console.log(updateDate)
 
 ---
 
@@ -19,8 +20,8 @@ const { title, description, locale, pubDate, updatedDate, heroImage } = Astro.pr
 >
 	<article class="post">
 		<div class="-mt-10 mb-10">
-			<FormattedDate date={updatedDate ? updatedDate : pubDate} />
-			{updatedDate ? <span class="text-sm">({locale === "en" ? "update" : ""})</span> : ""}
+			{updateDate ? <span>{locale === "en" ? "Last update" : locale === "es" ? "Última actualización": "Päivitetty"}</span> : ""}
+			<FormattedDate date={updateDate ? updateDate : pubDate} />
 		</div>
 		<slot />
 		

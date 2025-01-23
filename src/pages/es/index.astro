@@ -27,7 +27,9 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
       <span class="text-3xl">
         <p class="my-0">
           Mi nombre es <strong
-            ><span class="highlight underline md:no-underline md:c1">José A Bolanos</span></strong
+            ><span class="highlight underline md:no-underline md:c1"
+              >José A Bolanos</span
+            ></strong
           >.
         </p>
       </span>
@@ -44,26 +46,23 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
       <span class="flex-initial w-[100%] grow text-3xl">
         <h2 class="mb-0 leading-tight">
           <strong
-            ><span class="highlight c3">Me apasiona programar.</span
-            ></strong
+            ><span class="highlight c3">Me apasiona programar.</span></strong
           >
         </h2>
         <h3 class="hidden leading-tight md:block">Me da paz.</h3>
       </span>
       <span class="">
         <p class="text-1xl before:content-['->']">
-          Me va muy bien con <strong>Python</strong>, <strong
-            >VBA</strong
-          >, y <strong>JS</strong> (incluyendo React, GatsbyJS, y Astro). También
-          me gusta mucho el <strong>SQL</strong>, en particular, las
-          funciones analíticas.
+          Me va muy bien con <strong>Python</strong>, <strong>VBA</strong>, y <strong
+            >JS</strong
+          > (incluyendo React, GatsbyJS, y Astro). También me gusta mucho el <strong
+            >SQL</strong
+          >, en particular, las funciones analíticas.
         </p>
         <p class="text-1xl before:content-['->']">
-          Creo que estar al tanto de lo (... requerimientos) de <strong
-            >energía</strong
-          >, <strong>CO2</strong>, y <strong>data</strong> de los sistemas
-          digitales es clave para el éxito en un mundo digital, pues reduce costos
-          relativo a los competidores y minimiza impactos (... riesgos de negocio).
+          Salí bastante bueno <strong>combinando lenguajes/stacks</strong>. Me
+          gusta. Me sale natural. Por ejemplo, este sitio combina Astro, React,
+          y Three.js.
         </p>
       </span>
     </div>
@@ -81,14 +80,20 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
 
       <span>
         <p class="text-1xl before:content-['->'] md:text-right">
-          <strong>Estuve en el mundo académico</strong> (KCL, TU Dresden, LSE) por un tiempo, y me mantengo interesado en los debates académicos.
+          <strong>Fui académico</strong> (KCL, TU Dresden, LSE) por un tiempo, con
+          énfasis en política pública y sostenibilidad. Esto me da una
+          <strong
+            >gran ventaja en proyectos con componente de ética o sostenibilidad
+            digital</strong
+          >.
         </p>
         <p class="text-1xl before:content-['->'] md:text-right">
-          Dado que programo bien, también estoy excepcionalmente bien calificado para relacionar las <strong
-            >abstracciones</strong
-          > que caracterizan estos debates con las realidades <strong>prácticas</strong> y <strong
-            >técnicas</strong
-          >.
+          Adicionalmente, la combinación de habilidades demuestra que <strong
+            >me encanta aprender</strong
+          > de manera continua. Soy muy curioso, por lo que <strong
+            >me destaco en situaciones en las que la solución/producto final no
+            son claros al principio</strong
+          >, independientemente del campo.
         </p>
       </span>
     </span>
@@ -96,7 +101,11 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
     <span>
       <p class="intersect"><strong>Sitio hecho con:</strong></p>
       <span class="flex flex-wrap"
-        >{stack.map((item: string) => <LogoRender label={item} locale={locale} />)}</span
+        >{
+          stack.map((item: string) => (
+            <LogoRender label={item} locale={locale} />
+          ))
+        }</span
       >
     </span>
   </section>
