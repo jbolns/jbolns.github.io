@@ -21,7 +21,7 @@ export const routes: Multi[] = [
   { en: "organisational-culture", es: "cultura-organizacional", fi: "" }, // Blog
   { en: "digital-transformation-currents", es: "corrientes-transformacion-digital", fi: "digitaalisen-kehityksen-virrat" }, // Blog
   { en: "national-international", es: "nacional-internacional", fi: "" }, // Portfolio
-  //{ en: "", es: "", fi: "" }, // Blog
+  { en: "rethink-voluntary-governance", es: "reevaluar-gobernanza-voluntaria", fi: "uudelleentarkastelu-vapaaehtoinen-hallinto" }, // Blog
   //{ en: "", es: "", fi: "" }, // Blog
   //{ en: "", es: "", fi: "" }, // Blog
   //{ en: "", es: "", fi: "" }, // Blog
