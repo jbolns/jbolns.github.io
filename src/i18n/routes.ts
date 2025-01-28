@@ -22,7 +22,7 @@ export const routes: Multi[] = [
   { en: "digital-transformation-currents", es: "corrientes-transformacion-digital", fi: "digitaalisen-kehityksen-virrat" }, // Blog
   { en: "national-international", es: "nacional-internacional", fi: "" }, // Portfolio
   { en: "rethink-voluntary-governance", es: "reevaluar-gobernanza-voluntaria", fi: "uudelleentarkastelu-vapaaehtoinen-hallinto" }, // Blog
-  //{ en: "", es: "", fi: "" }, // Blog
+  { en: "safeguards-matter", es: "salvaguardas-institucionales", fi: "instituutiot-ovat-tarkeita" }, // Blog
   //{ en: "", es: "", fi: "" }, // Blog
   //{ en: "", es: "", fi: "" }, // Blog
 ]
