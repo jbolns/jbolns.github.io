@@ -7,7 +7,6 @@ import { site } from "@i18n/sections";
 // ACTIONS
 // Get props, incl. locale
 const { title, description, locale, pubDate, updateDate, heroImage } = Astro.props;
-console.log(updateDate)
 
 ---
 
@@ -16,7 +15,7 @@ console.log(updateDate)
 	description={description}
 	pageTitle={title}
 	locale={locale}
-	heroImage={heroImage}
+	heroImage={heroImage["src"]}
 >
 	<article class="post">
 		<div class="-mt-10 mb-10">
