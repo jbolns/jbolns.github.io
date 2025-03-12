@@ -19,7 +19,7 @@ const experience: Entry[] = (await getCollection("cv"))
   .sort((a: Entry, b: Entry) => b.data.endDate - a.data.endDate);
 
 // Extract all possible view modes & define initial view mode
-const viewModes = [...new Set(experience.flatMap((role) => role.data.tags))];
+let viewModes = [...new Set(experience.flatMap((role) => role.data.tags))];
 const defaultMode = "coding";
 
 const renderRoles = await Promise.all(
