@@ -142,9 +142,9 @@ export const cvStrings: Misc = {
 // Strings for tag and icon labels requiring small adjustments
 export const labelStrings: Misc = {
   coding: {
-    en: "coding",
-    es: "tecnologías digitales",
-    fi: "koodaus"
+    en: "coding/analytics",
+    es: "programación/analíticas",
+    fi: "koodaus/analytiikka"
   },
   policy: {
     en: "policy",

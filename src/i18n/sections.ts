@@ -134,10 +134,10 @@ export const certifications: CVEntry[] = [
   },
   {
     name: { en: "Statistics with Python", es: "Estadística con Python", fi: "Tilastointi Pythonilla" },
-    place: { en: "Univ.  (Coursera)", es: "Univ. Michigan (Coursera)", fi: "Univ. Michigan (Coursera)" },
+    place: { en: "Univ. Michigan (Coursera)", es: "Univ. Michigan (Coursera)", fi: "Univ. Michigan (Coursera)" },
     enddate: 2022,
     contents: { en: "Python", es: "Python", fi: "Python" },
-    tags: ["coding"]
+    tags: ["coding", "academia"]
   },
   {
     name: { en: "AI for Business", es: "AI para Negocios", fi: "Tekoäly yrityksille" },
@@ -158,14 +158,14 @@ export const certifications: CVEntry[] = [
     place: { en: "Macquarie Univ. (Coursera)", es: "Macquarie Univ. (Coursera)", fi: "Macquarie Univ. (Coursera)" },
     enddate: 2022,
     contents: { en: "PowerPivot; Get & Transform; DAX", es: "PowerPivot; Get & Transform; DAX", fi: "PowerPivot; Get & Transform; DAX" },
-    tags: ["coding", "policy"]
+    tags: ["coding"]
   },
   {
     name: { en: "Data Analytics", es: "Análisis de Datos", fi: "Data-analytiikka" },
     place: { en: "Google (Coursera)", es: "Google (Coursera)", fi: "Google (Coursera)" },
     enddate: 2022,
     contents: { en: "Spreadsheets; SQL; Tableau; R", es: "Hojas de cálculo; SQL; Tableau; R", fi: "Spreadsheets; SQL; Tableau; R" },
-    tags: ["coding"]
+    tags: ["coding", "academia"]
   },
   {
     name: { en: "React", es: "React", fi: "React" },

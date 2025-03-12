@@ -8,7 +8,7 @@ const { entries, locale, title } = Astro.props;
 const isPublications = title.toLowerCase() === "publications";
 ---
 
-{!isPublications && <h3>{title}</h3>}
+{!isPublications && <h3 class="mt-2 underline italic font-light">{title}</h3>}
 {
   entries.map((entry: CVEntry) => {
     const applicableDate = entry.startdate
