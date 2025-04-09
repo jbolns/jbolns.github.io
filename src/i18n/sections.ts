@@ -29,9 +29,9 @@ export const site: Site = {
     fi: "Kaikki oikeudet pidätetään"
   },
   terms: {
-    en: "Terms & conditions",
-    es: "Términos & condiciones",
-    fi: "Ehdot"
+    en: "Company details, terms & conditions",
+    es: "Detalles de empresa, términos & condiciones",
+    fi: "Yritystiedot & Ehdot"
   }
 }
 
