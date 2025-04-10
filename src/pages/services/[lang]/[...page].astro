@@ -16,7 +16,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 	// Get all services and sort them
 	const services: Service[] = (await getCollection("services")).sort(
 		(a: Service, b: Service) =>
-			b.data.updateDate.valueOf() - a.data.updateDate.valueOf(),
+			b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 	);
 
 	let splitTags: string[][] = [];

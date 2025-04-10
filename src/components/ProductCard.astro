@@ -1,7 +1,7 @@
 ---
 import { site } from "@i18n/sections";
 import favicon from "../../public/favicon.svg";
-const { title, description, examples, locale } = Astro.props;
+const { title, description, examples, callToAction, callToActionUrl } = Astro.props;
 ---
 
 <div
@@ -19,7 +19,7 @@ const { title, description, examples, locale } = Astro.props;
 		<p class="my-0 text-2xl font-thin leading-snug">{description}</p>
 		
 		<p class="mt-3 mb-10 text-sm">
-			{
+			Ideal for {
 				examples.slice(0, -1).map((example: string) => {
 					return <span>{example}, </span>;
 				})
@@ -29,7 +29,7 @@ const { title, description, examples, locale } = Astro.props;
 	<div class="w-full text-center font-semibold border-[#15e1cc] bg-white p-3 rounded-lg border hover:bg-red-200 transition duration-300">
 		<a
 			class="w-full [font-variant:small-caps]"
-			href={"mailto:" + site.contact[locale]}>Get in touch!</a
+			href={callToActionUrl}>{callToAction}</a
 		>
 	</div>
 </div>
