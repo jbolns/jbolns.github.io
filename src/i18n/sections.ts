@@ -46,7 +46,22 @@ export const sections: Sections = {
     en: "Portfolio",
     es: "Proyectos",
     fi: "Portfolio"
-  }, 
+  },
+  services: {
+    en: "Services",
+    es: "Servicios",
+    fi: "Palvelut"
+  },
+  servicios: {
+    en: "Services",
+    es: "Servicios",
+    fi: "Palvelut"
+  },
+  palvelut: {
+    en: "Services",
+    es: "Servicios",
+    fi: "Palvelut"
+  },
   tags: {
     en: "Blogs by tag",
     es: "Blogs por etiqueta",

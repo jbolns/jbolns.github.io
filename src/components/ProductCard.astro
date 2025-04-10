@@ -1,0 +1,35 @@
+---
+import { site } from "@i18n/sections";
+import favicon from "../../public/favicon.svg";
+const { title, description, examples, locale } = Astro.props;
+---
+
+<div
+	class="basis-auto rounded-2xl bg-gradient-to-br from-white to-[#15e1cc] bg-[length:400%_400%] p-5 border border-dotted border-black animate-gradient dark:text-black group group-hover:duration-[1s] hover:animate-wiggle"
+>
+	<div
+		class="float-end h-10 w-10 bg-[url('/favicon.svg')] bg-size-[auto_5px] bg-cover bg-no-repeat"
+	>
+	</div>
+
+	<div class="">
+		<h3 class="font-sans font-extrabold uppercase tracking-widest mt-16 mb-2 underline">
+			{title}
+		</h3>
+		<p class="my-0 text-2xl font-thin leading-snug">{description}</p>
+		
+		<p class="mt-3 mb-10 text-sm">
+			{
+				examples.slice(0, -1).map((example: string) => {
+					return <span>{example}, </span>;
+				})
+			} and <span>{examples.slice(-1)}</span>.
+		</p>
+	</div>
+	<div class="w-full text-center font-semibold border-[#15e1cc] bg-white p-3 rounded-lg border hover:bg-red-200 transition duration-300">
+		<a
+			class="w-full [font-variant:small-caps]"
+			href={"mailto:" + site.contact[locale]}>Get in touch!</a
+		>
+	</div>
+</div>

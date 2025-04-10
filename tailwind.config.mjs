@@ -26,6 +26,7 @@ export default {
 				borderise: 'borderise 7s ease-in-out infinite',
 				rotate: "rotate 10s ease-in-out infinite",
 				appear: "appear 15s ease-in-out",
+				gradient: "gradient 5s ease infinite"
 			},
 			keyframes: {
 				wiggle: {
@@ -49,7 +50,12 @@ export default {
 					'0%': { transform: 'perspective(2em) rotateX(90deg)', height: '0', width: '0', opacity: '0.2' },
 					'20%': { transform: 'perspective(2em) rotateX(30deg)', height: '50vh', },
 					'60%': { transform: 'perspective(5em) rotateX(30deg)', height: '30vh', },
-				}
+				},
+				gradient: {
+					'0%': { backgroundPosition: '0% 50%'	},
+					'50%': { backgroundPosition: '100% 50%'},
+					'100%': {backgroundPosition: '0% 50%'}
+				},
 			}
 		},
 	},

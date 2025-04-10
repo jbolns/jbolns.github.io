@@ -9,12 +9,25 @@ import { getRoutes, sanitizeRoutes } from "@i18n/utils";
 const { locale } = Astro.props;
 
 // Determine current slug from pathname
-const currentPath = Astro.url.pathname;
+let currentPath = Astro.url.pathname;
+
+// Get alt base paths for top-level paths that differ across languages
+let base: string = "";
+let lang_bases: string | Multi
+if (
+	currentPath.startsWith("/services/") ||
+	currentPath.startsWith("/servicios/") ||
+	currentPath.startsWith("/palvelut/")
+) {
+	base = currentPath.split("/")[1];
+	lang_bases = getRoutes(base)
+}
+
+// Get alt slugs for any other path that differs across languages
 const parts = currentPath.split("/");
 let slug: string | undefined = parts.pop() || parts.pop();
-
-// Define routes for versions of page in other languages, using locale
 const routes: Multi | string = getRoutes(slug);
+
 ---
 
 <span class="flex items-center justify-center">
@@ -28,6 +41,7 @@ const routes: Multi | string = getRoutes(slug);
 								.replace(`/${slug}/`, `/${routes[l]}/`)
 								.replace(`/${slug}`, `/${routes[l]}/`)
 						: currentPath
+								.replace(base, typeof lang_bases === "object" ? lang_bases[l] : base)
 								.replace(`/${locale}/`, `/${l}/`)
 								.replace(`/${locale}`, `/${l}/`),
 				)}
