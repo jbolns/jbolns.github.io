@@ -2,10 +2,11 @@
 // TYPES & IMPORTS
 import { type CollectionEntry, getCollection } from "astro:content";
 import { type GetStaticPathsOptions } from "astro";
-import BlogRollLayout from "@layouts/BlogRoll.astro";
-import BlogEntryPreview from "@components/BlogEntryPreview.astro";
-import Pagination from "@components/Pagination.astro";
+import ServiceRollLayout from "@layouts/ServiceRoll.astro";
+import ServicePreview from "@components/ServicePreview.astro";
 import { languages } from "@i18n/ui";
+import {servicesCats} from "@i18n/sections"
+
 
 // ACTIONS
 // Additional types
@@ -16,54 +17,80 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 	// Get all services and sort them
 	const services: Service[] = (await getCollection("services")).sort(
 		(a: Service, b: Service) =>
-			b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+		a.data.priority.valueOf() - b.data.priority.valueOf()
 	);
 
-	let splitTags: string[][] = [];
+	let categories: string[][] = [];
 	Object.keys(languages).map((locale) => {
-		const tags = [
+		const cats = [
 			...new Set(
 				services
 					.filter((service) => service.slug.startsWith(locale))
-					.map((service) => service.data.tags)
+					.map((service) => service.data.cats)
 					.flat(),
 			),
 		];
-		splitTags.push(tags);
+		categories.push(cats);
 	});
 
 	// Return services by locale, paginated
 	return Object.keys(languages).flatMap((lang) => {
-		const filteredProjects = services.filter(
+		const filteredServices = services.filter(
 			(a: { slug: string }) => a.slug.split("/")[0] === lang,
 		);
 
-		return paginate(filteredProjects, {
+		return paginate(filteredServices, {
 			params: { lang },
-			props: { splitTags },
-			pageSize: 6,
+			props: { categories },
+			pageSize: 100,
 		});
 	});
 }
 
-const { splitTags, page } = Astro.props;
+const { categories, page } = Astro.props;
 const locale = Astro.params.lang;
+
+// ORGANISED CATEGORIES TO RENDER SERVICE ENTRIES IN SPECIFIC ORDER
+const langIndex = Object.keys(languages).indexOf(locale)
+
+const renderCats = [
+["fullstack", "sustainability", "tailored", "ai"],
+["fullstack", "sustainability", "tailored", "ai"],
+["fullstack", "sustainability", "tailored", "ai"]
+]
+	
+const currentLangCats = renderCats[langIndex]
+
 ---
 
-<BlogRollLayout
+<ServiceRollLayout
 	page={page}
-	tags={splitTags}
+	tags={categories}
 	locale={locale}
 	section="services"
 >
 	<section>
-		<ul class="grid grid-cols-1 md:grid-cols-3 gap-4 list-none ml-0">
-			{
-				page.data.map((service: Service) => (
-					<BlogEntryPreview post={service} locale={locale} />
-				))
-			}
-		</ul>
-		<Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+		{ currentLangCats.map(cat =>
+			<div class="border-teal-300 border-dotted flex items-start mt-5 mb-10 intersect px-3">
+				<div class="w-1/3 text-end bg-[#e7fffc] border-y border-l border-dotted border-teal-200 pr-3 dark:bg-[#e7fffc] dark:text-black">
+					<div class="w-full flex justify-end mt-5 mb-0">
+						<div class="h-10 w-10 bg-[url('/favicon.svg')] bg-size-[auto_5px] bg-cover bg-no-repeat]"></div>
+					</div>
+					<h2 class="text-2xl mt-3 border-dotted border-teal-300">{servicesCats[cat].title[locale]}</h2>
+					<p class="text-medium mt-0">{servicesCats[cat].description[locale]}</p>
+					<p class="text-medium pb-3">
+						<a href="mailto:hello@josebolanos.xyz"
+								class="bg-gradient-to-tr from-white via-white to-red-400 bg-[length:400%_400%] animate-gradient border border-red-400 rounded-lg p-3 hover:bg-teal-100">
+							{servicesCats[cat].contact[locale]}
+						</a>
+					</p>
+				</div>
+				<div class="w-2/3 m-0 p-0 border-l border-dotted border-teal-300 intersect">
+					{ page.data.map((service: Service) =>
+							service.data.cats.includes(cat.toLowerCase()) && <ServicePreview service={service} locale={locale}) />
+					)}
+				</div>
+			</div >
+		)}
 	</section>
-</BlogRollLayout>
+</ServiceRollLayout>

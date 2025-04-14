@@ -51,11 +51,14 @@ const services = defineCollection({
 		description: z.string(),
 		locale: z.string(),
 		pubDate: z.coerce.date(),
+		priority: z.number(),
 		heroImage: image().refine((img) => img.width >= 600, {
 			message: "Cover image must be at least 600 pixels wide!",
 		}),
-		stack: z.array(z.string()).optional(),
-		tags: z.array(z.string())
+		cats: z.array(z.string()),
+		pricing: z.string(),
+		callToAction: z.string(),
+		callToActionUrl: z.string(),
 	}),
 })
 
