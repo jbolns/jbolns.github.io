@@ -206,6 +206,7 @@ class Animation extends Component {
     // FUNCTION TO HANDLE RESIZES
     onWindowResize() {
         if (this.mount) {
+            let cam
             cam.aspect = this.mount.offsetWidth / this.mount.offsetHeight
             cam.updateProjectionMatrix()
             renderer.setSize(this.mount.offsetWidth, this.mount.offsetHeight)

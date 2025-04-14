@@ -38,6 +38,7 @@
   ],
   "exclude": [
     "docs",
-    "node_modules"
+    "node_modules",
+    "src/pages/services/[lang]/[...slug].astro"
   ]
 }

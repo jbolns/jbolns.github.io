@@ -44,4 +44,25 @@ const portfolio = defineCollection({
 	}),
 })
 
-export const collections = { blog, cv, portfolio }
+const services = defineCollection({
+	type: "content",
+	schema: ({ image }) => z.object({
+		title: z.string(),
+		description: z.string(),
+		locale: z.string(),
+		pubDate: z.coerce.date(),
+		priority: z.number(),
+		heroImage: image().refine((img) => img.width >= 600, {
+			message: "Cover image must be at least 600 pixels wide!",
+		}),
+		cats: z.array(z.string()),
+		pricing: z.string(),
+		callToAction: z.string(),
+		callToActionUrl: z.string(),
+	}),
+})
+
+const servicios = services
+const palvelut = services
+
+export const collections = { blog, cv, portfolio, services, servicios, palvelut }

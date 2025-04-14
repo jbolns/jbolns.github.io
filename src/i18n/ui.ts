@@ -63,7 +63,22 @@ export const navLinks: Links = [
     text: "Portfolio",
     href: "/portfolio",
     languages: ["en", "fi", "es"]
-  }
+  },
+  {
+    text: "Services",
+    href: "/services",
+    languages: ["en"]
+  },
+  {
+    text: "Servicios",
+    href: "/servicios",
+    languages: ["es"]
+  },
+  {
+    text: "Palvelut",
+    href: "/palvelut",
+    languages: ["fi"]
+  },
 ]
 
 export type Sections = {

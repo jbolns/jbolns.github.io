@@ -1,0 +1,24 @@
+---
+import { getEntry, render } from 'astro:content';
+// ACTIONS
+// Get service info as props
+const { service, locale } = Astro.props;
+
+const item = await getEntry(service.collection, service.slug);
+const { Content } = await render(item);
+
+---
+
+<div
+  class="group flex flex-col intersect px-5 border-y border-r border-transparent border-dotted hover:bg-[#e7fffc] hover:border-teal-300 transition duration-700 dark:hover:text-black group-transition group-duration-700"
+>
+  <h3 class="mb-0 underline font-sans font-light">
+      {service.data.title}
+  </h3>
+  <p class="my-0 py-0 text-sm w-full group-hover:hidden">
+    {service.data.description}.
+  </p>
+  <span class="text-sm hidden group-hover:inline-block pb-5 mb-5">
+    <Content />
+  </span>
+</div>

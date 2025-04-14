@@ -76,3 +76,8 @@ export type CVEntry = {
 export type Misc = {
   [key: string]: Multi
 }
+
+// Entries for degree section of CV
+export type ServicesCats = {
+  [key: string]: Misc,
+}

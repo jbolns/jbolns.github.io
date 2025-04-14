@@ -1,5 +1,5 @@
 // This file is for general info and descriptions for the different sections of the website
-import type { Site, Sections, CVEntry } from "@types"
+import type { Site, Sections, CVEntry, ServicesCats } from "@types"
 
 // KEY SITE INFORMATION
 export const site: Site = {
@@ -46,7 +46,22 @@ export const sections: Sections = {
     en: "Portfolio",
     es: "Proyectos",
     fi: "Portfolio"
-  }, 
+  },
+  services: {
+    en: "Services",
+    es: "Servicios",
+    fi: "Palvelut"
+  },
+  servicios: {
+    en: "Services",
+    es: "Servicios",
+    fi: "Palvelut"
+  },
+  palvelut: {
+    en: "Services",
+    es: "Servicios",
+    fi: "Palvelut"
+  },
   tags: {
     en: "Blogs by tag",
     es: "Blogs por etiqueta",
@@ -341,3 +356,93 @@ export const publications: CVEntry[] = [
     tags: ["academia", "policy"]
   },
 ]
+
+
+// SERVICES
+export const servicesCats: ServicesCats = {
+  fullstack: {
+    title: {
+      en: "Fullstack Web Development",
+      es: "Desarrollo Web Fullstack",
+      fi: "Fullstack-verkkokehitys"
+    },
+    description: {
+      en: "End-to-end development of state-of-the-art websites that support your business objectives",
+      es: "Desarrollo integral de sitios web que le apoyan en su negocio",
+      fi: "Kokonaisvaltainen uusimpien verkkosivustojen kehitys, joka tukee liiketoimintatavoitteitasi"
+    },
+    contact: {
+      en: "Get in touch!",
+      es: "¡Ponte en contacto!",
+      fi: "Ota yhteyttä!"
+    }
+  },
+  sustainability: {
+    title: {
+      en: "Digital sustainability",
+      es: "Sostenibilidad digital",
+      fi: "Vihreä digitaalisuus"
+    },
+    description: {
+      en: "Efficient websites and digital experiences that contribute to a greener web",
+      es: "Websites y herramientas digitales eficientes que contribuyen a una web más ecológica",
+      fi: "Tehokkaat verkkosivustot ja digitaaliset kokemukset, jotka edistävät vihreämpää verkkoa"
+    },
+    contact: {
+      en: "Get in touch!",
+      es: "¡Ponte en contacto!",
+      fi: "Ota yhteyttä!"
+    }
+  },
+  ai: {
+    title: {
+      en: "Artificial Intelligence",
+      es: "Inteligencia Artificial",
+      fi: "Tekoälys"
+    },
+    description: {
+      en: "AI applications and services designed to enhance your business and/or improve existing workflows",
+      es: "Aplicaciones y servicios de IA diseñados para mejorar su negocio y optimizar los flujos de trabajo existentes",
+      fi: "Liiketoimintaasi tehostamaan ja/tai nykyisiä työnkulkuja parantamaan suunnitellut tekoälysovellukset ja -palvelut"
+    },
+    contact: {
+      en: "Get in touch!",
+      es: "¡Ponte en contacto!",
+      fi: "Ota yhteyttä!"
+    }
+  },
+  tailored: {
+    title: {
+      en: "Tailored software",
+      es: "Software hecho a medida",
+      fi: "Räätälöidyt ohjelmistosovellukset"
+    },
+    description: {
+      en: "Custom software applications specifically designed to address your unique business challenges and objectives",
+      es: "Aplicaciones de software personalizadas diseñadas específicamente para abordar los desafíos y objetivos únicos de su negocio.",
+      fi: "Räätälöidyt ohjelmistosovellukset, jotka on suunniteltu erityisesti vastaamaan yrityksesi ainutlaatuisiin haasteisiin ja tavoitteisiin"
+    },
+    contact: {
+      en: "Get in touch!",
+      es: "¡Ponte en contacto!",
+      fi: "Ota yhteyttä!"
+    }
+  },
+  nlp: {
+    title: {
+      en: "NLP",
+      es: "NLP",
+      fi: "NLP"
+    },
+    description: {
+      en: "Language-based applications such as chatbots, text analysis tools, and transcription or translation services",
+      es: "Aplicaciones basadas en lenguaje como chatbots, herramientas de análisis de texto y servicios de transcripción o traducción",
+      fi: "Kielipohjaiset sovellukset, kuten chatbotit, tekstianalyysityökalut sekä transkriptio- tai käännöspalvelut"
+    },
+    contact: {
+      en: "Get in touch!",
+      es: "¡Ponte en contacto!",
+      fi: "Ota yhteyttä!"
+    }
+  },
+}

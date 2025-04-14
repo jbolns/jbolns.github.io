@@ -4,7 +4,7 @@ import { wrapperStrings } from "@i18n/ui"
 import { defaultLang } from "@i18n/ui"
 
 const AnimationWrapper = ({ locale }: any) => {
-  const [animate, setAnimate] = useState(true)
+  const [animate, setAnimate] = useState(false)
   const [qual, setQual] = useState("low")
   const [render, setRender] = useState(false)
 
@@ -26,8 +26,8 @@ const AnimationWrapper = ({ locale }: any) => {
 
         <div className="flex w-[100%] overflow-hidden mx-auto justify-center items-center bg-transparent dark:border-b dark:border-gray-300 h-[60vh] rounded-bl-[30vh] rounded-br-[100%]">
           <div className="w-full text-center bg-transparent text-white">
-            <button onClick={() => setAnimate(true)} className="border border-white border-dotted px-2 bg-black">{wrapperStrings.w1[locale]}</button>
-            <div className="md:text-sm bold bg-gray-100 text-black w-fit mt-2 mx-auto p-1 rounded-sm">{wrapperStrings.w2[locale]}</div>
+            <button onClick={() => setAnimate(true)} className="border border-white border-dotted px-2 bg-gray-500 text-sm">{wrapperStrings.w1[locale]}</button>
+            
           </div>
         </div>
 
