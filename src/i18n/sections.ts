@@ -9,9 +9,9 @@ export const site: Site = {
     fi: "Dr J"
   },
   description: {
-    en: "Coder. Consultant. Political Economist.",
-    es: "Programador. Consultor. Economista Político.",
-    fi: "Koodaaja. Konsultti. Poliittinen taloustieteilijä."
+    en: "Developer. Analyst. Political Economist.",
+    es: "Programador. Analista. Economista Político.",
+    fi: "Koodaaja. Analyytikko. Poliittinen taloustieteilijä."
   },
   author: {
     en: "Dr J",
