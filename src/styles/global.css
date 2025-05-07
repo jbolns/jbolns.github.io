@@ -221,7 +221,7 @@
 		content: "";
 	}
 
-	article.post a {
+	section p a, article.post a {
 		text-decoration: underline;
 	}
 

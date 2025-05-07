@@ -19,71 +19,78 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
 <BaseLayout
   siteTitle={site.title[locale]}
   description={site.description[locale]}
-  pageTitle="Welcome to my website 👋"
+  pageTitle="Welcome 👋"
   locale={locale}
 >
   <section class="homepage">
     <div>
-      <p class="my-0">
-        <span class="lg:text-3xl">
-          My name is <strong
-            ><span class="underline">José A Bolanos</span></strong
-          >,</span
-        > developer/analyst with 3 years of software development experience and 5+
-        additional years of rigorous research and analytics experience.
+      <p class="intersect text-2xl">
+        I am <span class="italic">José A Bolanos</span>, <strong>
+          <span class="">Political Economist gone Software Developer</span
+          ></strong
+        > with 3+ years of experience in software development and 5+ in research
+        and analytics.
       </p>
     </div>
 
-    <div class="md:flex gap-8 items-center intersect mt-5">
-      <span class="flex-initial w-[100%] grow text-2xl">
-        <h2 class="mb-0 leading-tight">
-          <strong><span class="highlight c3">I love coding.</span></strong>
-        </h2>
-        <h3 class="leading-tight">It gives me peace.</h3>
-      </span>
-      <span>
-        <p class="hidden md:block text-1xl before:content-['->']">
-          I am proficient in many programming languages, but I particularly enjoy <strong
-            >Python</strong
-          >, absolutely dislike R, and am rather comfortable with <strong
-            >JS</strong
-          >.
-        </p>
-        <p class="text-1xl before:content-['->']">
-          As a curious note, I am oddly good at <strong>combining languages/stacks/tools</strong>.
-          For instance, this site combines Astro, React, and 3D animations using
-          Three.js.
-        </p>
-      </span>
-    </div>
-
-    <div class="md:flex gap-8 items-center md:flex-row-reverse intersect">
-      <span class="flex-initial w-[100%] grow text-2xl">
-        <h2 class="mb-0">
-          <strong
-            ><span class="highlight c2 leading-tight"
-              >I see the big picture.</span
-            ></strong
+    <div class="md:flex gap-2 intersect py-5">
+      <div
+        class="w-full md:bg-gray-800 md:dark:bg-gray-900 md:text-white md:border md:border-teal-300 md:dark:border-white md:border-solid md:dark:border-dotted md:p-5"
+      >
+        <h3 class="underline md:no-underline">Freelance coding</h3>
+        <p class="text-sm my-1 text-black">
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Fullstack</span
           >
-        </h2>
-        <h3 class="leading-tight">It matters!</h3>
-      </span>
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#AI</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#DigitalSustainability</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#TailoredSoftware</span
+          >
+        </p>
+        <p class="inline md:block">
+          I sell solutions, not just code. I adapt to your needs and give you
+          code to help you achieve your goals.
+        </p>
+        <p class="inline">
+          See a full list of services <a href="/services/en">here</a>.
+        </p>
+      </div>
 
-      <span>
-        <p class="text-1xl before:content-['->'] md:text-right">
-          I am a <span class="italic">Political Economist</span> by training. Do
-          you <strong>need to understand user behaviour</strong>, <strong
-            >manage stakeholder disagreement</strong
-          >, or <strong
-            >figure out complex digital technology regulations</strong
-          >? You want me in your team.
+      <div
+        class="mt-5 md:mt-0 w-full md:bg-gray-800 md:dark:bg-gray-900 md:text-white md:border md:border-teal-300 md:dark:border-white md:border-solid md:dark:border-dotted md:p-5"
+      >
+        <h3 class="underline md:no-underline">Strategic Services</h3>
+        <p class="text-sm my-1 text-black">
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Strategy</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Planning</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Design</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Implementation</span
+          >
         </p>
-        <p class="hidden md:block text-1xl before:content-['->'] md:text-right">
-          Are you in the <strong>energy</strong>, <strong>food</strong>, <strong>policy</strong>, or
-            <strong>sustainability</strong> sectors, where I am a published <span class="italic">domain</span> expert? You need me in your team.
+        <p class="inline md:block">
+          Thanks to the mixed background, I understand your digital technology
+          challenges from both a technical and a business perspective.
         </p>
-      </span>
+        <p class="inline">
+          <a href={"mailto:hello@josebolanos.xyz"} target="_blank"
+            >Get in touch</a
+          > to learn more.
+        </p>
+      </div>
     </div>
+
     <br />
     <span>
       <p class="intersect"><strong>Website made with:</strong></p>

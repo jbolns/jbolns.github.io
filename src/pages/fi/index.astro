@@ -19,76 +19,73 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
 <BaseLayout
   siteTitle={site.title[locale]}
   description={site.description[locale]}
-  pageTitle="Tervetuloa sivuilleni 👋"
+  pageTitle="Welcome 👋"
   locale={locale}
 >
   <section class="homepage">
     <div>
-      <p class="my-0">
-        <span class="lg:text-3xl">
-          Minä olen <strong><span class="underline">José</span></strong>,</span
-        > kehittäjä/analyytikko, jolla on 3 vuoden kokemus ohjelmistokehityksestä ja yli
-        5 vuoden tutkimus- ja analytiikkakokemus.
-      </p>
-      <p>
-        Tarjoan <strong>koodauspalveluita</strong> eri aloilla ja tukea <strong
-          >strategiaan/suunnitteluun</strong
-        > toimialoilla, joilla olen itse asiantuntija (katso alla).
+      <p class="intersect text-2xl">
+        Olen <span class="italic">Dr J</span>, <strong>
+          <span class="">Poliittinen taloustieteilijä ja ohjelmistokehittäjä</span
+          ></strong
+        > , jolla on kolmen vuoden kokemus ohjelmistokehityksestä ja yli
+        viiden vuoden tutkimus- ja analytiikkakokemus.
       </p>
     </div>
 
-    <div class="md:flex gap-8 items-center intersect mt-5">
-      <span class="flex-initial w-[100%] grow text-2xl">
-        <h2 class="mb-0 leading-tight">
-          <strong><span class="highlight c3">Rakastan koodausta.</span></strong>
-        </h2>
-        <h3 class="leading-tight">Se on hauskaa.</h3>
-      </span>
-      <span>
-        <p class="hidden md:block text-1xl before:content-['->']">
-          Osaan monia kieliä, mutta pidän erityisen paljon <strong
-            >Pythonista</strong
-          >, en ehdottomasti pidä R:stä ja olen melko tyytyväinen <strong
-            >JS:ään</strong
-          >.
-        </p>
-        <p class="text-1xl before:content-['->']">
-          Olen erittäin hyvä <strong
-            >kielten/työkalujen yhdistämisessä</strong
-          >. Tämä sivusto esimerkiksi yhdistää Astro-, React- ja 3D-animaatioita
-          Three.js:n avulla.
-        </p>
-      </span>
-    </div>
-
-    <div class="md:flex gap-8 items-center md:flex-row-reverse intersect">
-      <span class="flex-initial w-[100%] grow text-2xl">
-        <h2 class="mb-0">
-          <strong
-            ><span class="highlight c2 leading-tight">Näen kokonaisuuden.</span
-            ></strong
+    <div class="md:flex gap-2 intersect py-5">
+      <div
+        class="w-full md:bg-gray-800 md:dark:bg-gray-900 md:text-white md:border md:border-teal-300 md:dark:border-white md:border-solid md:dark:border-dotted md:p-5"
+      >
+        <h3 class="underline md:no-underline">"Freelance"-koodaus</h3>
+        <p class="text-sm my-1 text-black">
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Fullstack</span
           >
-        </h2>
-        <h3 class="leading-tight">Sillä on väliä!</h3>
-      </span>
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Tekoäly</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Digitaalinenkestävyys</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Räätälöityohjelmisto</span
+          >
+        </p>
+        <p class="inline md:block">
+          Myyn ratkaisuja, en vain koodausta. Sopeudun tarpeisiisi ja luon koodia, mikä auttaa sinua saavuttamaan tavoitteesi.
+        </p>
+        <p class="inline">
+          Katso täydellinen luettelo palveluista <a href="/palvelut/fi/">täältä</a>.
+        </p>
+      </div>
 
-      <span>
-        <p class="text-1xl before:content-['->'] md:text-right">
-          Olen koulutukseltani <span class="italic">poliittinen ekonomisti</span
-          >. Haluatko <strong>ymmärtää käyttäjien käyttäytymistä</strong>, <strong
-            >hallita sidosryhmien erimielisyyksiä</strong
-          > tai <strong
-            >selvittää monimutkaisia ​​digitaaliteknologian säädöksiä</strong
-          >? Haluat minut tiimiisi.
+      <div
+        class="mt-5 md:mt-0 w-full md:bg-gray-800 md:dark:bg-gray-900 md:text-white md:border md:border-teal-300 md:dark:border-white md:border-solid md:dark:border-dotted md:p-5"
+      >
+        <h3 class="underline md:no-underline">Strategia- ja projektinhallintapalvelut</h3>
+        <p class="text-sm my-1 text-black">
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Strategia</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Suunnittelu</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Toteutus</span
+          >
         </p>
-        <p class="hidden md:block text-1xl before:content-['->'] md:text-right">
-          Olen julkaistu asiantuntija energia-, elintarvike- ja politiikan sekä
-          kestävän kehityksen aloilla. <strong
-            >Tarvitsetko analytiikkaa tai ohjelmistoja näillä aloilla</strong
-          >? Tarvitset minut tiimiisi.
+        <p class="inline md:block">
+          Monipuolisen taustani ansiosta ymmärrän digitaalisen teknologian haasteet sekä teknisestä että liiketoiminnan näkökulmasta.
         </p>
-      </span>
+        <p class="inline">
+          <a href={"mailto:hello@josebolanos.xyz"} target="_blank"
+            >Ota yhteyttä</a
+          > saadaksesi lisätietoja minusta
+        </p>
+      </div>
     </div>
+
     <br />
     <span>
       <p class="intersect"><strong>Sivut tehty käyttäen:</strong></p>
@@ -103,7 +100,7 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
   </section>
 
   <section>
-    <Latest sectionTitle="Uusin" numberOfEntries={6} locale={locale} />
+    <Latest sectionTitle="Latest" numberOfEntries={6} locale={locale} />
   </section>
 
   <section class="intersect">
