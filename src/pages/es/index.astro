@@ -19,79 +19,80 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
 <BaseLayout
   siteTitle={site.title[locale]}
   description={site.description[locale]}
-  pageTitle="Bienvenido a mi sitio👋"
+  pageTitle="Bienvenido 👋"
   locale={locale}
 >
   <section class="homepage">
     <div>
-      <p class="my-0">
-        <span class="lg:text-3xl">
-          Mi nombre es <strong
-            ><span class="underline">José A Bolanos</span></strong
-          >,</span
-        > desarrollador/analista con 3 años de experiencia en software y más de 5
-        adicionales de experiencia en investigación y análisis.
-      </p>
-      <p>
-        Ofrezco <strong>servicios de programación</strong> en todos los sectores
-        y <strong>de estrategia y diseño</strong> en sectores en los que soy un experto
-        (detalles abajo).
+      <p class="intersect text-2xl">
+        ¡Hola! Soy <span class="italic">José</span>, <strong>
+          <span class="">desarrollador y analista</span></strong
+        > con 3+ años de experiencia en desarrollo de software 5+ (adicionales) en
+        investigación y análisis.
       </p>
     </div>
 
-    <div class="md:flex gap-8 items-center intersect mt-5">
-      <span class="flex-initial w-[100%] grow text-2xl">
-        <h2 class="mb-0 leading-tight">
-          <strong
-            ><span class="highlight c3">Me apasiona programar.</span></strong
+    <div class="md:flex gap-2 intersect py-5">
+      <div
+        class="w-full md:bg-gray-800 md:dark:bg-gray-900 md:text-white md:border md:border-teal-300 md:dark:border-white md:border-solid md:dark:border-dotted md:p-5"
+      >
+        <h3 class="underline md:no-underline">
+          Servicios de programación "freelance"
+        </h3>
+        <p class="text-sm my-1 text-black">
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Fullstack</span
           >
-        </h2>
-        <h3 class="leading-tight">Me da paz.</h3>
-      </span>
-      <span>
-        <p class="hidden md:block text-1xl before:content-['->']">
-          Me va muy bien con <strong>Python</strong>, <strong>VBA</strong>, y <strong
-            >JS</strong
-          > (incluyendo React, GatsbyJS, y Astro). También me gusta mucho el <strong
-            >SQL</strong
-          >, en particular, las funciones analíticas.
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#IA</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#SostenibilidadDigital</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#SoftwarePersonalisado</span
+          >
         </p>
-        <p class="text-1xl before:content-['->']">
-          Como dato curioso, salí bastante bueno <strong>combinando lenguajes/stacks</strong>. Por
-          ejemplo, este sitio combina Astro, React, y Three.js.
+        <p class="inline md:block">
+          Vendo soluciones, no solamente código. El código es un medio para
+          ayudarte a alcanzar tus objetivos.
         </p>
-      </span>
+        <p class="inline">
+          Da <a href="/servicios/es">click aquí</a> para la lista completa de servicios.
+        </p>
+      </div>
+
+      <div
+        class="mt-5 md:mt-0 w-full md:bg-gray-800 md:dark:bg-gray-900 md:text-white md:border md:border-teal-300 md:dark:border-white md:border-solid md:dark:border-dotted md:p-5"
+      >
+        <h3 class="underline md:no-underline">Servicios estratégicos</h3>
+        <p class="text-sm my-1 text-black">
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Estrategia</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Planeamiento</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Diseño</span
+          >
+          <span class="py-1 px-2 bg-teal-300 rounded-md border border-black"
+            >#Implementación</span
+          >
+        </p>
+        <p class="inline md:block">
+          Cómo Economista Políticode profesión, puedo apreciar tus retos desde,
+          ambas, una perspectiva técnica y comercial. Esto ayuda a desarrollar
+          soluciones que de verdad se ajusten a tus necesidades.
+        </p>
+        <p class="inline">
+          <a href={"mailto:hello@josebolanos.xyz"} target="_blank"
+            >Contáctame</a
+          > para aprender más sobre mí.
+        </p>
+      </div>
     </div>
 
-    <div class="md:flex gap-8 items-center md:flex-row-reverse intersect">
-      <span class="flex-initial w-[100%] grow text-2xl">
-        <h2 class="mb-0">
-          <strong
-            ><span class="highlight c2 leading-tight"
-              >Veo el panorama general.</span
-            ></strong
-          >
-        </h2>
-        <h3 class="leading-tight">¡Es importante!</h3>
-      </span>
-
-      <span>
-        <p class="text-1xl before:content-['->'] md:text-right">
-          Soy economista político con rigorosa formación académica. ¿Necesitas <strong
-            >comprender mejor el comportamiento de tus usuarios</strong
-          >, <strong>gestionar desacuerdos entre "stakeholders"</strong> o
-          <strong>hacerle frente a regulaciones digitales</strong>? Me quieres
-          en tu equipo.
-        </p>
-        <p class="hidden md:block text-1xl before:content-['->'] md:text-right">
-          Soy un experto y tengo publicaciones en los sectores energía,
-          alimentación, política pública, y sostenibilidad. <strong
-            >¿Necesitas herramientas analíticas o de software en
-            estos sectores</strong
-          >? Me necesitas en tu equipo.
-        </p>
-      </span>
-    </div>
     <br />
     <span>
       <p class="intersect"><strong>Sitio hecho con:</strong></p>
@@ -106,7 +107,7 @@ const stack = ["astro", "js", "typescript", "mdx", "tailwind", "threejs"];
   </section>
 
   <section>
-    <Latest sectionTitle="Latest" numberOfEntries={6} locale={locale} />
+    <Latest sectionTitle="Últimas novedades" numberOfEntries={6} locale={locale} />
   </section>
 
   <section class="intersect">
