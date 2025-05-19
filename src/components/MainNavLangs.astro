@@ -3,6 +3,8 @@
 import type { Multi } from "@types";
 import { languages } from "@i18n/ui";
 import { getRoutes, sanitizeRoutes } from "@i18n/utils";
+import { getEntry } from "astro:content";
+import { union, type tuple } from "astro:schema";
 
 // ACTIONS
 // Get locale
@@ -13,26 +15,48 @@ let currentPath = Astro.url.pathname;
 
 // Get alt base paths for top-level paths that differ across languages
 let base: string = "";
-let lang_bases: string | Multi
+let lang_bases: string | Multi;
 if (
 	currentPath.startsWith("/services/") ||
 	currentPath.startsWith("/servicios/") ||
 	currentPath.startsWith("/palvelut/")
 ) {
 	base = currentPath.split("/")[1];
-	lang_bases = getRoutes(base)
+	lang_bases = getRoutes(base);
 }
 
-// Get alt slugs for any other path that differs across languages
+// Get alt slugs for paths that differ across languages
 const parts = currentPath.split("/");
 let slug: string | undefined = parts.pop() || parts.pop();
 const routes: Multi | string = getRoutes(slug);
 
+// If blog post, check if blog is specific to a single locale
+const post_en = await getEntry("blog", `en/${slug}`);
+const post_es = await getEntry("blog", `es/${slug}`);
+const post_fi = await getEntry("blog", `fi/${slug}`);
+const do_posts_exist = [post_en, post_es, post_fi].map((post) => {
+	return post !== undefined;
+});
+const unique =
+	do_posts_exist.filter((post) => post !== false).length == 1 ? true : false;
+
+let valid_langs: string[] = Object.keys(languages);
+if (parts.includes("blog") && typeof routes === "string" && unique) {
+	valid_langs = [];
+
+	let i = 0;
+	Object.keys(languages).map((l) => {
+		if (do_posts_exist[i]) {
+			valid_langs.push(l);
+		}
+		i += 1;
+	});
+}
 ---
 
 <span class="flex items-center justify-center">
 	{
-		Object.keys(languages).map((l) => (
+		valid_langs.map((l) => (
 			<a
 				href={sanitizeRoutes(
 					typeof routes === "object"
@@ -41,7 +65,10 @@ const routes: Multi | string = getRoutes(slug);
 								.replace(`/${slug}/`, `/${routes[l]}/`)
 								.replace(`/${slug}`, `/${routes[l]}/`)
 						: currentPath
-								.replace(base, typeof lang_bases === "object" ? lang_bases[l] : base)
+								.replace(
+									base,
+									typeof lang_bases === "object" ? lang_bases[l] : base,
+								)
 								.replace(`/${locale}/`, `/${l}/`)
 								.replace(`/${locale}`, `/${l}/`),
 				)}

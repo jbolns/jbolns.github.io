@@ -3,6 +3,7 @@ import { languages } from './ui'
 import { routes } from './routes'
 import type { Multi } from "@types"
 
+
 // FUNCTIONS
 
 // Function to get routes for all language versions of any given page.
@@ -14,24 +15,28 @@ import type { Multi } from "@types"
 //    a. YES (page url varies across languages): Return a dictionary with appropriate paths for all languages (object)
 //    b. NO (page url is same across languages). Return the slug (string).
 
+
+
 export function getRoutes(slug = ""): Multi | string {
 
   if (slug === undefined) {
     console.log("Path sent to language picker is undefined.")
-    return ''
+    return ""
   }
 
   if (Object.keys(languages).includes(slug)) {
-    return ''
+    return ""
   }
-
+  
   let match = -1
-
   const allRoutes = Object.values(routes)
   allRoutes.forEach((group,i) => Object.values(group).map((val) => val === decodeURI(slug) ? match = i : ""))
   
   let group
-  match >= 0 ? group = allRoutes[match] : ""  
+  if (match >= 0) {
+    group = allRoutes[match]
+  } else {
+  }
 
   return group ? group : "--"
 
