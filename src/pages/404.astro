@@ -1,0 +1,57 @@
+---
+// IMPORTS
+import type { Multi } from "@types";
+import { ViewTransitions } from "astro:transitions";
+import BaseHead from "@components/BaseHead.astro";
+import { languages, defaultLang } from "@i18n/ui";
+import { sanitizeRoutes } from "@i18n/utils";
+import { site } from "@i18n/sections";
+
+// ACTIONS
+const locale: keyof Multi = defaultLang;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <BaseHead
+      siteTitle={site.title[locale]}
+      description={site.description[locale]}
+      pageTitle="404"
+      locale={locale}
+    />
+    <ViewTransitions />
+  </head>
+  <body>
+    <main>
+      <div
+        class="absolute top-1/2 -translate-y-1/2 w-full text-center text-white"
+      >
+        <h1 id="glitch" class="m-0 p-0 enter">404 Page Not Found</h1>
+
+        <ul class="flex items-center justify-center list-none m-0 p-0">
+          {
+            Object.entries(languages).map(([lang, label]) => (
+              <li class="flex text-center m-1 enter" aria-label={label}>
+                <a href={sanitizeRoutes(`/${lang}/`)}>
+                  <img
+                    src={`/icons/${lang}.svg`}
+                    alt={`${label}.`}
+                    class="w-8 h-8 hover:animate-roll"
+                  />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div
+        id="simple"
+        class="absolute top-0 flex justify-center -z-20 w-[100%] overflow-hidden mx-auto h-[100vh] bg-black"
+      >
+        <span class="quad w-full h-[150vh] rounded-full animate-appear"></span>
+      </div>
+    </main>
+  </body>
+</html>
+<script src="styles/global.js"></script>
