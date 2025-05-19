@@ -22,20 +22,5 @@ export default defineConfig({
             es: "en",
             fi: "en"
         }
-    },
-
-    //redirects: {
-        //'/services/fi': '/palvelut/fi',
-        //'/services/fi/[...slug]': '/palvelut/fi/[...slug]',
-        //'/services/es': '/servicios/es',
-        //'/services/es/[...slug]': '/servicios/es/[...slug]',
-        //'/servicios/en': '/services/en',
-        //'/servicios/en/[...slug]': '/services/en/[...slug]',
-        //'/servicios/fi': '/palvelut/fi',
-        //'/servicios/fi/[...slug]': '/palvelut/fi/[...slug]',
-        //'/palvelut/en': '/services/en',
-        //'/palvelut/en/[...slug]': '/services/en/[...slug]',
-        //'/palvelut/es': '/servicios/es',
-        //'/palvelut/es/[...slug]': '/servicios/es/[...slug]',
-    //}
+    }
 });
