@@ -4,7 +4,6 @@ import type { Multi } from "@types";
 import { languages } from "@i18n/ui";
 import { getRoutes, sanitizeRoutes } from "@i18n/utils";
 import { getEntry } from "astro:content";
-import { union, type tuple } from "astro:schema";
 
 // ACTIONS
 // Get locale
@@ -13,7 +12,7 @@ const { locale } = Astro.props;
 // Determine current slug from pathname
 let currentPath = Astro.url.pathname;
 
-// Get alt base paths for top-level paths that differ across languages
+// Base paths for top-level pages with different paths across locales
 let base: string = "";
 let lang_bases: string | Multi;
 if (
@@ -25,33 +24,41 @@ if (
 	lang_bases = getRoutes(base);
 }
 
-// Get alt slugs for paths that differ across languages
+// Alt slugs for collection items with different paths across languages
 const parts = currentPath.split("/");
 let slug: string | undefined = parts.pop() || parts.pop();
 const routes: Multi | string = getRoutes(slug);
 
-// If blog post, check if blog is specific to a single locale
-const post_en = await getEntry("blog", `en/${slug}`);
-const post_es = await getEntry("blog", `es/${slug}`);
-const post_fi = await getEntry("blog", `fi/${slug}`);
-const do_posts_exist = [post_en, post_es, post_fi].map((post) => {
-	return post !== undefined;
-});
-const unique =
-	do_posts_exist.filter((post) => post !== false).length == 1 ? true : false;
+// Get rid of flags for locales where page does not exist
+let valid_langs = Object.keys(languages);
+let lang_slugs =
+	typeof routes === "string" ? [slug, slug, slug] : Object.values(routes);
 
-let valid_langs: string[] = Object.keys(languages);
-if (parts.includes("blog") && typeof routes === "string" && unique) {
+if (parts.includes("blog") && parts.slice(-1)[0] != "blog") {
 	valid_langs = [];
+	let items: (object | undefined)[] = [];
 
-	let i = 0;
-	Object.keys(languages).map((l) => {
+	for (let i = 0; i < Object.keys(languages).length; i++) {
+		const post_in_lang = await getEntry(
+			"blog",
+			`${Object.keys(languages)[i]}/${lang_slugs[i]}`,
+		);
+		items.push(post_in_lang);
+	}
+
+	const do_posts_exist = items.every((item) => !item)
+		? [true, true, true]
+		: items.map((post) => {
+				return post !== undefined;
+			});  // Note to self. Do not remove conditional. Avoids error with paginated views.
+
+	for (let i = 0; i < Object.keys(languages).length; i++) {
 		if (do_posts_exist[i]) {
-			valid_langs.push(l);
+			valid_langs.push(Object.keys(languages)[i]);
 		}
-		i += 1;
-	});
+	}
 }
+
 ---
 
 <span class="flex items-center justify-center">

@@ -39,6 +39,34 @@
 		line-height: 2;
 	}
 
+	blockquote {
+		margin: auto 2em;
+		padding: 1em;
+		background-color: #f8efd4;
+  	border-left: 1px solid yellow;
+		font-size: smaller;
+		font-style: italic;
+	}
+
+	pre {
+		margin: 14px 1em;
+	}
+
+	p code, li code {
+		background: lightgray;
+		color: black;
+		padding: 0 3px;
+		font-style: italic;
+	}
+
+	pre code .line {
+		padding: 2em;
+	}
+
+	pre code .line:first {
+		margin-top: 2em;
+	}
+
 	main ul, ol {
 		margin-left: 2.5em;
 	}

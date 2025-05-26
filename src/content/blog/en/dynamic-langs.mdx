@@ -1,0 +1,128 @@
+---
+title: "Building a smarter multilingual website"
+description: "In my website, dynamic content validation ensures a seamless multilingual experience by smartly matching content across languages and showing or hiding language options as applicable."
+locale: "en"
+pubDate: "May 26 2025"
+heroImage: "@assets/banner-flags.webp"
+tags: ["tech"]
+---
+
+I like it when things work smoothly. As a developer, I like to deliver complex features in a way users do not even notice all that went into developing them.
+
+Alas, this also means some things I code go unnoticed despite being, in my opinion, pretty cool.
+
+An example is the dynamic language selection bar on top of this website (the flags up there on the menu bar). The number of flags changes depending on the page you visit. This page has two flags because it is available in two languages: English and Spanish. Other blog posts have different flags, depending on the languages the post is available.
+
+Some multilingual websites achieve all this, but not so effectively. 
+
+## Why? How?
+
+Multilingual websites are difficult to manage. Many multilingual websites operate as separate, distinct sites for each language. While this approach is common, it can lead to maintenance challenges and a fragmented user experience, often resulting in "Page Not Found" errors when users switch languages on a page that doesn't exist in a specific translation.
+
+My aim was to build a single, cohesive multilingual platform.
+
+For this, I used a combination of pre-existing capacities in the web framework I use for this website and a few tricks I coded myself.
+
+### The Astro Foundation
+
+My website is built with *Astro*, a modern web framework that provides robust built-in features for internationalisation (i18n). This allows me to organise content for different languages within the same project, rather than managing entirely distinct websites.
+
+I structure my content using **nested directories**.
+- Top-level pages reside under `src/pages/en/...`, Spanish under `src/pages/es/...`, and Finnish under `src/pages/fi/...`.
+- Content collections, for instance, blog posts, have similar `<collection>/en/...`, `<collection>/es/...`, `<collection>/fi/...` structure.
+
+Astro takes care of routing content using a `<folder>/<language>/<filename>` convention for the URLs for the main pages and `<collection>/<language>/<slug>` for collection URLs.
+
+***Importantly,*** pages and content across languages are fully independent. My English homepage could say and look completely different to my Spanish homepage. Equally, I do not need to translate each and every blog post I write into all three languages.
+
+### Dynamic Language Validation
+
+It is nice to be able to have different content across languages, but this also creates a challenge. Pages that exist in one language do not necessarily exist on other languages.
+
+To avoid a nightmare of broken links, the language bar on top is not a predetermined set of flags. It adapts to the content.
+
+Here's how it works.
+
+**Managing URLs**
+
+The first step is to determine if the intended URL for any given page is similar across languages (e.g. `.../blog/en/eu-ai/`, `.../blog/es/eu-ai/`, `.../blog/fi/eu-ai/`) or if URLs are language-specific (e.g. `.../blog/en/dynamic-langs/`, `.../blog/es/barra-lenguaje-dinamica/`). 
+
+For this, I use a small "routes" dictionary that includes only pages with different URLS across languages.
+
+```typescript
+
+export const routes = [
+  // ...
+  { en: "digital-transformation-currents", es: "corrientes-transformacion-digital", fi: "digitaalisen-kehityksen-virrat" },
+  { en: "risk-in-platform-economy", es: "gestion-riesgo-digital", fi: "" }, // In purpose: no Finnish equivalent for this specific page
+  // ...
+]
+
+```
+
+Before rendering the flags, the site checks if a page is in this dictionary. If it is, then it takes the slugs from the dictionary, else, it assumes the only thing that changes in the URL is the language prefix.
+
+**Managing non-existent content**
+
+After, the site verifies if pages exist across different languages. For instance, if a blog post exists in English and Spanish, but not in Finnish, the site will detect the absence of the Finnish content file.
+
+The relevant code is below. Only languages in `valid_langs` will have their flags rendered. The approach scales to any given number of languages.
+
+```typescript
+
+// Pick up object with all the languages the site supports
+let valid_langs = Object.keys(languages);
+
+// Determine slugs where content would be if it exists
+// Note. The "routes" object (picked up earlier in the code) will be a string if slugs are equal across languages
+let lang_slugs = 
+	typeof routes === "string" ? [slug, slug, slug] : Object.values(routes);
+
+// Determine applicable languages
+if ( ... ) {  // Conditions to avoid the block running on sections where content WILL exist in all languages
+	
+  // Aux variables
+  valid_langs = [];
+	let items: (object | undefined)[] = [];
+
+  // For each language supported, check if content exists
+	for (let i = 0; i < Object.keys(languages).length; i++) {
+		const post_in_lang = await getEntry(
+			"blog",
+			`${Object.keys(languages)[i]}/${lang_slugs[i]}`,
+		);
+		items.push(post_in_lang);
+	}
+
+	const do_posts_exist = items.every((item) => !item)
+		? [true, true, true]
+		: items.map((post) => {
+				return post !== undefined;
+			});
+
+  // If content exists, add to list of flags to display
+	for (let i = 0; i < Object.keys(languages).length; i++) {
+		if (do_posts_exist[i]) {
+			valid_langs.push(Object.keys(languages)[i]);
+		}
+	}
+}
+
+```
+
+## Value delivered
+
+That's it. This method of dynamically validating content availability delivers significant advantages:
+- It gives the freedom to have very different content across different languages,
+- It avoids the pain of having to update countless links or manage separate site instances,
+- It lowers the chances users end up in error pages due to broken language links,
+- It makes it easier to adding new languages in the future.
+
+And the coolest thing is, you probably won't even notice it.
+
+Seamless, effortless user experiences! The hallmark of well-coded feature.
+
+Wohoo!
+
+<br />
+*Ps. The full code for the language bar in this website is available on [GitHub](https://github.com/jbolns/jbolns.github.io/blob/main/src/components/MainNavLangs.astro).*
