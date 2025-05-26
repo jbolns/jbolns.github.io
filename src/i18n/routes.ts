@@ -24,6 +24,6 @@ export const routes: Multi[] = [
   { en: "national-international", es: "nacional-internacional", fi: "" }, // Portfolio
   { en: "rethink-voluntary-governance", es: "reevaluar-gobernanza-voluntaria", fi: "uudelleentarkastelu-vapaaehtoinen-hallinto" }, // Blog
   { en: "safeguards-matter", es: "salvaguardas-institucionales", fi: "instituutiot-ovat-tarkeita" }, // Blog
-  //{ en: "", es: "", fi: "" }, // Blog
+  { en: "dynamic-langs", es: "barra-lenguaje-dinamica", fi: "" }, // Blog
   //{ en: "", es: "", fi: "" }, // Blog
 ]
