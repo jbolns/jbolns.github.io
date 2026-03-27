@@ -1,7 +1,7 @@
 ---
 // IMPORTS
-import type { Multi } from "@types";
-import { ViewTransitions } from "astro:transitions";
+import type { Multi } from "src/types.ts";
+import { ClientRouter } from "astro:transitions";
 import BaseHead from "@components/BaseHead.astro";
 import { languages, defaultLang } from "@i18n/ui";
 import { sanitizeRoutes } from "@i18n/utils";
@@ -20,7 +20,7 @@ const locale: keyof Multi = defaultLang;
       pageTitle="Welcome"
       locale={locale}
     />
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <main>
@@ -50,11 +50,11 @@ const locale: keyof Multi = defaultLang;
       </div>
       <div
         id="simple"
-        class="absolute top-0 flex justify-center -z-20 w-[100%] overflow-hidden mx-auto h-[100vh] bg-black"
+        class="absolute top-0 flex justify-center -z-20 w-full overflow-hidden mx-auto h-screen bg-black"
       >
         <span class="quad w-full h-[150vh] rounded-full animate-appear"></span>
       </div>
     </main>
   </body>
 </html>
-<script src="styles/global.js"></script>
+

@@ -1,5 +1,5 @@
 // This file is for general info and descriptions for the different sections of the website
-import type { Site, Sections, CVEntry, ServicesCats } from "@types"
+import type { Site, Sections, CVEntry, ServicesCats } from "src/types.ts"
 
 // KEY SITE INFORMATION
 export const site: Site = {

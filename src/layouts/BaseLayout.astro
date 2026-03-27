@@ -1,6 +1,6 @@
 ---
 // IMPORTS
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import BaseHead from "@components/BaseHead.astro";
 import Header from "@components/Header.astro";
 import AnimationWrapper from "@components/AnimationWrapper";
@@ -31,15 +31,15 @@ const { siteTitle, description, pageTitle, locale, heroImage } = Astro.props;
 			locale={locale}
 			image={heroImage}
 		/>
-		<ViewTransitions />
+		<ClientRouter />
 	</head>
 
 	<body
 		
-		class="leading-loose text-normal text-pretty break-words text-medium md:text-base font-mono dark:bg-black dark:text-gray-300"
+		class="leading-loose text-base text-pretty wrap-break-word text-medium md:text-base font-mono dark:bg-black dark:text-gray-300"
 	>
 		<Header locale={locale} />
-		<main class="min-h-[100lvh]">
+		<main class="min-h-lvh">
 			<AnimationWrapper locale={locale} client:load />
 			<div id="content" class="mt-2 md:mt-32 mx-auto" >
 				<h1 id="glitch" class="enter">{pageTitle}</h1>
@@ -49,4 +49,4 @@ const { siteTitle, description, pageTitle, locale, heroImage } = Astro.props;
 		<Footer locale={locale}/>
 	</body>
 </html>
-<script src="styles/global.js"></script>
+<script is:inline src="../../../src/styles/global.js"></script>

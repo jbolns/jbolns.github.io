@@ -1,7 +1,7 @@
 // IMPORTS
 import { languages } from './ui'
 import { routes } from './routes'
-import type { Multi } from "@types"
+import type { Multi } from "src/types.ts"
 
 
 // FUNCTIONS

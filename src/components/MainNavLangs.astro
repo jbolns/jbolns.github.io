@@ -1,6 +1,6 @@
 ---
 // IMPORTS
-import type { Multi } from "@types";
+import type { Multi } from "src/types.ts";
 import { languages } from "@i18n/ui";
 import { getRoutes, sanitizeRoutes } from "@i18n/utils";
 import { getEntry } from "astro:content";
@@ -9,7 +9,7 @@ import { getEntry } from "astro:content";
 // Get locale
 const { locale } = Astro.props;
 
-// Determine current slug from pathname
+// Determine current id from pathname
 let currentPath = Astro.url.pathname;
 
 // Base paths for top-level pages with different paths across locales
@@ -24,15 +24,15 @@ if (
 	lang_bases = getRoutes(base);
 }
 
-// Alt slugs for collection items with different paths across languages
+// Alt ids for collection items with different paths across languages
 const parts = currentPath.split("/");
-let slug: string | undefined = parts.pop() || parts.pop();
-const routes: Multi | string = getRoutes(slug);
+let id: string | undefined = parts.pop() || parts.pop();
+const routes: Multi | string = getRoutes(id);
 
 // Get rid of flags for locales where page does not exist
 let valid_langs = Object.keys(languages);
-let lang_slugs =
-	typeof routes === "string" ? [slug, slug, slug] : Object.values(routes);
+let lang_ids =
+	typeof routes === "string" ? [id, id, id] : Object.values(routes);
 
 if (parts.includes("blog") && parts.slice(-1)[0] != "blog") {
 	valid_langs = [];
@@ -41,7 +41,7 @@ if (parts.includes("blog") && parts.slice(-1)[0] != "blog") {
 	for (let i = 0; i < Object.keys(languages).length; i++) {
 		const post_in_lang = await getEntry(
 			"blog",
-			`${Object.keys(languages)[i]}/${lang_slugs[i]}`,
+			`${Object.keys(languages)[i]}/${lang_ids[i]}`,
 		);
 		items.push(post_in_lang);
 	}
@@ -69,8 +69,8 @@ if (parts.includes("blog") && parts.slice(-1)[0] != "blog") {
 					typeof routes === "object"
 						? currentPath
 								.replace(`/${locale}/`, `/${l}/`)
-								.replace(`/${slug}/`, `/${routes[l]}/`)
-								.replace(`/${slug}`, `/${routes[l]}/`)
+								.replace(`/${id}/`, `/${routes[l]}/`)
+								.replace(`/${id}`, `/${routes[l]}/`)
 						: currentPath
 								.replace(
 									base,

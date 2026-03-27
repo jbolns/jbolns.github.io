@@ -24,7 +24,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 		const tags = [
 			...new Set(
 				projects
-					.filter((project) => project.slug.startsWith(locale))
+					.filter((project) => project.id.startsWith(locale))
 					.map((project) => project.data.tags)
 					.flat(),
 			),
@@ -35,7 +35,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 	// Return projects by locale, paginated
 	return Object.keys(languages).flatMap((lang) => {
 		const filteredProjects = projects.filter(
-			(a: { slug: string }) => a.slug.split("/")[0] === lang,
+			(a: { id: string }) => a.id.split("/")[0] === lang,
 		);
 
 		return paginate(filteredProjects, {

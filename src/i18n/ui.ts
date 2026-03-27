@@ -1,7 +1,7 @@
 // THIS FILE IS FOR LANGUAGE DEFAULTS AND TOP-LEVEL NAVIGATION
 
 // IMPORTS
-import type { Multi, Links, Misc } from "@types"
+import type { Multi, Links, Misc } from "src/types.ts"
 
 
 // ALL LANGUAGES

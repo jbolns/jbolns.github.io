@@ -1,6 +1,6 @@
 ---
 // IMPORTS
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 import CurriculumSection from "./CurriculumSection.astro";
 import LogoRender from "./LogoRender.astro";
 import { degrees, certifications, publications } from "@i18n/sections";
@@ -15,7 +15,7 @@ const { locale } = Astro.props;
 
 // Get all work experiences from collection and prepare them for rendering
 const experience: Entry[] = (await getCollection("cv"))
-  .filter((entry: Entry) => entry.slug.startsWith(locale))
+  .filter((entry: Entry) => entry.id.startsWith(locale))
   .sort((a: Entry, b: Entry) => b.data.endDate - a.data.endDate);
 
 // Extract all possible view modes & define initial view mode
@@ -24,7 +24,7 @@ const defaultMode = "coding";
 
 const renderRoles = await Promise.all(
   experience.map(async (role) => {
-    const { Content } = await role.render();
+    const { Content } = await render(role);
     return { ...role, Content };
   }),
 );

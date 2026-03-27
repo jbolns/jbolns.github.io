@@ -4,7 +4,7 @@ import { getEntry, render } from 'astro:content';
 // Get service info as props
 const { service, locale } = Astro.props;
 
-const item = await getEntry(service.collection, service.slug);
+const item = await getEntry(service.collection, service.id);
 const { Content } = await render(item);
 
 ---

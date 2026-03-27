@@ -1,6 +1,6 @@
 ---
 // IMPORTS
-import type { CVEntry } from "@types";
+import type { CVEntry } from "src/types.ts";
 
 // ACTIONS
 // Get all props
@@ -28,7 +28,7 @@ const isPublications = title.toLowerCase() === "publications";
           </span>{applicableDate}.
         </summary>
         <ul class="text-sm">
-          {entry.contents[locale].split(";").map((item) => (
+          {entry.contents[locale].split(";").map((item: string  ) => (
             <li>
               {isPublications ? (
                 <a href={item} target="_blank">

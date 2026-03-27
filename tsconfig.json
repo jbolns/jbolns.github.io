@@ -3,28 +3,25 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "allowJs": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@*": [
-        "*"
-      ],
       "@assets/*": [
-        "assets/*"
+        "src/assets/*"
       ],
       "@components/*": [
-        "components/*"
+        "src/components/*"
       ],
       "@content/*": [
-        "content/*"
+        "src/content/*"
       ],
       "@i18n/*": [
-        "i18n/*"
+        "src/i18n/*"
       ],
       "@layouts/*": [
-        "layouts/*"
+        "src/layouts/*"
       ],
       "@styles/*": [
-        "styles/*"
+        "src/styles/*"
       ]
     },
     "jsx": "react-jsx",

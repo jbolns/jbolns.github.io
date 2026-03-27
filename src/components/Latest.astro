@@ -10,7 +10,7 @@ type Project = CollectionEntry<"portfolio">;
 
 type Combo = {
   title: string;
-  slug: string;
+  id: string;
   collection: string;
   heroImage: ImageMetadata;
   pubDate: Date;
@@ -21,17 +21,17 @@ const { sectionTitle = "Latest", numberOfEntries = 3, locale } = Astro.props;
 
 // Get entries from all collections
 const blogs: Post[] = (await getCollection("blog")).filter((item: Post) =>
-  item.slug.startsWith(locale),
+  item.id.startsWith(locale),
 );
 const updates: Project[] = (await getCollection("portfolio")).filter(
-  (item: Project) => item.slug.startsWith(locale),
+  (item: Project) => item.id.startsWith(locale),
 );
 
 // Join entries
 let items: Combo[] = blogs.map((item) => {
   return {
     title: item.data.title,
-    slug: item.slug,
+    id: item.id,
     collection: item.collection,
     heroImage: item.data.heroImage,
     pubDate: item.data.pubDate,
@@ -42,7 +42,7 @@ items = items.concat(
   updates.map((item) => {
     return {
       title: item.data.title,
-      slug: item.slug,
+      id: item.id,
       collection: item.collection,
       heroImage: item.data.heroImage,
       pubDate: item.data.updateDate,  // Force latest update to top w/o having to add update time to blog schema
@@ -61,10 +61,10 @@ items = items
   {
     items.map((item: Combo) => (
       <li class="group intersect mt-8 first:mt-4 md:mt-4 mx-[5%] odd:mr-[25%] even:ml-[25%] md:mx-0 md:odd:mr-0 md:even:ml-0">
-        <a href={`/${item.collection}/${item.slug}/`}>
+        <a href={`/${item.collection}/${item.id}/`}>
           <Image
             src={item.heroImage}
-            alt={`Thumbnail for post ${item.slug}`}
+            alt={`Thumbnail for post ${item.id}`}
             width={720}
             height={360}
             class="m-0 p-0 border border-black dark:border-white group-hover:duration-[1s] group-hover:shadow-lg group-hover:rounded-t-3xl group-hover:animate-pulse"

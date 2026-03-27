@@ -1,22 +1,22 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from "astro:content"
+import { z } from "astro/zod"
+import { glob } from 'astro/loaders';
 
 const blog = defineCollection({
-	type: 'content',
+	loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "src/content/blog" }),
 	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
 		locale: z.string(),
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
-		heroImage: image().refine((img) => img.width >= 600, {
-			message: "Cover image must be at least 600 pixels wide!",
-		}),
+		heroImage: image(),
 		tags: z.array(z.string())
 	}),
 })
 
 const cv = defineCollection({
-	type: "content",
+	loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "src/content/cv" }),
 	schema: z.object({
 		title: z.string(),
 		company: z.string(),
@@ -29,32 +29,28 @@ const cv = defineCollection({
 })
 
 const portfolio = defineCollection({
-	type: "content",
+	loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "src/content/portfolio" }),
 	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
 		locale: z.string(),
 		pubDate: z.coerce.date(),
 		updateDate: z.coerce.date(),
-		heroImage: image().refine((img) => img.width >= 600, {
-			message: "Cover image must be at least 600 pixels wide!",
-		}),
+		heroImage: image(),
 		stack: z.array(z.string()).optional(),
 		tags: z.array(z.string())
 	}),
 })
 
 const services = defineCollection({
-	type: "content",
+	loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "src/content/services" }),
 	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
 		locale: z.string(),
 		pubDate: z.coerce.date(),
 		priority: z.number(),
-		heroImage: image().refine((img) => img.width >= 600, {
-			message: "Cover image must be at least 600 pixels wide!",
-		}),
+		heroImage: image(),
 		cats: z.array(z.string()),
 		pricing: z.string(),
 		callToAction: z.string(),

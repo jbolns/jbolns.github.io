@@ -1,4 +1,4 @@
-import type { Socials } from "@types"
+import type { Socials } from "src/types.ts"
 
 // Socials
 export const socials: Socials = [

@@ -27,7 +27,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 		const tags = [
 			...new Set(
 				posts
-					.filter((post) => post.slug.startsWith(lang))
+					.filter((post) => post.id.startsWith(lang))
 					.map((post) => post.data.tags)
 					.flat(),
 			),

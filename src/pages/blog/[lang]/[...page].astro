@@ -26,7 +26,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 		const tags = [
 			...new Set(
 				posts
-					.filter((post) => post.slug.startsWith(locale))
+					.filter((post) => post.id.startsWith(locale))
 					.map((post) => post.data.tags)
 					.flat(),
 			),
@@ -37,7 +37,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 	// Return posts by locale, paginated
 	return Object.keys(languages).flatMap((lang) => {
 		const filteredPosts = posts.filter(
-			(a: { slug: string }) => a.slug.split("/")[0] === lang,
+			(a: { id: string }) => a.id.split("/")[0] === lang,
 		);
 
 		return paginate(filteredPosts, {

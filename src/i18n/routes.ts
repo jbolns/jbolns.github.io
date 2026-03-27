@@ -1,4 +1,4 @@
-import type { Multi } from "@types"
+import type { Multi } from "src/types.ts"
 // Routes to re-direct users to equivalent page when they change language using language picker
 
 
