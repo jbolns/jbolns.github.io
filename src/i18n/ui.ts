@@ -127,7 +127,7 @@ export const cvStrings: Misc = {
     es: "Este CV es interactivo. Selecciona una industria. El CV se adaptará a tu selección",
     fi: "Tämä CV on interaktiivinen. Valitse toimialan painopiste ja CV mukautuu."
   },
-  experience: {
+  cv: {
     en: "Experience",
     es: "Experiencia",
     fi: "Työkokemus"

@@ -1,5 +1,11 @@
 ---
 // IMPORTS
+import {
+  type CollectionEntry,
+  getCollection,
+  getEntry,
+  render,
+} from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { site } from "@i18n/sections";
 import { defaultLang } from "@i18n/ui";
@@ -8,7 +14,20 @@ import { defaultLang } from "@i18n/ui";
 // Get locale from folder structure
 const locale = defaultLang;
 
-const tcSections = await Astro.glob("../../content/site/*.mdx");
+type termsSection = CollectionEntry<"terms">
+const termsSections: termsSection[] = (
+  await getCollection("terms")
+).sort(
+  (a: termsSection, b: termsSection) =>
+    a.data.priority.valueOf() - b.data.priority.valueOf(),
+);
+
+const termsSectionsRendered = await Promise.all(
+  termsSections.map(async (section: termsSection) => {
+    const { Content } = await render(section);
+    return { ...section, Content };
+  }),
+);
 ---
 
 <BaseLayout
@@ -22,7 +41,10 @@ const tcSections = await Astro.glob("../../content/site/*.mdx");
       (For clarity, this page is only available in English.)
     </p>
     <h2>Company Details</h2>
-    <p>I run my professional activities under the following registered business/company details:</p>
+    <p>
+      I run my professional activities under the following registered
+      business/company details:
+    </p>
     <ul>
       <li>Company name: Polyzentrik Tmi (based in Finland).</li>
       <li>Business ID. 3331963-2.</li>
@@ -57,17 +79,17 @@ const tcSections = await Astro.glob("../../content/site/*.mdx");
 
     <h2>Terms & Conditions</h2>
     <p>
-      By using this Website and/or buying or otherwise using any Products in it, you
-      agree to the all terms, conditions, and policies below.
+      By using this Website and/or buying or otherwise using any Products in it,
+      you agree to the all terms, conditions, and policies below.
     </p>
 
     {
-      tcSections.map((item) => (
+      termsSectionsRendered.map((section) => (
         <details class="text-sm">
           <summary>
-            <h3 class="inline">{item.frontmatter.description}</h3>
+            <h3 class="inline">{section.data.description}</h3>
           </summary>
-          <item.Content />
+          <section.Content />
         </details>
       ))
     }

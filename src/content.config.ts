@@ -61,4 +61,14 @@ const services = defineCollection({
 const servicios = services
 const palvelut = services
 
-export const collections = { blog, cv, portfolio, services, servicios, palvelut }
+const terms = defineCollection({
+	loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "src/content/terms" }),
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		priority: z.number(),
+		locale: z.string(),
+	}),
+})
+
+export const collections = { blog, cv, portfolio, services, servicios, palvelut, terms }

@@ -14,18 +14,18 @@ type Entry = CollectionEntry<"cv">;
 const { locale } = Astro.props;
 
 // Get all work experiences from collection and prepare them for rendering
-const experience: Entry[] = (await getCollection("cv"))
+const cvEntries: Entry[] = (await getCollection("cv"))
   .filter((entry: Entry) => entry.id.startsWith(locale))
   .sort((a: Entry, b: Entry) => b.data.endDate - a.data.endDate);
 
 // Extract all possible view modes & define initial view mode
-let viewModes = [...new Set(experience.flatMap((role) => role.data.tags))];
+let viewModes = [...new Set(cvEntries.flatMap((entry) => entry.data.tags))];
 const defaultMode = "coding";
 
-const renderRoles = await Promise.all(
-  experience.map(async (role) => {
-    const { Content } = await render(role);
-    return { ...role, Content };
+const cvEntriesRendered = await Promise.all(
+  cvEntries.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { ...entry, Content };
   }),
 );
 ---
@@ -47,23 +47,23 @@ const renderRoles = await Promise.all(
 </div>
 
 <div>
-  <h2 class="intersect">{cvStrings.experience[locale]}</h2>
+  <h2 class="intersect">{cvStrings.cv[locale]}</h2>
   {
-    renderRoles.map(async (role) => {
+    cvEntriesRendered.map(async (entry) => {
       return (
         <details
           class={
-            role.data.tags.join(" ") +
+            entry.data.tags.join(" ") +
             " intersect role" +
-            (role.data.tags.includes(defaultMode) ? "" : " hidden")
+            (entry.data.tags.includes(defaultMode) ? "" : " hidden")
           }
         >
           <summary>
-            <strong>{role.data.title}.</strong> {role.data.company}.{" "}
-            {role.data.startDate} - {role.data.endDate}.
+            <strong>{entry.data.title}.</strong> {entry.data.company}.{" "}
+            {entry.data.startDate} - {entry.data.endDate}.
           </summary>
           <span class="text-sm">
-            <role.Content />
+            <entry.Content />
           </span>
         </details>
       );

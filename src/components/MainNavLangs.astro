@@ -31,6 +31,7 @@ const routes: Multi | string = getRoutes(id);
 
 // Get rid of flags for locales where page does not exist
 let valid_langs = Object.keys(languages);
+
 let lang_ids =
 	typeof routes === "string" ? [id, id, id] : Object.values(routes);
 
@@ -50,15 +51,16 @@ if (parts.includes("blog") && parts.slice(-1)[0] != "blog") {
 		? [true, true, true]
 		: items.map((post) => {
 				return post !== undefined;
-			});  // Note to self. Do not remove conditional. Avoids error with paginated views.
+			}); // Note to self. Do not remove conditional. Avoids error with paginated views.
 
 	for (let i = 0; i < Object.keys(languages).length; i++) {
 		if (do_posts_exist[i]) {
 			valid_langs.push(Object.keys(languages)[i]);
 		}
 	}
+} else if (currentPath.includes("terms")) {
+	valid_langs = ["en"];
 }
-
 ---
 
 <span class="flex items-center justify-center">
@@ -74,7 +76,9 @@ if (parts.includes("blog") && parts.slice(-1)[0] != "blog") {
 						: currentPath
 								.replace(
 									base,
-									typeof lang_bases === "object" ? lang_bases[l] : base,
+									typeof lang_bases === "object"
+										? lang_bases[l]
+										: base,
 								)
 								.replace(`/${locale}/`, `/${l}/`)
 								.replace(`/${locale}`, `/${l}/`),
