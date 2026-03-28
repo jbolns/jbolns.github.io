@@ -6,6 +6,7 @@ import LogoRender from "./LogoRender.astro";
 // ACTIONS
 // Get post info as props
 const { post, locale } = Astro.props;
+const labels = post.collection === "blog" ? post.data.tags : post.data.stack;
 ---
 
 <li
@@ -17,24 +18,20 @@ const { post, locale } = Astro.props;
 			alt="Entry thumbnail"
 			width={720}
 			height={360}
-			class="m-0 p-0 border border-black dark:border-white group-hover:duration-[1s] group-hover:shadow-lg group-hover:rounded-t-3xl group-hover:animate-pulse"
+			class="m-0 p-0 border border-black dark:border-white group-hover:duration-1000 group-hover:shadow-lg group-hover:rounded-t-3xl group-hover:animate-pulse"
 		/>
-		<span class="hidden tiny:grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
+		<span class="hidden tiny:block text-sm!">
 			{
-				post.collection === "blog"
-					? post.data.tags
-							.slice(0, 3)
-							.map((tag: string) => <LogoRender label={tag} locale={locale} />)
-					: post.data.stack
-						? post.data.stack
-								.slice(0, 3)
-								.map((item: string) => (
-									<LogoRender label={item} locale={locale} />
-								))
-						: ""
+				labels
+					.slice(0, 3)
+					.map((label: string) => (
+						<LogoRender label={label} locale={locale} />
+					))
 			}
 		</span>
-		<h2 class="group-hover:underline group-hover:animate-wiggle text-2xl mt-0">
+		<h2
+			class="group-hover:underline group-hover:animate-wiggle text-2xl mt-0!"
+		>
 			{post.data.title}
 		</h2>
 	</a>
