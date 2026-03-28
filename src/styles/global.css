@@ -89,6 +89,14 @@ main .active>* {
 	color: black;
 }
 
+main .cv .active, main .cv .active>* {
+	background: none;
+}
+
+.dark main .cv .active>*{
+	color: white;
+}
+
 #content {
 	width: 100%;
 	padding: 1rem;
